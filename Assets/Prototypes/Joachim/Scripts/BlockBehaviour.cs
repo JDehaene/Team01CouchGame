@@ -11,7 +11,7 @@ public class BlockBehaviour : MonoBehaviour
     void Update()
     {
         transform.position -= Vector3.down * _fallSpeed * -1 * Time.deltaTime;
-
+        _fallSpeed += Time.deltaTime/2;
         if (transform.position.y < _blockTransporter.transform.position.y)
             TransportBlock();
     }
