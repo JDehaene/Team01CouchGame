@@ -13,11 +13,17 @@ public class PlayerBehaviour : MonoBehaviour
     private Vector2 _input;
     private float _angle;
     private Quaternion _targetRotation;
-    private Transform _camera;
+
+    public GameObject Bullet;
+    private float _timer;
+    [SerializeField]
+    private float _reloadTime = 2;
+
+    private Transform _holster;
 
     private void Start()
     {
-        _camera = Camera.main.transform;
+        _holster = transform.GetChild(0).GetComponent<Transform>();
     }
 
     private void Update()
@@ -29,8 +35,6 @@ public class PlayerBehaviour : MonoBehaviour
         CalculateDirection();
         Rotate();
         Move();
-
-        Debug.Log(_angle);
     }
 
     private void Move()
@@ -48,12 +52,25 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _angle = Mathf.Atan2(_input.x, _input.y);
         _angle = Mathf.Rad2Deg * _angle;
-        //_angle = _camera.eulerAngles.y;
     }
 
     private void GetInput()
     {
         _input.x = Input.GetAxisRaw("Horizontal");
         _input.y = Input.GetAxisRaw("Vertical");
+
+        if (_timer > 0)
+        {
+            _timer -= Time.deltaTime;
+        }
+
+        if (Input.GetButtonDown("A"))
+        {
+            if (_timer <= 0)
+            {
+                Instantiate(Bullet, _holster.position, transform.rotation);
+                _timer = _reloadTime;
+            }
+        }
     }
 }
