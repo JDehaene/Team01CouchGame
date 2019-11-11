@@ -109,6 +109,9 @@ GameObject:
   - component: {fileID: 4155549996353741385}
   - component: {fileID: 4607430924925688843}
   - component: {fileID: 8818893839854935010}
+  - component: {fileID: 16028087664171959}
+  - component: {fileID: 9037628327177355537}
+  - component: {fileID: 3051071179706377057}
   m_Layer: 0
   m_Name: Room02
   m_TagString: Untagged
@@ -3778,8 +3781,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 18, y: 0, z: 18}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 7.0667176, y: 0, z: 18}
+  m_Center: {x: 5.4666414, y: 0, z: 0}
 --- !u!65 &7241614389177325671
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3848,3 +3851,42 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &16028087664171959
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635760354123339036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.119651, y: 0, z: 18}
+  m_Center: {x: -5.4401746, y: 0, z: 0}
+--- !u!65 &9037628327177355537
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635760354123339036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18, y: 0, z: 7.129753}
+  m_Center: {x: 0, y: 0, z: -5.4351234}
+--- !u!65 &3051071179706377057
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635760354123339036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18, y: 0, z: 6.9261894}
+  m_Center: {x: 0, y: 0, z: 5.5369053}
