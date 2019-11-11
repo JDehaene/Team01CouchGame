@@ -11,7 +11,8 @@ public class DungeonGenerator : MonoBehaviour
     public List<GameObject> RoomList = new List<GameObject>();
 
     private int _spacing = 18;
-    private int _maxRooms = 10;
+    [SerializeField]
+    private int _maxRooms = 5;
     private int _randomNumber;
     private int _lastNumber = 5;
 
@@ -20,6 +21,8 @@ public class DungeonGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject firstRoom = Instantiate(Rooms[0], _oldPosition, Quaternion.identity);
+        RoomList.Add(firstRoom);
         _positionList.Add(_oldPosition);
 
         for (int roomIndex = 0; roomIndex < _maxRooms; roomIndex++)
@@ -77,19 +80,33 @@ public class DungeonGenerator : MonoBehaviour
             if (roomIndex + 1 == _maxRooms)
             {
                 room = Instantiate(Rooms[1], _oldPosition + position, Quaternion.identity);
+                RoomList.Add(room);
+            }
+            else if (roomIndex == 2)
+            {
+                room = Instantiate(Rooms[2], _oldPosition + position, Quaternion.identity);
+                RoomList.Add(room);
+            }
+            else if (roomIndex == 3)
+            {
+                room = Instantiate(Rooms[3], _oldPosition + position, Quaternion.identity);
+                RoomList.Add(room);
             }
             else
             {
                 room = Instantiate(Rooms[0], _oldPosition + position, Quaternion.identity);
+                RoomList.Add(room);
             }
 
-            RoomList.Add(room);
+
           
             _oldPosition = room.transform.position;
 
             Debug.Log("New room Position: " + room.transform.position);
             Debug.Log("Old Position: " + _oldPosition);         
         }
+
+        Debug.Log("Rooms: " + RoomList.Count);
     }
 
     private Vector3 GenerateRandomPosition(int number)

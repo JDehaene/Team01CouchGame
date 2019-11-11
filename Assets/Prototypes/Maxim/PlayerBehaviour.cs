@@ -19,6 +19,11 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     private float _reloadTime = 2;
 
+    [SerializeField]
+    private bool _showGizmo = true;
+
+    public LayerMask LayerMask;
+
     private Transform _holster;
 
     private void Start()
@@ -71,6 +76,35 @@ public class PlayerBehaviour : MonoBehaviour
                 Instantiate(Bullet, _holster.position, transform.rotation);
                 _timer = _reloadTime;
             }
+        }
+    }
+
+    private void ApplyCollision()
+    {
+        Collider[] hitColliders = Physics.OverlapBox(transform.position + new Vector3(0, 0, 0),
+            new Vector3(1, 1, 1), transform.rotation, LayerMask);
+
+        foreach (Collider collider in hitColliders)
+        {
+            if (collider.CompareTag("Pushable"))
+            {
+                Debug.Log("FoundPushableOBject");
+                Rigidbody rb = collider.GetComponent<Rigidbody>();
+
+                if (Input.GetButtonDown("A"))
+                {
+                    rb.AddForce(Vector3.forward * 500, ForceMode.Impulse);
+                }
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (_showGizmo)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(transform.position + new Vector3(0, 0, 1), new Vector3(2, 2, 2));
         }
     }
 }
