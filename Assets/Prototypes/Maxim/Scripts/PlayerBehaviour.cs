@@ -123,48 +123,25 @@ public class PlayerBehaviour : MonoBehaviour
         _playerSpeed += speed;
         _playerPower += power;
     }
-
-    public void PlayerGainsHealt(int hp_gain)
-    {
-        _playerHealth += hp_gain;
-    }
-
-    public void PlayerTakesDamage(int damage)
-    {
-        _playerHealth -= damage;
-    }
-
-    public void PlayerGainsMaxHp(int maxhp_gain)
-    {
-        _playerMaxHealth += maxhp_gain;
-    }
-
+    
     private void PlayerDies()
     {
         //spawn ghost / activate ghost system
         gameObject.active = false;
     }
-
-    public void PlayerGainsSpeed(float speed_gain)
+    
+    private void PlayerCheck()
     {
-        _playerSpeed += speed_gain;
-    }
+        if(_playerHealth > _playerMaxHealth)
+        {
+            _playerHealth = _playerMaxHealth;
+        }
 
-    public void PlayerLosesSpeed(float speed_loss)
-    {
-        _playerSpeed -= speed_loss;
-    }
-
-    public void PlayerGainsPower(float power_gain)
-    {
-        _playerPower += power_gain;
+        if(_playerHealth <= 0)
+        {
+            PlayerDies();
+        }
 
     }
-
-    public void PlayerLosesPower(float power_loss)
-    {
-        _playerPower -= power_loss;
-    }
-
 
 }
