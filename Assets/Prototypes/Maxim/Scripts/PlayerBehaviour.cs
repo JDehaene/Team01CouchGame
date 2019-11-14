@@ -26,6 +26,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     private Transform _holster;
 
+    //player stats
+    [SerializeField] private int _playerHealth, _playerMaxHealth;
+    [SerializeField] private float _playerSpeed, _playerPower;
+    [SerializeField] private GameObject _playerWeapon;
+ 
+
     private void Start()
     {
         _holster = transform.GetChild(0).GetComponent<Transform>();
@@ -44,7 +50,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Move()
     {
-        transform.position += transform.forward * _velocity * Time.deltaTime;
+        transform.position += transform.forward * _velocity * _playerSpeed * Time.deltaTime;
     }
 
     private void Rotate()
@@ -107,4 +113,58 @@ public class PlayerBehaviour : MonoBehaviour
             Gizmos.DrawWireCube(transform.position + new Vector3(0, 0, 1), new Vector3(2, 2, 2));
         }
     }
+
+
+    // player stats
+    public void PlayerChangeStats(int maxhp, int currenthp, float speed, float power)
+    {
+        _playerMaxHealth += maxhp;
+        _playerHealth += currenthp;
+        _playerSpeed += speed;
+        _playerPower += power;
+    }
+
+    public void PlayerGainsHealt(int hp_gain)
+    {
+        _playerHealth += hp_gain;
+    }
+
+    public void PlayerTakesDamage(int damage)
+    {
+        _playerHealth -= damage;
+    }
+
+    public void PlayerGainsMaxHp(int maxhp_gain)
+    {
+        _playerMaxHealth += maxhp_gain;
+    }
+
+    private void PlayerDies()
+    {
+        //spawn ghost / activate ghost system
+        gameObject.active = false;
+    }
+
+    public void PlayerGainsSpeed(float speed_gain)
+    {
+        _playerSpeed += speed_gain;
+    }
+
+    public void PlayerLosesSpeed(float speed_loss)
+    {
+        _playerSpeed -= speed_loss;
+    }
+
+    public void PlayerGainsPower(float power_gain)
+    {
+        _playerPower += power_gain;
+
+    }
+
+    public void PlayerLosesPower(float power_loss)
+    {
+        _playerPower -= power_loss;
+    }
+
+
 }
