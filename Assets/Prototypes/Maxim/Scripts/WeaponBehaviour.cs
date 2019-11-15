@@ -10,6 +10,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     private Transform _weaponPos, _player;
     private float _timer, _playerPower;
+    private int _counter;
 
     private void Start()
     {
@@ -20,7 +21,16 @@ public class WeaponBehaviour : MonoBehaviour
     {
         _timer -= Time.deltaTime;
         _weaponPos = _player.GetComponent<PlayerBehaviour>().WeaponPos;
-        //Bullet.GetComponent<BulletBehaviour>().BulletPower(_playerPower);
+        if(_counter < 1)
+        {
+            SetWeapon();
+            _counter++;
+        }
+    }
+
+    public void SetWeapon()
+    {
+        Bullet.GetComponent<BulletStats>().BulletPower(_playerPower);
     }
 
     public void WeaponStats(Transform player, float playerPower)
@@ -31,7 +41,11 @@ public class WeaponBehaviour : MonoBehaviour
     
     public void UseWeapon()
     {
-
+        if (_timer <= 0)
+        {
+            Instantiate(Bullet, new Vector3(_weaponPos.position.x, _weaponPos.position.y, _weaponPos.position.z), this.transform.rotation);
+            _timer = _firerateTimer;
+        }
     }
 
 }

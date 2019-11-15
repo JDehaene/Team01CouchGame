@@ -106,5 +106,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931227369badc574f90fb7b69c11ed4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firerateTimer: 0
+  _firerateTimer: 0.24
   Bullet: {fileID: 1204783175254587294, guid: 0963d014df391a64daa7ae64c4fdb41d, type: 3}

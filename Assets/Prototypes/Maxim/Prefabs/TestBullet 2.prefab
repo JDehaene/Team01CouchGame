@@ -122,8 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58765e449c29440469a4c617508f6331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 15
-  _damage: 20
+  BulletPrefab: {fileID: 1204783175254587294}
 --- !u!1 &1204783174627929331
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,8 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58765e449c29440469a4c617508f6331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 15
-  _damage: 20
+  BulletPrefab: {fileID: 1204783175254587294}
 --- !u!1 &1204783175254587294
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +255,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204783175254587289}
+  - component: {fileID: -8597871027893575514}
+  - component: {fileID: -452826779526935745}
   m_Layer: 0
   m_Name: TestBullet 2
   m_TagString: Untagged
@@ -281,6 +281,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8597871027893575514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204783175254587294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17c466655b3760242891c69b4e51bed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-452826779526935745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204783175254587294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8837ef5579973d74283b170961accffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletSpeed: 15
+  StartBulletDamage: 10
+  CurrentBulletDamage: 0
 --- !u!1 &1216745977487812773
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,5 +430,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58765e449c29440469a4c617508f6331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 15
-  _damage: 20
+  BulletPrefab: {fileID: 1204783175254587294}
