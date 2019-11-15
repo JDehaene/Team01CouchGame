@@ -27,7 +27,7 @@ public class PlayerBehaviour : MonoBehaviour
     private Transform _holster;
 
     //player stats
-    [SerializeField] private int _playerHealth, _playerMaxHealth;
+    [SerializeField] private float _playerHealth, _playerMaxHealth;
     [SerializeField] private float _playerSpeed, _playerPower;
 
     //player weapon
@@ -121,7 +121,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 
     // player stats
-    public void PlayerChangeStats(int maxhp, int currenthp, float speed, float power)
+    public void PlayerChangeStats(float maxhp, float currenthp, float speed, float power)
     {
         _playerMaxHealth += maxhp;
         _playerHealth += currenthp;

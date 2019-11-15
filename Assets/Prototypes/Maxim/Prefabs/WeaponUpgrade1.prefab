@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 975223215705542736}
   - component: {fileID: 6821084821982386462}
   - component: {fileID: 1620319361727660862}
+  - component: {fileID: 8291579114837524458}
   m_Layer: 0
   m_Name: WeaponUpgrade1
   m_TagString: Untagged
@@ -93,3 +94,17 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8291579114837524458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4699393437924066832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931227369badc574f90fb7b69c11ed4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firerateTimer: 0
+  Bullet: {fileID: 1204783175254587294, guid: 0963d014df391a64daa7ae64c4fdb41d, type: 3}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    [SerializeField] private int _maxHpStat, _hpStat;
+    [SerializeField] private float _maxHpStat, _hpStat;
     [SerializeField] private float _speedStat, _powerStat; 
         
     private PlayerBehaviour _playerScript;
