@@ -5,10 +5,9 @@ using UnityEngine;
 public class CameraBehaviour : MonoBehaviour
 {
     private Camera _camera;
-    private DungeonGenerator _dungeonGenerator;
 
     private int _roomIndex = 0;
-    private bool _goNextRoom = false;
+    private bool _goToMyRoom = false;
     private bool _startTimer = false;
 
     private float _timer;
@@ -16,7 +15,6 @@ public class CameraBehaviour : MonoBehaviour
     void Start()
     {
         _camera = Camera.main;
-        _dungeonGenerator = transform.GetChild(0).GetComponent<DungeonGenerator>();
     }
 
     private void Update()
@@ -39,14 +37,15 @@ public class CameraBehaviour : MonoBehaviour
 
     void LateUpdate()
     {
-        if (_goNextRoom)
+        if (_goToMyRoom)
         {
-            GameObject waypoint = _dungeonGenerator.RoomList[_roomIndex].transform.GetChild(0).gameObject;
-            _camera.transform.position =  Vector3.Lerp(_camera.transform.position, waypoint.transform.position, 5 * Time.deltaTime);
+            _startTimer = true;
 
-            if (Vector3.Distance(_camera.transform.position, waypoint.transform.position) < 0.25f)
+            _camera.transform.position =  Vector3.Lerp(_camera.transform.position, transform.parent.transform.position + new Vector3(0, 13, -8), 5 * Time.deltaTime);
+
+            if (Vector3.Distance(_camera.transform.position, transform.parent.transform.position + new Vector3(0, 13, -8)) < 0.25f)
             {
-                _goNextRoom = false;
+                _goToMyRoom = false;
             }
         }
     }
@@ -55,15 +54,7 @@ public class CameraBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _goNextRoom = true;
-            _roomIndex++;
-
-            foreach (Collider collider in GetComponents<Collider>())
-            {
-                collider.enabled = false;
-            }
-
-            _startTimer = true;
+            _goToMyRoom = true;           
         }
     }
 }

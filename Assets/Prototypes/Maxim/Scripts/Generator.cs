@@ -6,22 +6,52 @@ using UnityEngine;
 public class Generator : MonoBehaviour
 {
     public GameObject[] Rooms;
-    [SerializeField]
-    private List<Vector3> _roomPositionList = new List<Vector3>();
+
+    public List<Vector3> _roomPositionList = new List<Vector3>();
+    private List<GameObject> _roomList = new List<GameObject>();
 
     [SerializeField]
     private int _numberOfRooms = 5;
+
+    private int _currentNumberOfRooms = 5;
 
     private int _offset = 18;
 
     private Vector3 _position = Vector3.zero;
     private Vector3 _lastPosition = Vector3.zero;
 
+    private GameObject _room;
 
     private void Start()
     {
         GeneratePositions();
         AddRooms();
+    }
+
+    private void Update()
+    {
+        if (_currentNumberOfRooms != _numberOfRooms)
+        {
+            for (int i = 0; i < _roomPositionList.Count; i++)
+            {
+                _roomPositionList.Remove(_roomPositionList[i]);
+            }
+
+            foreach (GameObject room in _roomList)
+            {
+                Destroy(room.gameObject);
+            }
+
+            _roomPositionList.Clear();
+            _roomList.Clear();
+
+            this.transform.position = Vector3.zero;
+
+            GeneratePositions();
+            AddRooms();
+
+            _currentNumberOfRooms = _numberOfRooms;
+        }
     }
 
     private void AddRooms()
@@ -35,72 +65,28 @@ public class Generator : MonoBehaviour
 
         if (nextPosition == Vector3.left * _offset)
         {
-            Instantiate(Rooms[2], position, Quaternion.identity);
+            _room = Instantiate(Rooms[2], position, Quaternion.identity);
         }
         else if (nextPosition == Vector3.right * _offset)
         {
-            Instantiate(Rooms[2], position, Quaternion.Euler(0, 180, 0));
+            _room = Instantiate(Rooms[2], position, Quaternion.Euler(0, 180, 0));
         }
         else if (nextPosition == Vector3.forward * _offset)
         {
-            Instantiate(Rooms[2], position, Quaternion.Euler(0, 90, 0));
+            _room = Instantiate(Rooms[2], position, Quaternion.Euler(0, 90, 0));
         }
         else if (nextPosition == Vector3.back * _offset)
         {
-            Instantiate(Rooms[2], position, Quaternion.Euler(0, -90, 0));
+            _room = Instantiate(Rooms[2], position, Quaternion.Euler(0, -90, 0));
         }
+
+        _roomList.Add(_room);
 
         for (int positionIndex = 1; positionIndex < _roomPositionList.Count - 1; positionIndex++)
         {
             position = _roomPositionList[positionIndex];
             previousPosition = _roomPositionList[positionIndex - 1];
             nextPosition = _roomPositionList[positionIndex + 1];
-
-            //Instantiate spawn if there is no previousPosition
-            //if (previousPosition == null)
-            //{
-            //    if (nextPosition == Vector3.left * _offset)
-            //    {
-            //        Instantiate(Rooms[2], position, Quaternion.identity);
-            //    }
-            //    else if (nextPosition == Vector3.right * _offset)
-            //    {
-            //        Instantiate(Rooms[2], position, Quaternion.Euler(0, 180, 0));
-            //    }
-            //    else if (nextPosition == Vector3.forward * _offset)
-            //    {
-            //        Instantiate(Rooms[2], position, Quaternion.Euler(0, 90, 0));
-            //    }
-            //    else if (nextPosition == Vector3.back * _offset)
-            //    {
-            //        Instantiate(Rooms[2], position, Quaternion.Euler(0, -90, 0));
-            //    }
-            //    return;
-            //}
-
-            //if (nextPosition == null)
-            //{
-            //    if (previousPosition == Vector3.left * _offset)
-            //    {
-            //        Instantiate(Rooms[3], position, Quaternion.identity);
-            //    }
-            //    else if (previousPosition == Vector3.right * _offset)
-            //    {
-            //        Instantiate(Rooms[3], position, Quaternion.Euler(0, 180, 0));
-            //    }
-            //    else if (previousPosition == Vector3.forward * _offset)
-            //    {
-            //        Instantiate(Rooms[3], position, Quaternion.Euler(0, 90, 0));
-            //    }
-            //    else if (previousPosition == Vector3.back * _offset)
-            //    {
-            //        Instantiate(Rooms[3], position, Quaternion.Euler(0, -90, 0));
-            //    }
-            //}
-            //else
-            //{
-            //    nextPosition = _roomPositionList[positionIndex + 1];
-            //}
 
             previousPositionCalculation = previousPosition - position;
             nextPositionCalculation = nextPosition - position;
@@ -109,38 +95,40 @@ public class Generator : MonoBehaviour
             if (previousPositionCalculation == Vector3.left * _offset && nextPositionCalculation == Vector3.right * _offset
                 || previousPositionCalculation == Vector3.right * _offset && nextPositionCalculation == Vector3.left * _offset)
             {
-                Instantiate(Rooms[1], position, Quaternion.identity);
+                _room = Instantiate(Rooms[1], position, Quaternion.identity);
             }
             //boven onder
             else if (previousPositionCalculation == Vector3.forward * _offset && nextPositionCalculation == Vector3.back * _offset
                 || previousPositionCalculation == Vector3.back * _offset && nextPositionCalculation == Vector3.forward * _offset)
             {
-                Instantiate(Rooms[1], position, Quaternion.Euler(0, 90, 0));
+                _room = Instantiate(Rooms[1], position, Quaternion.Euler(0, 90, 0));
             }
             //links boven
             else if (previousPositionCalculation == Vector3.left * _offset && nextPositionCalculation == Vector3.forward * _offset
                 || previousPositionCalculation == Vector3.forward * _offset && nextPositionCalculation == Vector3.left * _offset)
             {
-                Instantiate(Rooms[0], position, Quaternion.identity);
+                _room = Instantiate(Rooms[0], position, Quaternion.identity);
             }
             //links onder
             else if (previousPositionCalculation == Vector3.left * _offset && nextPositionCalculation == Vector3.back * _offset
                 || previousPositionCalculation == Vector3.back * _offset && nextPositionCalculation == Vector3.left * _offset)
             {
-                Instantiate(Rooms[0], position, Quaternion.Euler(0, -90, 0));
+                _room = Instantiate(Rooms[0], position, Quaternion.Euler(0, -90, 0));
             }
             //Rechts boven
             else if (previousPositionCalculation == Vector3.right * _offset && nextPositionCalculation == Vector3.forward * _offset
                 || previousPositionCalculation == Vector3.forward * _offset && nextPositionCalculation == Vector3.right * _offset)
             {
-                Instantiate(Rooms[0], position, Quaternion.Euler(0, 90, 0));
+                _room = Instantiate(Rooms[0], position, Quaternion.Euler(0, 90, 0));
             }
             //Rechts onder
             else if (previousPositionCalculation == Vector3.right * _offset && nextPositionCalculation == Vector3.back * _offset
                 || previousPositionCalculation == Vector3.back * _offset && nextPositionCalculation == Vector3.right * _offset)
             {
-                Instantiate(Rooms[0], position, Quaternion.Euler(0, 180, 0));
+                _room = Instantiate(Rooms[0], position, Quaternion.Euler(0, 180, 0));
             }
+
+            _roomList.Add(_room);
         }
 
         previousPosition = _roomPositionList[_roomPositionList.Count - 2];
@@ -150,26 +138,29 @@ public class Generator : MonoBehaviour
 
         if (previousPositionCalculation == Vector3.left * _offset)
         {
-            Instantiate(Rooms[3], position, Quaternion.identity);
+            _room = Instantiate(Rooms[3], position, Quaternion.identity);
         }
         else if (previousPositionCalculation == Vector3.right * _offset)
         {
-            Instantiate(Rooms[3], position, Quaternion.Euler(0, 180, 0));
+            _room = Instantiate(Rooms[3], position, Quaternion.Euler(0, 180, 0));
         }
         else if (previousPositionCalculation == Vector3.forward * _offset)
         {
-            Instantiate(Rooms[3], position, Quaternion.Euler(0, 90, 0));
+            _room = Instantiate(Rooms[3], position, Quaternion.Euler(0, 90, 0));
         }
         else if (previousPositionCalculation == Vector3.back * _offset)
         {
-            Instantiate(Rooms[3], position, Quaternion.Euler(0, -90, 0));
+            _room = Instantiate(Rooms[3], position, Quaternion.Euler(0, -90, 0));
         }
+
+        _roomList.Add(_room);
     }
 
     private void GeneratePositions()
     {
         int overlappingRooms;
-
+        _position = Vector3.zero;
+        _lastPosition = Vector3.zero;
         //add the spawn position
         _roomPositionList.Add(_position);
 
