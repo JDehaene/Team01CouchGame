@@ -29,7 +29,10 @@ public class PlayerBehaviour : MonoBehaviour
     //player stats
     [SerializeField] private int _playerHealth, _playerMaxHealth;
     [SerializeField] private float _playerSpeed, _playerPower;
+
+    //player weapon
     [SerializeField] private GameObject _playerWeapon;
+    public Transform WeaponPos;
  
 
     private void Start()
@@ -39,6 +42,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
+        WeaponStatsUpdate();
         GetInput();
 
         if (Mathf.Abs(_input.x) < 0.2 && Mathf.Abs(_input.y) < 0.2) return;
@@ -75,14 +79,14 @@ public class PlayerBehaviour : MonoBehaviour
             _timer -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("A"))
-        {
-            if (_timer <= 0)
-            {
-                Instantiate(Bullet, _holster.position, transform.rotation);
-                _timer = _reloadTime;
-            }
-        }
+        //if (Input.GetButtonDown("Shoot"))
+        //{
+        //    if (_timer <= 0)
+        //    {
+        //        Instantiate(Bullet, _holster.position, transform.rotation);
+        //        _timer = _reloadTime;
+        //    }
+        //}
     }
 
     private void ApplyCollision()
@@ -144,4 +148,26 @@ public class PlayerBehaviour : MonoBehaviour
 
     }
 
+    // player weapon
+    public void WeaponPickUp(GameObject weapon)
+    {
+        _playerWeapon = weapon;
+        _playerWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _playerPower);
+    }
+
+    private void WeaponUpdate()
+    {
+        _playerWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _playerPower);
+    }
+
+    private void WeaponCheck()
+    {
+        if(_playerWeapon != null)
+        {
+            _playerWeapon.transform.position = WeaponPos.position;
+            _playerWeapon.transform.rotation = WeaponPos.rotation;
+            
+        }
+    }
+    
 }

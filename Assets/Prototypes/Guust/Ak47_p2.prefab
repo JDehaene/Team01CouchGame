@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2970314882057202917}
   - component: {fileID: 8798135353678833067}
   - component: {fileID: 3660470073177653131}
-  - component: {fileID: 8280191035177315261}
   m_Layer: 0
   m_Name: Ak47_p2
   m_TagString: Untagged
@@ -94,18 +93,3 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8280191035177315261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7315961883150826149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a9677ba2ced5f04f8ba8473ac21c0b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Ammo: 10
-  _fireRateTimer: 0.2
-  Bullet: {fileID: 6212083803849744140, guid: 7267bed02c230224cbb270680b311b2e, type: 3}
