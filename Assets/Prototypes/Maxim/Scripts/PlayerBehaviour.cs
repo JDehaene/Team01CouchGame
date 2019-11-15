@@ -38,6 +38,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void Start()
     {
         _holster = transform.GetChild(0).GetComponent<Transform>();
+        
     }
 
     private void Update()

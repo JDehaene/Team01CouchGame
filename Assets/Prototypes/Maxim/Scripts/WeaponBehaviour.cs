@@ -20,7 +20,7 @@ public class WeaponBehaviour : MonoBehaviour
     {
         _timer -= Time.deltaTime;
         _weaponPos = _player.GetComponent<PlayerBehaviour>().WeaponPos;
-        Bullet.GetComponent<BulletBehaviour>().BulletPower(_playerPower);
+        //Bullet.GetComponent<BulletBehaviour>().BulletPower(_playerPower);
     }
 
     public void WeaponStats(Transform player, float playerPower)
