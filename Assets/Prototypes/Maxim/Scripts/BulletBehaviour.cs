@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
-    [SerializeField] private float _speed;
-    [SerializeField] private float _damage;
+    private float _speed;
+    private float _damage;
 
-    public void BulletPower(float playerPower)
+    public GameObject BulletPrefab;
+
+    private void Start()
     {
-        _damage = _damage * playerPower;
+        _speed = BulletPrefab.GetComponent<BulletStats>().BulletSpeed;
+        _damage = BulletPrefab.GetComponent<BulletStats>().CurrentBulletDamage;
     }
 
     private void Update()
@@ -21,7 +24,7 @@ public class BulletBehaviour : MonoBehaviour
     {
         if (col.tag == "Enemie")
         {
-            
+            //deal damage
             Destroy(gameObject);
         }
 

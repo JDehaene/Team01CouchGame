@@ -107,4 +107,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firerateTimer: 0.24
-  Bullet: {fileID: 5844455270348395451, guid: baf0199f93173a64f9871fdd42cca5f1, type: 3}
+  Bullet: {fileID: 5469998021822787824, guid: baf0199f93173a64f9871fdd42cca5f1, type: 3}

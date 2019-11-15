@@ -38,10 +38,13 @@ public class PlayerBehaviour : MonoBehaviour
     private void Start()
     {
         _holster = transform.GetChild(0).GetComponent<Transform>();
+        
     }
 
     private void Update()
     {
+        WeaponCheck();
+
         GetInput();
 
         if (Mathf.Abs(_input.x) < 0.2 && Mathf.Abs(_input.y) < 0.2) return;
@@ -50,7 +53,7 @@ public class PlayerBehaviour : MonoBehaviour
         Rotate();
         Move();
 
-        WeaponCheck();
+        
     }
 
     private void Move()
@@ -127,7 +130,7 @@ public class PlayerBehaviour : MonoBehaviour
         _playerHealth += currenthp;
         _playerSpeed += speed;
         _playerPower += power;
-        WeaponUpdate();
+        UpdateWeapon();
     }
     
     private void PlayerDies()
@@ -157,18 +160,24 @@ public class PlayerBehaviour : MonoBehaviour
         _playerWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _playerPower);
     }
 
-    private void WeaponUpdate()
+    private void UpdateWeapon()
     {
         _playerWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _playerPower);
+        _playerWeapon.GetComponent<WeaponBehaviour>().SetWeapon();
     }
 
     private void WeaponCheck()
     {
-        if(_playerWeapon != null)
+        if (_playerWeapon != null)
         {
             _playerWeapon.transform.position = WeaponPos.position;
             _playerWeapon.transform.rotation = WeaponPos.rotation;
-            
+
+            if(Input.GetAxis("Shoot1") > 0.1f)
+            {
+                _playerWeapon.GetComponent<WeaponBehaviour>().UseWeapon();
+            }
+
         }
     }
     
