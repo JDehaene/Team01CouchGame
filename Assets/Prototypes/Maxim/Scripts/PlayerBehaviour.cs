@@ -42,7 +42,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
-        WeaponStatsUpdate();
         GetInput();
 
         if (Mathf.Abs(_input.x) < 0.2 && Mathf.Abs(_input.y) < 0.2) return;
@@ -50,6 +49,8 @@ public class PlayerBehaviour : MonoBehaviour
         CalculateDirection();
         Rotate();
         Move();
+
+        WeaponCheck();
     }
 
     private void Move()
@@ -126,6 +127,7 @@ public class PlayerBehaviour : MonoBehaviour
         _playerHealth += currenthp;
         _playerSpeed += speed;
         _playerPower += power;
+        WeaponUpdate();
     }
     
     private void PlayerDies()
@@ -170,4 +172,10 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
     
+    public void ReplaceWeapon()
+    {
+        Destroy(_playerWeapon);
+        _playerWeapon = null;
+    }
+
 }
