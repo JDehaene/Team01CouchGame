@@ -19,12 +19,15 @@ public class WeaponBehaviour : MonoBehaviour
 
     private void Update()
     {
-        _timer -= Time.deltaTime;
-        _weaponPos = _player.GetComponent<PlayerBehaviour>().WeaponPos;
-        if(_counter < 1)
+        if(_player != null)
         {
-            SetWeapon();
-            _counter++;
+            _timer -= Time.deltaTime;
+            _weaponPos = _player.GetComponent<PlayerBehaviour>().WeaponPos;
+            if (_counter < 1)
+            {
+                SetWeapon();
+                _counter++;
+            }
         }
     }
 
@@ -47,5 +50,5 @@ public class WeaponBehaviour : MonoBehaviour
             _timer = _firerateTimer;
         }
     }
-
+    
 }

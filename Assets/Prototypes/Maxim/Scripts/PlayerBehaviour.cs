@@ -33,12 +33,11 @@ public class PlayerBehaviour : MonoBehaviour
     //player weapon
     [SerializeField] private GameObject _playerWeapon;
     public Transform WeaponPos;
- 
-
+    
     private void Start()
     {
         _holster = transform.GetChild(0).GetComponent<Transform>();
-        
+        WeaponPickUp(_playerWeapon);
     }
 
     private void Update()
@@ -173,9 +172,10 @@ public class PlayerBehaviour : MonoBehaviour
             _playerWeapon.transform.position = WeaponPos.position;
             _playerWeapon.transform.rotation = WeaponPos.rotation;
 
-            if(Input.GetAxis("Shoot1") > 0.1f)
+            if (Input.GetAxis("Shoot1") > 0.1f)
             {
                 _playerWeapon.GetComponent<WeaponBehaviour>().UseWeapon();
+                Debug.Log("pew");
             }
 
         }
