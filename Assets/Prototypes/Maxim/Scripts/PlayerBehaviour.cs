@@ -11,6 +11,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float _turnSpeed = 10;
 
     private Vector2 _input;
+
     private float _angle;
     private Quaternion _targetRotation;
 
@@ -25,6 +26,9 @@ public class PlayerBehaviour : MonoBehaviour
     public LayerMask LayerMask;
 
     private Transform _holster;
+    //Player inputs
+    [SerializeField] private InputController _inputController;
+    [SerializeField] private int _playerId;
 
     //player stats
     [SerializeField] private float _playerHealth, _playerMaxHealth;
@@ -36,6 +40,7 @@ public class PlayerBehaviour : MonoBehaviour
     
     private void Start()
     {
+        _inputController = (InputController)FindObjectOfType(typeof(InputController));
         _holster = transform.GetChild(0).GetComponent<Transform>();
         WeaponPickUp(_playerWeapon);
     }
@@ -74,8 +79,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void GetInput()
     {
-        _input.x = Input.GetAxisRaw("Horizontal");
-        _input.y = Input.GetAxisRaw("Vertical");
+        _input.x = _inputController.LeftStickHorizontal(_playerId);
+        _input.y = _inputController.LeftStickVertical(_playerId);
+
 
         if (_timer > 0)
         {
@@ -172,7 +178,7 @@ public class PlayerBehaviour : MonoBehaviour
             _playerWeapon.transform.position = WeaponPos.position;
             _playerWeapon.transform.rotation = WeaponPos.rotation;
 
-            if (Input.GetAxis("Shoot1") > 0.1f)
+            if (Input.GetAxis("RightTriggerP"+_playerId) > 0.1f)
             {
                 _playerWeapon.GetComponent<WeaponBehaviour>().UseWeapon();
                 Debug.Log("pew");
