@@ -41,9 +41,9 @@ public class CameraBehaviour : MonoBehaviour
         {
             _startTimer = true;
 
-            _camera.transform.position =  Vector3.Lerp(_camera.transform.position, transform.parent.transform.position + new Vector3(0, 13, -8), 5 * Time.deltaTime);
+            _camera.transform.position =  Vector3.Lerp(_camera.transform.position, transform.parent.transform.position + new Vector3(0, 21, -12), 5 * Time.deltaTime);
 
-            if (Vector3.Distance(_camera.transform.position, transform.parent.transform.position + new Vector3(0, 13, -8)) < 0.25f)
+            if (Vector3.Distance(_camera.transform.position, transform.parent.transform.position + new Vector3(0, 21, -12)) < 0.25f)
             {
                 _goToMyRoom = false;
             }

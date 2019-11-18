@@ -15,7 +15,7 @@ public class Generator : MonoBehaviour
 
     private int _currentNumberOfRooms = 5;
 
-    private int _offset = 18;
+    private float _offset = 31.5f;
 
     private Vector3 _position = Vector3.zero;
     private Vector3 _lastPosition = Vector3.zero;
