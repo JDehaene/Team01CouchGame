@@ -1,39 +1,46 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBehaviour : MonoBehaviour
+public class ghostController : MonoBehaviour
 {
     [SerializeField]
     private float _velocity = 5;
     [SerializeField]
     private float _turnSpeed = 10;
-    [SerializeField]
-    private bool _showGizmo = true;
 
     private Vector2 _input;
+
     private float _angle;
     private Quaternion _targetRotation;
 
+    public GameObject Bullet;
+    private float _timer;
+    [SerializeField]
+    private float _reloadTime = 2;
+
+    [SerializeField]
+    private bool _showGizmo = true;
+
     public LayerMask LayerMask;
-    
-    //ghost inputs
+    private Transform _holster;
+    //Player inputs
     [SerializeField] private InputController _inputController;
     [SerializeField] private int _playerId;
 
-    //ghost stats
-    [SerializeField] private float _playerHealth, _playerMaxHealth;
-    [SerializeField] private float _playerSpeed, _playerPower;
+    //player stats
+    [SerializeField] private float _ghostHealth, _ghostMaxHealth;
+    [SerializeField] private float _ghostSpeed, _ghostPower;
 
-    //ghost weapon
-    [SerializeField] private GameObject _playerWeapon;
+    //player weapon
+    [SerializeField] private GameObject _ghostWeapon;
     public Transform WeaponPos;
-    
+
     private void Start()
     {
         _inputController = (InputController)FindObjectOfType(typeof(InputController));
-        WeaponPickUp(_playerWeapon);
+        _holster = transform.GetChild(0).GetComponent<Transform>();
+        WeaponPickUp(_ghostWeapon);
     }
 
     private void Update()
@@ -48,12 +55,12 @@ public class PlayerBehaviour : MonoBehaviour
         Rotate();
         Move();
 
-        
+
     }
 
     private void Move()
     {
-        transform.position += transform.forward * _velocity * _playerSpeed * Time.deltaTime;
+        transform.position += transform.forward * _velocity * _ghostSpeed * Time.deltaTime;
     }
 
     private void Rotate()
@@ -72,6 +79,12 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _input.x = _inputController.LeftStickHorizontal(_playerId);
         _input.y = _inputController.LeftStickVertical(_playerId);
+
+
+        if (_timer > 0)
+        {
+            _timer -= Time.deltaTime;
+        }
     }
 
     private void ApplyCollision()
@@ -107,27 +120,27 @@ public class PlayerBehaviour : MonoBehaviour
     // player stats
     public void PlayerChangeStats(float maxhp, float currenthp, float speed, float power)
     {
-        _playerMaxHealth += maxhp;
-        _playerHealth += currenthp;
-        _playerSpeed += speed;
-        _playerPower += power;
+        _ghostMaxHealth += maxhp;
+        _ghostHealth += currenthp;
+        _ghostSpeed += speed;
+        _ghostPower += power;
         UpdateWeapon();
     }
-    
+
     private void PlayerDies()
     {
         //spawn ghost / activate ghost system
         gameObject.active = false;
     }
-    
+
     private void PlayerCheck()
     {
-        if(_playerHealth > _playerMaxHealth)
+        if (_ghostHealth > _ghostMaxHealth)
         {
-            _playerHealth = _playerMaxHealth;
+            _ghostHealth = _ghostMaxHealth;
         }
 
-        if(_playerHealth <= 0)
+        if (_ghostHealth <= 0)
         {
             PlayerDies();
         }
@@ -137,36 +150,35 @@ public class PlayerBehaviour : MonoBehaviour
     // player weapon
     public void WeaponPickUp(GameObject weapon)
     {
-        _playerWeapon = weapon;
-        _playerWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _playerPower);
+        _ghostWeapon = weapon;
+        _ghostWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _ghostPower);
     }
 
     private void UpdateWeapon()
     {
-        _playerWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _playerPower);
-        _playerWeapon.GetComponent<WeaponBehaviour>().SetWeapon();
+        _ghostWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _ghostPower);
+        _ghostWeapon.GetComponent<WeaponBehaviour>().SetWeapon();
     }
 
     private void WeaponCheck()
     {
-        if (_playerWeapon != null)
+        if (_ghostWeapon != null)
         {
-            _playerWeapon.transform.position = WeaponPos.position;
-            _playerWeapon.transform.rotation = WeaponPos.rotation;
+            _ghostWeapon.transform.position = WeaponPos.position;
+            _ghostWeapon.transform.rotation = WeaponPos.rotation;
 
-            if (Input.GetAxis("RightTriggerP"+_playerId) > 0.1f)
+            if (Input.GetAxis("RightTriggerP" + _playerId) > 0.1f)
             {
-                _playerWeapon.GetComponent<WeaponBehaviour>().UseWeapon();
+                _ghostWeapon.GetComponent<WeaponBehaviour>().UseWeapon();
                 Debug.Log("pew");
             }
 
         }
     }
-    
+
     public void ReplaceWeapon()
     {
-        Destroy(_playerWeapon);
-        _playerWeapon = null;
+        Destroy(_ghostWeapon);
+        _ghostWeapon = null;
     }
-
 }
