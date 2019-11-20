@@ -18,15 +18,15 @@ public class PlayerBehaviour : MonoBehaviour
 
     public LayerMask LayerMask;
     
-    //ghost inputs
+    //player inputs
     [SerializeField] private InputController _inputController;
     [SerializeField] private int _playerId;
 
-    //ghost stats
+    //player stats
     [SerializeField] private float _playerHealth, _playerMaxHealth;
     [SerializeField] private float _playerSpeed, _playerPower;
 
-    //ghost weapon
+    //player weapon
     [SerializeField] private GameObject _playerWeapon;
     public Transform WeaponPos;
     
