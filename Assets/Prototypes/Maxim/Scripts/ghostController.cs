@@ -8,52 +8,48 @@ public class ghostController : MonoBehaviour
     private float _velocity = 5;
     [SerializeField]
     private float _turnSpeed = 10;
-
-    private Vector2 _input;
-
-    private float _angle;
-    private Quaternion _targetRotation;
-
-    public GameObject Bullet;
-    private float _timer;
-    [SerializeField]
-    private float _reloadTime = 2;
-
     [SerializeField]
     private bool _showGizmo = true;
 
+    private Vector2 _input;
+    private float _angle;
+    private Quaternion _targetRotation;
+    
     public LayerMask LayerMask;
-    private Transform _holster;
-    //Player inputs
+
+    //ghost inputs
     [SerializeField] private InputController _inputController;
     [SerializeField] private int _playerId;
 
-    //player stats
+    //ghost stats
     [SerializeField] private float _ghostHealth, _ghostMaxHealth;
     [SerializeField] private float _ghostSpeed, _ghostPower;
 
-    //player weapon
+    //ghost weapon
     [SerializeField] private GameObject _ghostWeapon;
     public Transform WeaponPos;
+    private bool _weaponEnabled = true;
+
+    //ghost live status
+    private bool _ghostIsAlive = true;
 
     private void Start()
     {
         _inputController = (InputController)FindObjectOfType(typeof(InputController));
-        _holster = transform.GetChild(0).GetComponent<Transform>();
         WeaponPickUp(_ghostWeapon);
     }
 
     private void Update()
     {
-        WeaponCheck();
-
-        GetInput();
-
-        if (Mathf.Abs(_input.x) < 0.2 && Mathf.Abs(_input.y) < 0.2) return;
-
-        CalculateDirection();
-        Rotate();
-        Move();
+        if(_ghostIsAlive)
+        {
+            WeaponCheck();
+            GetInput();
+            if (Mathf.Abs(_input.x) < 0.2 && Mathf.Abs(_input.y) < 0.2) return;
+            CalculateDirection();
+            Rotate();
+            Move();
+        }
 
 
     }
@@ -79,12 +75,6 @@ public class ghostController : MonoBehaviour
     {
         _input.x = _inputController.LeftStickHorizontal(_playerId);
         _input.y = _inputController.LeftStickVertical(_playerId);
-
-
-        if (_timer > 0)
-        {
-            _timer -= Time.deltaTime;
-        }
     }
 
     private void ApplyCollision()
@@ -117,8 +107,8 @@ public class ghostController : MonoBehaviour
     }
 
 
-    // player stats
-    public void PlayerChangeStats(float maxhp, float currenthp, float speed, float power)
+    //ghost stats
+    public void GhostChangeStats(float maxhp, float currenthp, float speed, float power)
     {
         _ghostMaxHealth += maxhp;
         _ghostHealth += currenthp;
@@ -127,13 +117,12 @@ public class ghostController : MonoBehaviour
         UpdateWeapon();
     }
 
-    private void PlayerDies()
+    private void GhostDies()
     {
-        //spawn ghost / activate ghost system
-        gameObject.active = false;
+        GhostIsDead();
     }
 
-    private void PlayerCheck()
+    private void GhostCheck()
     {
         if (_ghostHealth > _ghostMaxHealth)
         {
@@ -142,12 +131,20 @@ public class ghostController : MonoBehaviour
 
         if (_ghostHealth <= 0)
         {
-            PlayerDies();
+            GhostDies();
         }
 
     }
 
-    // player weapon
+    public void GhostIsDead()
+    {
+        _ghostIsAlive = false;
+        _weaponEnabled = false;
+        this.GetComponent<Collider>().enabled = false;
+        this.GetComponent<MeshRenderer>().enabled = false;
+    }
+
+    //ghost weapon
     public void WeaponPickUp(GameObject weapon)
     {
         _ghostWeapon = weapon;
@@ -167,7 +164,7 @@ public class ghostController : MonoBehaviour
             _ghostWeapon.transform.position = WeaponPos.position;
             _ghostWeapon.transform.rotation = WeaponPos.rotation;
 
-            if (Input.GetAxis("RightTriggerP" + _playerId) > 0.1f)
+            if (Input.GetAxis("RightTriggerP" + _playerId) > 0.1f && _weaponEnabled)
             {
                 _ghostWeapon.GetComponent<WeaponBehaviour>().UseWeapon();
                 Debug.Log("pew");
@@ -181,4 +178,21 @@ public class ghostController : MonoBehaviour
         Destroy(_ghostWeapon);
         _ghostWeapon = null;
     }
+
+    //ghost spawn / next room
+    public void GhostMovesToNextRoom(Transform location)
+    {
+        _weaponEnabled = false;
+        this.GetComponent<Collider>().enabled = false;
+        this.GetComponent<MeshRenderer>().enabled = false;
+        this.transform.position = location.position;
+    }
+
+    private void GhostHasBeenMoved()
+    {
+        this.GetComponent<Collider>().enabled = true;
+        this.GetComponent<MeshRenderer>().enabled = true;
+        _weaponEnabled = true;
+    }
+
 }
