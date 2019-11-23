@@ -302,7 +302,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1192
+  m_Name: pb_Mesh-28786
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18631,11 +18631,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a590e56995c6b34d8681e0da4fcf200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rooms:
-  - {fileID: 8769557727138140160, guid: 4e266c25b7a58074c95c6760bc2d2542, type: 3}
-  - {fileID: 6731369705807065331, guid: 8cf9ad30a41e6494289a0e8c88c1752b, type: 3}
+  SpawnRooms:
   - {fileID: 6810413985168665871, guid: d3caa1fdb433c694ba447f274919046e, type: 3}
+  - {fileID: 6810413985168665871, guid: d3caa1fdb433c694ba447f274919046e, type: 3}
+  - {fileID: 6810413985168665871, guid: d3caa1fdb433c694ba447f274919046e, type: 3}
+  - {fileID: 6810413985168665871, guid: d3caa1fdb433c694ba447f274919046e, type: 3}
+  EndRooms:
   - {fileID: 8098209391305480487, guid: 00ea7cee18d5e7a498b492e048a9c99b, type: 3}
+  - {fileID: 8098209391305480487, guid: 00ea7cee18d5e7a498b492e048a9c99b, type: 3}
+  - {fileID: 8098209391305480487, guid: 00ea7cee18d5e7a498b492e048a9c99b, type: 3}
+  - {fileID: 8098209391305480487, guid: 00ea7cee18d5e7a498b492e048a9c99b, type: 3}
+  HorizontalRooms:
+  - {fileID: 6731369705807065331, guid: 8cf9ad30a41e6494289a0e8c88c1752b, type: 3}
+  - {fileID: 6731369705807065331, guid: 8cf9ad30a41e6494289a0e8c88c1752b, type: 3}
+  - {fileID: 6731369705807065331, guid: 8cf9ad30a41e6494289a0e8c88c1752b, type: 3}
+  - {fileID: 6731369705807065331, guid: 8cf9ad30a41e6494289a0e8c88c1752b, type: 3}
+  LWayRooms:
+  - {fileID: 8769557727138140160, guid: 4e266c25b7a58074c95c6760bc2d2542, type: 3}
+  - {fileID: 8769557727138140160, guid: 4e266c25b7a58074c95c6760bc2d2542, type: 3}
+  - {fileID: 8769557727138140160, guid: 4e266c25b7a58074c95c6760bc2d2542, type: 3}
+  - {fileID: 8769557727138140160, guid: 4e266c25b7a58074c95c6760bc2d2542, type: 3}
   Doors:
   - {fileID: 4231216170069501908, guid: 3b00d514684036842be3f16be7c160c6, type: 3}
   _roomPositionList: []
