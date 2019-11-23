@@ -6,46 +6,31 @@ public class CameraBehaviour : MonoBehaviour
 {
     private Camera _camera;
 
-    private int _roomIndex = 0;
-    private bool _goToMyRoom = false;
-    private bool _startTimer = false;
+    private Transform _waypointNextRoom;
+    private Transform _waypointPreviousRoom;
 
-    private float _timer;
+    private Generator _generator;
+
+    public bool _enteredNextRoom = false;
+    public bool _moveTowardsRoom = false;
 
     void Start()
     {
         _camera = Camera.main;
-    }
-
-    private void Update()
-    {
-        if (_startTimer)
-        {
-            _timer += Time.deltaTime;
-
-            if (_timer >= 3)
-            {
-                foreach (Collider collider in GetComponents<Collider>())
-                {
-                    collider.enabled = true;
-                }
-
-                _timer -= 3;
-            }
-        }
+        _waypointNextRoom = transform.GetChild(0);
+        _waypointPreviousRoom = transform.GetChild(1);
+        _generator = transform.parent.GetComponentInParent<Generator>();
     }
 
     void LateUpdate()
     {
-        if (_goToMyRoom)
+        if (_moveTowardsRoom)
         {
-            _startTimer = true;
+            _camera.transform.position = Vector3.Lerp(_camera.transform.position, _generator._roomPositionList[_generator.CameraIndex] + new Vector3(0, 21, -12), 5 * Time.deltaTime);
 
-            _camera.transform.position =  Vector3.Lerp(_camera.transform.position, transform.parent.transform.position + new Vector3(0, 21, -12), 5 * Time.deltaTime);
-
-            if (Vector3.Distance(_camera.transform.position, transform.parent.transform.position + new Vector3(0, 21, -12)) < 0.25f)
+            if (Vector3.Distance(_camera.transform.position, _generator._roomPositionList[_generator.CameraIndex] + new Vector3(0, 21, -12)) < 0.25f)
             {
-                _goToMyRoom = false;
+                _moveTowardsRoom = false;
             }
         }
     }
@@ -53,8 +38,24 @@ public class CameraBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
-            _goToMyRoom = true;           
+        {       
+            if (_enteredNextRoom)
+            {
+                _generator.CameraIndex--;
+                _enteredNextRoom = false;
+                //set player position to next room entrance
+                //support mulitple players / add effects / lerp transform
+                other.transform.position = _waypointPreviousRoom.transform.position;
+            }
+            else
+            {
+                _generator.CameraIndex++;
+                _enteredNextRoom = true;
+                //set player position to next room entrance
+                //support mulitple players / add effects / lerp transform
+                other.transform.position = _waypointNextRoom.transform.position;
+            }
+            _moveTowardsRoom = true;
         }
     }
 }

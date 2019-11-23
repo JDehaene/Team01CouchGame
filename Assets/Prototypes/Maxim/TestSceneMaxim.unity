@@ -18654,7 +18654,8 @@ MonoBehaviour:
   Doors:
   - {fileID: 4231216170069501908, guid: 3b00d514684036842be3f16be7c160c6, type: 3}
   _roomPositionList: []
-  _numberOfRooms: 5
+  _numberOfRooms: 10
+  CameraIndex: 0
 --- !u!4 &1700511785
 Transform:
   m_ObjectHideFlags: 0

@@ -28,6 +28,7 @@ public class Generator : MonoBehaviour
     private GameObject _doorway;
 
     private int _randomRoomIndex = 0;
+    public int CameraIndex = 0;
 
     private void Start()
     {
@@ -35,31 +36,31 @@ public class Generator : MonoBehaviour
         AddRooms();
     }
 
-    private void Update()
-    {
-        if (_currentNumberOfRooms != _numberOfRooms)
-        {
-            for (int i = 0; i < _roomPositionList.Count; i++)
-            {
-                _roomPositionList.Remove(_roomPositionList[i]);
-            }
+    //private void Update()
+    //{
+    //    if (_currentNumberOfRooms != _numberOfRooms)
+    //    {
+    //        for (int i = 0; i < _roomPositionList.Count; i++)
+    //        {
+    //            _roomPositionList.Remove(_roomPositionList[i]);
+    //        }
 
-            foreach (GameObject room in _roomList)
-            {
-                Destroy(room.gameObject);
-            }
+    //        foreach (GameObject room in _roomList)
+    //        {
+    //            Destroy(room.gameObject);
+    //        }
 
-            _roomPositionList.Clear();
-            _roomList.Clear();
+    //        _roomPositionList.Clear();
+    //        _roomList.Clear();
 
-            this.transform.position = Vector3.zero;
+    //        this.transform.position = Vector3.zero;
 
-            GeneratePositions();
-            AddRooms();
+    //        GeneratePositions();
+    //        AddRooms();
 
-            _currentNumberOfRooms = _numberOfRooms;
-        }
-    }
+    //        _currentNumberOfRooms = _numberOfRooms;
+    //    }
+    //}
 
     private void AddRooms()
     {
@@ -75,22 +76,26 @@ public class Generator : MonoBehaviour
         if (nextPosition == Vector3.left * _offset)
         {
             _room = Instantiate(SpawnRooms[_randomRoomIndex], position, Quaternion.identity);
-            _doorway = Instantiate(Doors[0], Vector3.left * (_offset / 2), Quaternion.identity);
+            _doorway = Instantiate(Doors[0], Vector3.left * (_offset / 2), Quaternion.Euler(0, 180, 0));
+            _doorway.transform.SetParent(this.transform);
         }
         else if (nextPosition == Vector3.right * _offset)
         {
             _room = Instantiate(SpawnRooms[_randomRoomIndex], position, Quaternion.Euler(0, 180, 0));
             _doorway = Instantiate(Doors[0], Vector3.right * (_offset / 2), Quaternion.identity);
+            _doorway.transform.SetParent(this.transform);
         }
         else if (nextPosition == Vector3.forward * _offset)
         {
             _room = Instantiate(SpawnRooms[_randomRoomIndex], position, Quaternion.Euler(0, 90, 0));
-            _doorway = Instantiate(Doors[0], Vector3.forward * (_offset / 2), Quaternion.Euler(0, 90, 0));
+            _doorway = Instantiate(Doors[0], Vector3.forward * (_offset / 2), Quaternion.Euler(0, -90, 0));
+            _doorway.transform.SetParent(this.transform);
         }
         else if (nextPosition == Vector3.back * _offset)
         {
             _room = Instantiate(SpawnRooms[_randomRoomIndex], position, Quaternion.Euler(0, -90, 0));
             _doorway = Instantiate(Doors[0], Vector3.back * (_offset / 2), Quaternion.Euler(0, 90, 0));
+            _doorway.transform.SetParent(this.transform);
         }
 
         _roomList.Add(_room);
@@ -110,12 +115,14 @@ public class Generator : MonoBehaviour
                 _randomRoomIndex = UnityEngine.Random.Range(0, HorizontalRooms.Length);
                 _room = Instantiate(HorizontalRooms[_randomRoomIndex], position, Quaternion.identity);
                 _doorway = Instantiate(Doors[0], position + Vector3.right * (_offset / 2), Quaternion.identity);
+                _doorway.transform.SetParent(this.transform);
             }
             else if (previousPositionCalculation == Vector3.right * _offset && nextPositionCalculation == Vector3.left * _offset)
             {
                 _randomRoomIndex = UnityEngine.Random.Range(0, HorizontalRooms.Length);
                 _room = Instantiate(HorizontalRooms[_randomRoomIndex], position, Quaternion.identity);
-                _doorway = Instantiate(Doors[0], position + Vector3.left * (_offset / 2), Quaternion.identity);
+                _doorway = Instantiate(Doors[0], position + Vector3.left * (_offset / 2), Quaternion.Euler(0, 180, 0));
+                _doorway.transform.SetParent(this.transform);
             }
             //boven onder
             else if (previousPositionCalculation == Vector3.forward * _offset && nextPositionCalculation == Vector3.back * _offset)
@@ -123,25 +130,29 @@ public class Generator : MonoBehaviour
                 _randomRoomIndex = UnityEngine.Random.Range(0, HorizontalRooms.Length);
                 _room = Instantiate(HorizontalRooms[_randomRoomIndex], position, Quaternion.Euler(0, 90, 0));
                 _doorway = Instantiate(Doors[0], position + Vector3.back * (_offset / 2), Quaternion.Euler(0, 90, 0));
+                _doorway.transform.SetParent(this.transform);
             }
             else if (previousPositionCalculation == Vector3.back * _offset && nextPositionCalculation == Vector3.forward * _offset)
             {
                 _randomRoomIndex = UnityEngine.Random.Range(0, HorizontalRooms.Length);
                 _room = Instantiate(HorizontalRooms[_randomRoomIndex], position, Quaternion.Euler(0, 90, 0));
-                _doorway = Instantiate(Doors[0], position + Vector3.forward * (_offset / 2), Quaternion.Euler(0, 90, 0));
+                _doorway = Instantiate(Doors[0], position + Vector3.forward * (_offset / 2), Quaternion.Euler(0, -90, 0));
+                _doorway.transform.SetParent(this.transform);
             }
             //links boven
             else if (previousPositionCalculation == Vector3.left * _offset && nextPositionCalculation == Vector3.forward * _offset)
             {
                 _randomRoomIndex = UnityEngine.Random.Range(0, LWayRooms.Length);
                 _room = Instantiate(LWayRooms[_randomRoomIndex], position, Quaternion.identity);
-                _doorway = Instantiate(Doors[0], position + Vector3.forward * (_offset / 2), Quaternion.Euler(0, 90, 0));
+                _doorway = Instantiate(Doors[0], position + Vector3.forward * (_offset / 2), Quaternion.Euler(0, -90, 0));
+                _doorway.transform.SetParent(this.transform);
             }
             else if (previousPositionCalculation == Vector3.forward * _offset && nextPositionCalculation == Vector3.left * _offset)
             {
                 _randomRoomIndex = UnityEngine.Random.Range(0, LWayRooms.Length);
                 _room = Instantiate(LWayRooms[_randomRoomIndex], position, Quaternion.identity);
-                _doorway = Instantiate(Doors[0], position + Vector3.left * (_offset / 2), Quaternion.identity);
+                _doorway = Instantiate(Doors[0], position + Vector3.left * (_offset / 2), Quaternion.Euler(0, 180, 0));
+                _doorway.transform.SetParent(this.transform);
             }
             //links onder
             else if (previousPositionCalculation == Vector3.left * _offset && nextPositionCalculation == Vector3.back * _offset)
@@ -149,25 +160,29 @@ public class Generator : MonoBehaviour
                 _randomRoomIndex = UnityEngine.Random.Range(0, LWayRooms.Length);
                 _room = Instantiate(LWayRooms[_randomRoomIndex], position, Quaternion.Euler(0, -90, 0));
                 _doorway = Instantiate(Doors[0], position + Vector3.back * (_offset / 2), Quaternion.Euler(0, 90, 0));
+                _doorway.transform.SetParent(this.transform);
             }
             else if (previousPositionCalculation == Vector3.back * _offset && nextPositionCalculation == Vector3.left * _offset)
             {
                 _randomRoomIndex = UnityEngine.Random.Range(0, LWayRooms.Length);
                 _room = Instantiate(LWayRooms[_randomRoomIndex], position, Quaternion.Euler(0, -90, 0));
-                _doorway = Instantiate(Doors[0], position + Vector3.left * (_offset / 2), Quaternion.identity);
+                _doorway = Instantiate(Doors[0], position + Vector3.left * (_offset / 2), Quaternion.Euler(0, 180, 0));
+                _doorway.transform.SetParent(this.transform);
             }
             //Rechts boven
             else if (previousPositionCalculation == Vector3.right * _offset && nextPositionCalculation == Vector3.forward * _offset)
             {
                 _randomRoomIndex = UnityEngine.Random.Range(0, LWayRooms.Length);
                 _room = Instantiate(LWayRooms[_randomRoomIndex], position, Quaternion.Euler(0, 90, 0));
-                _doorway = Instantiate(Doors[0], position + Vector3.forward * (_offset / 2), Quaternion.Euler(0, 90, 0));
+                _doorway = Instantiate(Doors[0], position + Vector3.forward * (_offset / 2), Quaternion.Euler(0, -90, 0));
+                _doorway.transform.SetParent(this.transform);
             }
             else if (previousPositionCalculation == Vector3.forward * _offset && nextPositionCalculation == Vector3.right * _offset)
             {
                 _randomRoomIndex = UnityEngine.Random.Range(0, LWayRooms.Length);
                 _room = Instantiate(LWayRooms[_randomRoomIndex], position, Quaternion.Euler(0, 90, 0));
                 _doorway = Instantiate(Doors[0], position + Vector3.right * (_offset / 2), Quaternion.identity);
+                _doorway.transform.SetParent(this.transform);
             }
             //Rechts onder
             else if (previousPositionCalculation == Vector3.right * _offset && nextPositionCalculation == Vector3.back * _offset)
@@ -175,12 +190,14 @@ public class Generator : MonoBehaviour
                 _randomRoomIndex = UnityEngine.Random.Range(0, LWayRooms.Length);
                 _room = Instantiate(LWayRooms[_randomRoomIndex], position, Quaternion.Euler(0, 180, 0));
                 _doorway = Instantiate(Doors[0], position + Vector3.back * (_offset / 2), Quaternion.Euler(0, 90, 0));
+                _doorway.transform.SetParent(this.transform);
             }
             else if (previousPositionCalculation == Vector3.back * _offset && nextPositionCalculation == Vector3.right * _offset)
             {
                 _randomRoomIndex = UnityEngine.Random.Range(0, LWayRooms.Length);
                 _room = Instantiate(LWayRooms[_randomRoomIndex], position, Quaternion.Euler(0, 180, 0));
                 _doorway = Instantiate(Doors[0], position + Vector3.right * (_offset / 2), Quaternion.identity);
+                _doorway.transform.SetParent(this.transform);
             }
 
             _roomList.Add(_room);
