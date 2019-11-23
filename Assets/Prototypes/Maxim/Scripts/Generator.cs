@@ -6,6 +6,7 @@ using UnityEngine;
 public class Generator : MonoBehaviour
 {
     public GameObject[] Rooms;
+    public GameObject[] Doors;
 
     public List<Vector3> _roomPositionList = new List<Vector3>();
     private List<GameObject> _roomList = new List<GameObject>();
@@ -21,6 +22,7 @@ public class Generator : MonoBehaviour
     private Vector3 _lastPosition = Vector3.zero;
 
     private GameObject _room;
+    private GameObject _doorway;
 
     private void Start()
     {
@@ -66,18 +68,22 @@ public class Generator : MonoBehaviour
         if (nextPosition == Vector3.left * _offset)
         {
             _room = Instantiate(Rooms[2], position, Quaternion.identity);
+            _doorway = Instantiate(Doors[0], Vector3.left * (_offset / 2), Quaternion.identity);
         }
         else if (nextPosition == Vector3.right * _offset)
         {
             _room = Instantiate(Rooms[2], position, Quaternion.Euler(0, 180, 0));
+            _doorway = Instantiate(Doors[0], Vector3.right * (_offset / 2), Quaternion.identity);
         }
         else if (nextPosition == Vector3.forward * _offset)
         {
             _room = Instantiate(Rooms[2], position, Quaternion.Euler(0, 90, 0));
+            _doorway = Instantiate(Doors[0], Vector3.forward * (_offset / 2), Quaternion.Euler(0, 90, 0));
         }
         else if (nextPosition == Vector3.back * _offset)
         {
             _room = Instantiate(Rooms[2], position, Quaternion.Euler(0, -90, 0));
+            _doorway = Instantiate(Doors[0], Vector3.back * (_offset / 2), Quaternion.Euler(0, 90, 0));
         }
 
         _roomList.Add(_room);
@@ -92,40 +98,70 @@ public class Generator : MonoBehaviour
             nextPositionCalculation = nextPosition - position;
 
             //links rechts
-            if (previousPositionCalculation == Vector3.left * _offset && nextPositionCalculation == Vector3.right * _offset
-                || previousPositionCalculation == Vector3.right * _offset && nextPositionCalculation == Vector3.left * _offset)
+            if (previousPositionCalculation == Vector3.left * _offset && nextPositionCalculation == Vector3.right * _offset)
             {
                 _room = Instantiate(Rooms[1], position, Quaternion.identity);
+                _doorway = Instantiate(Doors[0], position + Vector3.right * (_offset / 2), Quaternion.identity);
+            }
+            else if (previousPositionCalculation == Vector3.right * _offset && nextPositionCalculation == Vector3.left * _offset)
+            {
+                _room = Instantiate(Rooms[1], position, Quaternion.identity);
+                _doorway = Instantiate(Doors[0], position + Vector3.left * (_offset / 2), Quaternion.identity);
             }
             //boven onder
-            else if (previousPositionCalculation == Vector3.forward * _offset && nextPositionCalculation == Vector3.back * _offset
-                || previousPositionCalculation == Vector3.back * _offset && nextPositionCalculation == Vector3.forward * _offset)
+            else if (previousPositionCalculation == Vector3.forward * _offset && nextPositionCalculation == Vector3.back * _offset)
             {
                 _room = Instantiate(Rooms[1], position, Quaternion.Euler(0, 90, 0));
+                _doorway = Instantiate(Doors[0], position + Vector3.back * (_offset / 2), Quaternion.Euler(0, 90, 0));
+            }
+            else if (previousPositionCalculation == Vector3.back * _offset && nextPositionCalculation == Vector3.forward * _offset)
+            {
+                _room = Instantiate(Rooms[1], position, Quaternion.Euler(0, 90, 0));
+                _doorway = Instantiate(Doors[0], position + Vector3.forward * (_offset / 2), Quaternion.Euler(0, 90, 0));
             }
             //links boven
-            else if (previousPositionCalculation == Vector3.left * _offset && nextPositionCalculation == Vector3.forward * _offset
-                || previousPositionCalculation == Vector3.forward * _offset && nextPositionCalculation == Vector3.left * _offset)
+            else if (previousPositionCalculation == Vector3.left * _offset && nextPositionCalculation == Vector3.forward * _offset)
             {
                 _room = Instantiate(Rooms[0], position, Quaternion.identity);
+                _doorway = Instantiate(Doors[0], position + Vector3.forward * (_offset / 2), Quaternion.Euler(0, 90, 0));
+            }
+            else if (previousPositionCalculation == Vector3.forward * _offset && nextPositionCalculation == Vector3.left * _offset)
+            {
+                _room = Instantiate(Rooms[0], position, Quaternion.identity);
+                _doorway = Instantiate(Doors[0], position + Vector3.left * (_offset / 2), Quaternion.identity);
             }
             //links onder
-            else if (previousPositionCalculation == Vector3.left * _offset && nextPositionCalculation == Vector3.back * _offset
-                || previousPositionCalculation == Vector3.back * _offset && nextPositionCalculation == Vector3.left * _offset)
+            else if (previousPositionCalculation == Vector3.left * _offset && nextPositionCalculation == Vector3.back * _offset)
             {
                 _room = Instantiate(Rooms[0], position, Quaternion.Euler(0, -90, 0));
+                _doorway = Instantiate(Doors[0], position + Vector3.back * (_offset / 2), Quaternion.Euler(0, 90, 0));
+            }
+            else if (previousPositionCalculation == Vector3.back * _offset && nextPositionCalculation == Vector3.left * _offset)
+            {
+                _room = Instantiate(Rooms[0], position, Quaternion.Euler(0, -90, 0));
+                _doorway = Instantiate(Doors[0], position + Vector3.left * (_offset / 2), Quaternion.identity);
             }
             //Rechts boven
-            else if (previousPositionCalculation == Vector3.right * _offset && nextPositionCalculation == Vector3.forward * _offset
-                || previousPositionCalculation == Vector3.forward * _offset && nextPositionCalculation == Vector3.right * _offset)
+            else if (previousPositionCalculation == Vector3.right * _offset && nextPositionCalculation == Vector3.forward * _offset)
             {
                 _room = Instantiate(Rooms[0], position, Quaternion.Euler(0, 90, 0));
+                _doorway = Instantiate(Doors[0], position + Vector3.forward * (_offset / 2), Quaternion.Euler(0, 90, 0));
+            }
+            else if (previousPositionCalculation == Vector3.forward * _offset && nextPositionCalculation == Vector3.right * _offset)
+            {
+                _room = Instantiate(Rooms[0], position, Quaternion.Euler(0, 90, 0));
+                _doorway = Instantiate(Doors[0], position + Vector3.right * (_offset / 2), Quaternion.identity);
             }
             //Rechts onder
-            else if (previousPositionCalculation == Vector3.right * _offset && nextPositionCalculation == Vector3.back * _offset
-                || previousPositionCalculation == Vector3.back * _offset && nextPositionCalculation == Vector3.right * _offset)
+            else if (previousPositionCalculation == Vector3.right * _offset && nextPositionCalculation == Vector3.back * _offset)
             {
                 _room = Instantiate(Rooms[0], position, Quaternion.Euler(0, 180, 0));
+                _doorway = Instantiate(Doors[0], position + Vector3.back * (_offset / 2), Quaternion.Euler(0, 90, 0));
+            }
+            else if (previousPositionCalculation == Vector3.back * _offset && nextPositionCalculation == Vector3.right * _offset)
+            {
+                _room = Instantiate(Rooms[0], position, Quaternion.Euler(0, 180, 0));
+                _doorway = Instantiate(Doors[0], position + Vector3.right * (_offset / 2), Quaternion.identity);
             }
 
             _roomList.Add(_room);

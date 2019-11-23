@@ -18636,6 +18636,8 @@ MonoBehaviour:
   - {fileID: 6731369705807065331, guid: 8cf9ad30a41e6494289a0e8c88c1752b, type: 3}
   - {fileID: 6810413985168665871, guid: d3caa1fdb433c694ba447f274919046e, type: 3}
   - {fileID: 8098209391305480487, guid: 00ea7cee18d5e7a498b492e048a9c99b, type: 3}
+  Doors:
+  - {fileID: 4231216170069501908, guid: 3b00d514684036842be3f16be7c160c6, type: 3}
   _roomPositionList: []
   _numberOfRooms: 5
 --- !u!4 &1700511785
