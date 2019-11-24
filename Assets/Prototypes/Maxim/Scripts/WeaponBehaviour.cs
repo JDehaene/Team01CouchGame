@@ -11,6 +11,7 @@ public class WeaponBehaviour : MonoBehaviour
     private Transform _weaponPos, _player;
     private float _timer, _playerPower;
     private int _counter;
+    private bool _isGhost = false;
 
     private void Start()
     {
@@ -19,7 +20,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if(_player != null)
+        if(_player != null && !_isGhost)
         {
             _timer -= Time.deltaTime;
             _weaponPos = _player.GetComponent<PlayerBehaviour>().WeaponPos;
@@ -29,6 +30,17 @@ public class WeaponBehaviour : MonoBehaviour
                 _counter++;
             }
         }
+        if (_player != null && _isGhost)
+        {
+            _timer -= Time.deltaTime;
+            _weaponPos = _player.GetComponent<ghostController>().WeaponPos;
+            if (_counter < 1)
+            {
+                SetWeapon();
+                _counter++;
+            }
+        }
+
     }
 
     public void SetWeapon()
@@ -36,10 +48,11 @@ public class WeaponBehaviour : MonoBehaviour
         Bullet.GetComponent<BulletStats>().BulletPower(_playerPower);
     }
 
-    public void WeaponStats(Transform player, float playerPower)
+    public void WeaponStats(Transform player, float playerPower, bool ghost)
     {
         _player = player;
         _playerPower = playerPower;
+        _isGhost = ghost;
     }
     
     public void UseWeapon()

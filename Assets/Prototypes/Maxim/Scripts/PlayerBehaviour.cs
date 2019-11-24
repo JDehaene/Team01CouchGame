@@ -138,12 +138,12 @@ public class PlayerBehaviour : MonoBehaviour
     public void WeaponPickUp(GameObject weapon)
     {
         _playerWeapon = weapon;
-        _playerWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _playerPower);
+        _playerWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _playerPower, false);
     }
 
     private void UpdateWeapon()
     {
-        _playerWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _playerPower);
+        _playerWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _playerPower, false);
         _playerWeapon.GetComponent<WeaponBehaviour>().SetWeapon();
     }
 

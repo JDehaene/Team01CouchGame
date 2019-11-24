@@ -148,12 +148,12 @@ public class ghostController : MonoBehaviour
     public void WeaponPickUp(GameObject weapon)
     {
         _ghostWeapon = weapon;
-        _ghostWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _ghostPower);
+        _ghostWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _ghostPower, true);
     }
 
     private void UpdateWeapon()
     {
-        _ghostWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _ghostPower);
+        _ghostWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _ghostPower, true);
         _ghostWeapon.GetComponent<WeaponBehaviour>().SetWeapon();
     }
 
