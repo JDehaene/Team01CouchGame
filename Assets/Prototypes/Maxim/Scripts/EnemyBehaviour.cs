@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,27 +21,22 @@ public class EnemyBehaviour : MonoBehaviour
     private float _chargeSpeedModifier;
     [SerializeField]
     private GameObject _player;
+    private bool _charging;
+    private bool _chargePosDetermined;
+    private Vector3 _chargePos;
+    [Header("Shooting variables")]
+    [SerializeField]
+    private GameObject _bullet;
 
     private void Start()
     {
         //assign random enemy type
-        //_enemyType = Random.Range(1, 2);
     }
 
     void Update()
     {
-        _colliders = Physics.OverlapSphere(this.transform.position, _radius);
-
-        //foreach (Collider collider in _colliders)
-        //{
-        //    if (collider.CompareTag("Player"))
-        //    {
-        //        transform.LookAt(collider.transform);
-        //        transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
-        //    }
-        //}
-        //EnemyPicker();
-        EnemyBehaviourTwo();
+        _colliders = Physics.OverlapSphere(this.transform.position, _radius);      
+        EnemyPicker();
     }
 
     void EnemyPicker()
@@ -52,6 +48,9 @@ public class EnemyBehaviour : MonoBehaviour
                 break;
             case 2:
                 EnemyBehaviourTwo();
+                break;
+            case 3:
+                EnemyBehaviourThree();
                 break;
 
         }
@@ -77,20 +76,65 @@ public class EnemyBehaviour : MonoBehaviour
             if (collider.CompareTag("Player"))
             {
                 transform.LookAt(collider.transform);
-                transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
 
-                if(Vector3.Distance(transform.position, collider.transform.position) > _radius / 2)
+                if(Vector3.Distance(transform.position, collider.transform.position) > _radius/2 + _radius/4)
                 {
-                    StartCoroutine(("Charge"),_colliders);
+                    transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
+                }
+                if (!_charging && Vector3.Distance(transform.position, collider.transform.position) < _radius / 2 + _radius/4)
+                {
+                    
+                    _charging = true;
+                }
+
+                if(_charging)
+                {
+                    StartCoroutine("Charge");
                 }
             }
         }
     }
 
+    private void EnemyBehaviourThree()
+    {
+        foreach (Collider collider in _colliders)
+        {
+            if (collider.CompareTag("Player"))
+            {
+                transform.LookAt(collider.transform);
+                Debug.Log(collider);
+                if (Vector3.Distance(transform.position, collider.transform.position) > _radius)
+                    transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
+
+                if (Vector3.Distance(transform.position, collider.transform.position) < _radius - 1)
+                    Shoot();
+            }
+        }
+    }
+
+    private void Shoot()
+    {
+        Instantiate(_bullet);
+    }
+
     private IEnumerator Charge()
     {
         yield return new WaitForSeconds(_timeUntilCharge);
-        Debug.Log("Charge bro");
-        transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed* _chargeSpeedModifier * Time.deltaTime);
+
+        if(!_chargePosDetermined)
+        {
+            _chargePos = _player.transform.position;
+            _chargePosDetermined = true;
+        }
+
+        if (Vector3.Distance(transform.position, _chargePos) > 0.1f)        
+            transform.position = Vector3.MoveTowards(transform.position, _chargePos, _speed * _chargeSpeedModifier * Time.deltaTime);      
+        else
+        {
+            _chargePosDetermined = false;
+            _charging = false;
+            _chargePos = Vector3.zero;
+            StopCoroutine("Charge");
+        }
     }
 }
