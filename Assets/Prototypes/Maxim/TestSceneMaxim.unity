@@ -302,7 +302,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1760
+  m_Name: pb_Mesh-1218
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18568,6 +18568,7 @@ MonoBehaviour:
   _playerWeapon: {fileID: 8827274053581246414, guid: 217feb7b91fb4a64e8f960b1f193d12b,
     type: 3}
   WeaponPos: {fileID: 876820533}
+  _ghost: {fileID: 0}
 --- !u!143 &1470440186
 CharacterController:
   m_ObjectHideFlags: 0
@@ -18676,7 +18677,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1622
+  m_Name: pb_Mesh-1184
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

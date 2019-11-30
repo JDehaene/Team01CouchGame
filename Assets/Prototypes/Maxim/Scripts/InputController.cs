@@ -36,5 +36,10 @@ public class InputController : MonoBehaviour
         _rightTrigger = Input.GetAxis("RightTriggerP" + _playerID);
         return _rightTrigger;
     }
+    public float RightStickHorizontal2(int _playerID)
+    {
+        _rightTrigger = Input.GetAxis("HorizontalRP" + _playerID);
+        return _rightTrigger;
+    }
 
 }

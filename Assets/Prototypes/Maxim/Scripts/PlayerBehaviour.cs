@@ -12,7 +12,8 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     private bool _showGizmo = true;
 
-    private Vector2 _input;
+    private Vector2 _inputLeftJoystick;
+    private Vector2 _inputRightJoystick;
     private float _angle;
     private Quaternion _targetRotation;
 
@@ -25,6 +26,8 @@ public class PlayerBehaviour : MonoBehaviour
     //player stats
     [SerializeField] private float _playerHealth, _playerMaxHealth;
     [SerializeField] private float _playerSpeed, _playerPower;
+
+    
 
     //player weapon
     [SerializeField] private GameObject _playerWeapon;
@@ -45,36 +48,40 @@ public class PlayerBehaviour : MonoBehaviour
 
         GetInput();
 
-        if (Mathf.Abs(_input.x) < 0.2 && Mathf.Abs(_input.y) < 0.2) return;
+        //if (Mathf.Abs(_inputLeftJoystick.x) < 0.2 && Mathf.Abs(_inputLeftJoystick.y) < 0.2) return;
 
-        CalculateDirection();
+        //CalculateDirection();
         Rotate();
         Move();
-
-        
     }
 
     private void Move()
     {
-        transform.position += transform.forward * _velocity * _playerSpeed * Time.deltaTime;
+        //transform.position += transform.forward * _velocity * _playerSpeed * Time.deltaTime;
+
+        transform.position += new Vector3(_inputLeftJoystick.x, 0, _inputLeftJoystick.y) * _velocity * _playerSpeed * Time.deltaTime;
     }
 
     private void Rotate()
     {
-        _targetRotation = Quaternion.Euler(0, _angle, 0);
-        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, _turnSpeed * Time.deltaTime);
+        //_targetRotation = Quaternion.Euler(0, _angle, 0);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, _turnSpeed * Time.deltaTime);
+
+        transform.Rotate(0, _inputRightJoystick.x * Time.deltaTime * _turnSpeed * 50, 0);
     }
 
     private void CalculateDirection()
     {
-        _angle = Mathf.Atan2(_input.x, _input.y);
+        _angle = Mathf.Atan2(_inputLeftJoystick.x, _inputLeftJoystick.y);
         _angle = Mathf.Rad2Deg * _angle;
     }
 
     private void GetInput()
     {
-        _input.x = _inputController.LeftStickHorizontal(_playerId);
-        _input.y = _inputController.LeftStickVertical(_playerId);
+        _inputLeftJoystick.x = _inputController.LeftStickHorizontal(_playerId);
+        _inputLeftJoystick.y = _inputController.LeftStickVertical(_playerId);
+
+        _inputRightJoystick.x = _inputController.RightStickHorizontal2(_playerId);
     }
 
     private void ApplyCollision()
