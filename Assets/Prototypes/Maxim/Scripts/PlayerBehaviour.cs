@@ -29,6 +29,9 @@ public class PlayerBehaviour : MonoBehaviour
     //player weapon
     [SerializeField] private GameObject _playerWeapon;
     public Transform WeaponPos;
+
+    //ghost stuff
+    [SerializeField] private GameObject _ghost;
     
     private void Start()
     {
@@ -117,6 +120,8 @@ public class PlayerBehaviour : MonoBehaviour
     private void PlayerDies()
     {
         //spawn ghost / activate ghost system
+        _ghost = Instantiate(_ghost, transform.position, transform.rotation);
+
         gameObject.active = false;
     }
     
@@ -157,7 +162,6 @@ public class PlayerBehaviour : MonoBehaviour
             if (Input.GetAxis("RightTriggerP"+_playerId) > 0.1f)
             {
                 _playerWeapon.GetComponent<WeaponBehaviour>().UseWeapon();
-                Debug.Log("pew");
             }
 
         }
@@ -168,5 +172,7 @@ public class PlayerBehaviour : MonoBehaviour
         Destroy(_playerWeapon);
         _playerWeapon = null;
     }
+    
+    //ghost stuff
 
 }
