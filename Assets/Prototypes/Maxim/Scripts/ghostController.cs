@@ -33,16 +33,21 @@ public class ghostController : MonoBehaviour
     //ghost live status
     private bool _ghostIsAlive = true;
 
+    //ghost spawn stuff
+    private GameObject _ghostSpawnerFinalRoom;
+
     private void Start()
     {
         _inputController = (InputController)FindObjectOfType(typeof(InputController));
         WeaponPickUp(_ghostWeapon);
+        NewStage();
     }
 
     private void Update()
     {
         if(_ghostIsAlive)
         {
+            GhostCheck();
             WeaponCheck();
             GetInput();
             if (Mathf.Abs(_input.x) < 0.2 && Mathf.Abs(_input.y) < 0.2) return;
@@ -139,9 +144,8 @@ public class ghostController : MonoBehaviour
     public void GhostIsDead()
     {
         _ghostIsAlive = false;
-        _weaponEnabled = false;
-        this.GetComponent<Collider>().enabled = false;
-        this.GetComponent<MeshRenderer>().enabled = false;
+        GhostMovesToFinalRoom();
+        _ghostSpawnerFinalRoom.GetComponent<GhostSpawner>().GhostNeedsRespawn();
     }
 
     //ghost weapon
@@ -180,19 +184,27 @@ public class ghostController : MonoBehaviour
     }
 
     //ghost spawn / next room
-    public void GhostMovesToNextRoom(Transform location)
+    private void GhostMovesToFinalRoom()
     {
         _weaponEnabled = false;
         this.GetComponent<Collider>().enabled = false;
         this.GetComponent<MeshRenderer>().enabled = false;
-        this.transform.position = location.position;
+        this.transform.position = _ghostSpawnerFinalRoom.transform.position;
     }
 
-    private void GhostHasBeenMoved()
+    public void GhostHasBeenMoved()
     {
         this.GetComponent<Collider>().enabled = true;
         this.GetComponent<MeshRenderer>().enabled = true;
         _weaponEnabled = true;
+        _ghostHealth = _ghostMaxHealth;
+        _ghostIsAlive = true;
+    }
+
+    public void NewStage()
+    {
+        _ghostSpawnerFinalRoom = GameObject.Find("GhostSpawnerFinal" + _playerId);
+        _ghostSpawnerFinalRoom.GetComponent<GhostSpawner>().SetGhost(this.GetComponent<ghostController>());
     }
 
 }

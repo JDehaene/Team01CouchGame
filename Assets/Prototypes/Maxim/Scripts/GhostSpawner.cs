@@ -4,10 +4,27 @@ using UnityEngine;
 
 public class GhostSpawner : MonoBehaviour
 {
-    [SerializeField] private bool _finalRoom = false;
-    [SerializeField] private Transform _ghostSpawnLocation;
+    [SerializeField] private int _spawnerId;
+    [SerializeField] private GhostSpawnerControl _spawnerControlScript;
 
-
+    private ghostController _ghostScript;
     
+
+    //spawner to door information
+    public void SpawnGhost()
+    {
+        _ghostScript.GhostHasBeenMoved();
+    }
+    
+    //ghost to spawner information
+    public void SetGhost(ghostController ghostscript)
+    {
+        _ghostScript = ghostscript;
+    }
+
+    public void GhostNeedsRespawn()
+    {
+        _spawnerControlScript.EnableRespawn(_spawnerId);
+    }
 
 }
