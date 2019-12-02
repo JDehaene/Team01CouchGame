@@ -6,9 +6,33 @@ public class GhostSpawnerControl : MonoBehaviour
 {
 
     [SerializeField] private GhostSpawner _spawner1, _spawner2, _spawner3, _spawner4;
+    [SerializeField] private GameObject _generatorPrefab;
+    private Generator _generator;
+
+    private int _finalRoomNumber, _currentRoom;
+    private bool _ghostHasSpawned = false;
 
     private bool[] _spawnerActive = new bool[] { false, false, false, false };
-    
+
+    private void Start()
+    {
+        _generator = _generatorPrefab.GetComponent<Generator>();
+    }
+
+    private void Update()
+    {
+        if(_generatorPrefab != null)
+        {
+            if (_generator.CameraIndex == _generator.NumberOfRooms && !_ghostHasSpawned)
+            {
+                SpawnGhosts();
+                _ghostHasSpawned = true;
+            }
+
+        }
+
+    }
+
     private void SpawnGhosts()
     {
         if(_spawnerActive[0])
@@ -34,12 +58,12 @@ public class GhostSpawnerControl : MonoBehaviour
         _spawnerActive[spawnerid] = true;
     }
 
-    private void OnTriggerEnter(Collider col)
-    {
-        if(col.tag == "Player")
-        {
-            SpawnGhosts();
-        }
-    }
+    //private void OnTriggerEnter(Collider col)
+    //{
+    //    if(col.tag == "Player")
+    //    {
+    //        SpawnGhosts();
+    //    }
+    //}
 
 }

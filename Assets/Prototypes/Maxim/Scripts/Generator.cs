@@ -15,9 +15,9 @@ public class Generator : MonoBehaviour
     private List<GameObject> _roomList = new List<GameObject>();
 
     [SerializeField]
-    private int _numberOfRooms = 5;
+    public int NumberOfRooms = 5;
 
-    private int _currentNumberOfRooms = 5;
+    //private int _currentNumberOfRooms = 5;
 
     private float _offset = 31.5f;
 
@@ -239,7 +239,7 @@ public class Generator : MonoBehaviour
         _roomPositionList.Add(_position);
 
         //add the other rooms position, including the end room
-        for (int roomIndex = 0; roomIndex < _numberOfRooms; roomIndex++)
+        for (int roomIndex = 0; roomIndex < NumberOfRooms; roomIndex++)
         {
             //do this calculation while the room position already exists
             do
