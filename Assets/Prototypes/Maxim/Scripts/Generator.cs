@@ -70,7 +70,7 @@ public class Generator : MonoBehaviour
 
         Vector3 previousPositionCalculation;
         Vector3 nextPositionCalculation;
-        
+
         _randomRoomIndex = UnityEngine.Random.Range(0, SpawnRooms.Length);
 
         if (nextPosition == Vector3.left * _offset)
@@ -232,51 +232,89 @@ public class Generator : MonoBehaviour
 
     private void GeneratePositions()
     {
-        int overlappingRooms;
-        _position = Vector3.zero;
-        _lastPosition = Vector3.zero;
-        //add the spawn position
-        _roomPositionList.Add(_position);
-
-        //add the other rooms position, including the end room
-        for (int roomIndex = 0; roomIndex < NumberOfRooms; roomIndex++)
+        bool positionsGenerated = false;
+        while (!positionsGenerated)
         {
-            //do this calculation while the room position already exists
-            do
-            {
-                overlappingRooms = 0;
-
-                int randomDirection = UnityEngine.Random.Range(0, 4);
-
-                switch (randomDirection)
-                {
-                    case 0:
-                        _position = _lastPosition + Vector3.left * _offset;
-                        break;
-                    case 1:
-                        _position = _lastPosition + Vector3.forward * _offset;
-                        break;
-                    case 2:
-                        _position = _lastPosition + Vector3.right * _offset;
-                        break;
-                    case 3:
-                        _position = _lastPosition + Vector3.back * _offset;
-                        break;
-                }
-
-                //Check if the roomposition already exists
-                for (int positionIndex = 0; positionIndex < _roomPositionList.Count; positionIndex++)
-                {
-                    if (_roomPositionList[positionIndex] == _position)
-                    {
-                        overlappingRooms++;
-                    }
-                }
-            } while (overlappingRooms > 0);
-
+            bool hasOverLap = false;
+            _position = Vector3.zero;
+            _lastPosition = Vector3.zero;
+            //add the spawn position
             _roomPositionList.Add(_position);
 
-            _lastPosition = _position;
+            //add the other rooms position, including the end room
+            for (int roomIndex = 0; roomIndex < NumberOfRooms; roomIndex++)
+            {
+                //do this calculation while the room position already exists
+                int randomDirection = UnityEngine.Random.Range(0, 4);
+                int counter = 0;
+                do
+                {
+                    ++counter;
+                    hasOverLap = false;
+                    switch (randomDirection)
+                    {
+                        case 0:
+                            _position = _lastPosition + Vector3.left * _offset;
+                            if (IsOverlapping())
+                            {
+                                hasOverLap = true;
+                                ++randomDirection;
+                            }
+                            break;
+                        case 1:
+                            _position = _lastPosition + Vector3.forward * _offset;
+                            if (IsOverlapping())
+                            {
+                                hasOverLap = true;
+                                ++randomDirection;
+                            }
+                            break;
+                        case 2:
+                            _position = _lastPosition + Vector3.right * _offset;
+                            if (IsOverlapping())
+                            {
+                                hasOverLap = true;
+                                ++randomDirection;
+                            }
+                            break;
+                        case 3:
+                            _position = _lastPosition + Vector3.back * _offset;
+                            if (IsOverlapping())
+                            {
+                                hasOverLap = true;
+                                randomDirection = 0;
+                            }
+                            break;
+                    }
+                } while (hasOverLap && counter >= 4);
+
+                if (hasOverLap)
+                {
+                _roomPositionList.Clear();
+                    break;
+                }
+
+                _roomPositionList.Add(_position);
+
+                _lastPosition = _position;
+            }
+            if (!hasOverLap)
+            {
+                positionsGenerated = true;
+            }
         }
+    }
+    bool IsOverlapping()
+    {
+        //Check if the roomposition already exists
+
+        for (int positionIndex = 0; positionIndex < _roomPositionList.Count; positionIndex++)
+        {
+            if (_roomPositionList[positionIndex] == _position)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

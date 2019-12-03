@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1570193944643339688, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8244371229597935306, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
         type: 3}
       propertyPath: m_Name
@@ -232,11 +237,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.y
       value: 0.49411392
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570193944643339688, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1570193944643339680, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
         type: 3}
@@ -19343,7 +19343,7 @@ MonoBehaviour:
   Doors:
   - {fileID: 4231216170069501908, guid: 3b00d514684036842be3f16be7c160c6, type: 3}
   _roomPositionList: []
-  NumberOfRooms: 5
+  NumberOfRooms: 20
   CameraIndex: 0
 --- !u!4 &1700511785
 Transform:
@@ -19612,6 +19612,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1570193944643339688, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8244371229597935306, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
         type: 3}
       propertyPath: m_Name
@@ -19690,11 +19695,6 @@ PrefabInstance:
     - target: {fileID: 8244371229597935296, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
         type: 3}
       propertyPath: _showGizmo
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570193944643339688, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
-        type: 3}
-      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1570193944643339680, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
