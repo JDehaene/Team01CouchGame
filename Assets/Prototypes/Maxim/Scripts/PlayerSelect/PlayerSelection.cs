@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSelection : MonoBehaviour
 {
     public PlayerControl[] _players;
-    private List<int> activePlayers = new List<int>();
+    private List<int> _activePlayers = new List<int>();
 
     private void Update()
     {
@@ -16,9 +16,9 @@ public class PlayerSelection : MonoBehaviour
         //to join
         for (int i = 1; i < _players.Length + 1; ++i)
         {
-            if (!activePlayers.Contains(i) && Input.GetButtonDown("AButtonP" + i))
+            if (!_activePlayers.Contains(i) && Input.GetButtonDown("AButtonP" + i))
             {
-                activePlayers.Add(i);
+                _activePlayers.Add(i);
                 _players[GetDevil()].Active(i);
             }
         }
@@ -26,9 +26,9 @@ public class PlayerSelection : MonoBehaviour
         //to back out
         for (int i = 1; i < 5; ++i)
         {
-            if (activePlayers.Contains(i) && Input.GetButtonDown("BButtonP" + i))
+            if (_activePlayers.Contains(i) && Input.GetButtonDown("BButtonP" + i))
             {
-                activePlayers.Remove(i);
+                _activePlayers.Remove(i);
                 DeactiveDevil(i);
             }
         }

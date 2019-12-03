@@ -6,10 +6,14 @@ public class CameraBehaviour : MonoBehaviour
 {
     private Camera _camera;
 
-    private Transform _waypointNextRoom;
-    private Transform _waypointPreviousRoom;
+    private Transform[] _waypointsNextRoom = new Transform[4];
+    private Transform[] _waypointsPreviousRoom = new Transform[4];
 
     private Generator _generator;
+
+    //private PlayerSelection _playerSelection;
+
+    private GameObject[] _activePlayers;
 
     public bool _enteredNextRoom = false;
     public bool _moveTowardsRoom = false;
@@ -17,9 +21,20 @@ public class CameraBehaviour : MonoBehaviour
     void Start()
     {
         _camera = Camera.main;
-        _waypointNextRoom = transform.GetChild(0);
-        _waypointPreviousRoom = transform.GetChild(1);
         _generator = transform.parent.GetComponentInParent<Generator>();
+        _activePlayers = GameObject.FindGameObjectsWithTag("Player");
+
+        for (int i = 0; i < 4; i++)
+        {
+            _waypointsNextRoom[i] = transform.GetChild(i).transform;
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            _waypointsPreviousRoom[i] = transform.GetChild(i + 4).transform;
+        }
+
+        Debug.Log(_activePlayers.Length);
     }
 
     void LateUpdate()
@@ -43,17 +58,21 @@ public class CameraBehaviour : MonoBehaviour
             {
                 _generator.CameraIndex--;
                 _enteredNextRoom = false;
-                //set player position to next room entrance
-                //support mulitple players / add effects / lerp transform
-                other.transform.position = _waypointPreviousRoom.transform.position;
+
+                for (int i = 0; i < _activePlayers.Length; i++)
+                {
+                    _activePlayers[i].transform.position = _waypointsPreviousRoom[i].transform.position;
+                }
             }
             else
             {
                 _generator.CameraIndex++;
                 _enteredNextRoom = true;
-                //set player position to next room entrance
-                //support mulitple players / add effects / lerp transform
-                other.transform.position = _waypointNextRoom.transform.position;
+
+                for (int i = 0; i < _activePlayers.Length; i++)
+                {
+                    _activePlayers[i].transform.position = _waypointsNextRoom[i].transform.position;
+                }
             }
             _moveTowardsRoom = true;
         }
