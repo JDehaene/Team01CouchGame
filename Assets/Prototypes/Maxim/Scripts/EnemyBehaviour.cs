@@ -24,9 +24,13 @@ public class EnemyBehaviour : MonoBehaviour
     private bool _charging;
     private bool _chargePosDetermined;
     private Vector3 _chargePos;
+
     [Header("Shooting variables")]
     [SerializeField]
     private GameObject _bullet;
+    private float _fireCooldown;
+    [SerializeField]
+    private float _rateOfFire;
 
     private void Start()
     {
@@ -102,7 +106,6 @@ public class EnemyBehaviour : MonoBehaviour
             if (collider.CompareTag("Player"))
             {
                 transform.LookAt(collider.transform);
-                Debug.Log(collider);
                 if (Vector3.Distance(transform.position, collider.transform.position) > _radius)
                     transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
 
@@ -114,7 +117,13 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Shoot()
     {
-        Instantiate(_bullet);
+        _fireCooldown += Time.deltaTime;
+        Debug.Log(_fireCooldown);
+        if(_fireCooldown >= _rateOfFire)
+        {
+            Instantiate(_bullet,this.transform.position + transform.forward,this.transform.rotation);
+            _fireCooldown = 0;
+        }
     }
 
     private IEnumerator Charge()
