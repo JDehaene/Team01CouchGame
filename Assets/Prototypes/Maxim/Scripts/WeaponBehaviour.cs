@@ -45,13 +45,13 @@ public class WeaponBehaviour : MonoBehaviour
 
     public void SetWeapon()
     {
-        Bullet.GetComponent<BulletStats>().BulletPower(_playerPower);
+        //Bullet.GetComponent<BulletStats>().BulletPower(_playerPower);
     }
 
-    public void WeaponStats(Transform player, float playerPower, bool ghost)
+    public void WeaponStats(Transform player, float Power, bool ghost)
     {
         _player = player;
-        _playerPower = playerPower;
+        _playerPower = Power;
         _isGhost = ghost;
     }
     

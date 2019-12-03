@@ -6,11 +6,13 @@ public class BulletStats : MonoBehaviour
 {
     public float BulletSpeed, StartBulletDamage;
     [HideInInspector] public float CurrentBulletDamage;
-    
-    public void BulletPower(float playerPower)
+    [HideInInspector] public bool IsGhost = false;
+
+    public void BulletPower(float playerPower, bool isghost)
     {
         CurrentBulletDamage = StartBulletDamage;
         CurrentBulletDamage = CurrentBulletDamage * playerPower;
+        IsGhost = isghost;
     }
     
 

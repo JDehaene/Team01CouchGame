@@ -26,25 +26,31 @@ public class PlayerBehaviour : MonoBehaviour
     //player stats
     [SerializeField] private float _playerHealth, _playerMaxHealth;
     [SerializeField] private float _playerSpeed, _playerPower;
-
     
-
-    //player weapon
-    [SerializeField] private GameObject _playerWeapon;
+    //weapon
     public Transform WeaponPos;
-
-    //ghost stuff
+    [SerializeField] private GameObject _bullet;
+    private GameObject _firedBullet;
+    [SerializeField] private float _firerateTimer;
+    private BulletStats _bulletStats;
+    private float _timer;
+    
+    //ghost 
     [SerializeField] private GameObject _ghost;
     
     private void Start()
     {
         _inputController = (InputController)FindObjectOfType(typeof(InputController));
-        WeaponPickUp(_playerWeapon);
+        //WeaponPickUp(_playerWeapon);
+        _timer = _firerateTimer;
     }
 
     private void Update()
     {
+        _timer -= Time.deltaTime;
+
         WeaponCheck();
+        PlayerCheck();
 
         GetInput();
 
@@ -121,13 +127,14 @@ public class PlayerBehaviour : MonoBehaviour
         _playerHealth += currenthp;
         _playerSpeed += speed;
         _playerPower += power;
-        UpdateWeapon();
     }
     
     private void PlayerDies()
     {
         //spawn ghost / activate ghost system
+        Debug.Log("player " + _playerId + " died");
         _ghost = Instantiate(_ghost, transform.position, transform.rotation);
+        _ghost.GetComponent<ghostController>().SetGhostID(_playerId);
 
         gameObject.active = false;
     }
@@ -146,40 +153,34 @@ public class PlayerBehaviour : MonoBehaviour
 
     }
 
+    public void PlayerTakesDamage(float damage)
+    {
+        _playerHealth -= damage;
+    }
+
     // player weapon
     public void WeaponPickUp(GameObject weapon)
     {
-        _playerWeapon = weapon;
-        _playerWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _playerPower, false);
+        _bullet = weapon;
     }
-
-    private void UpdateWeapon()
-    {
-        _playerWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _playerPower, false);
-        _playerWeapon.GetComponent<WeaponBehaviour>().SetWeapon();
-    }
-
+    
     private void WeaponCheck()
     {
-        if (_playerWeapon != null)
+        if (Input.GetAxis("RightTriggerP" + _playerId) > 0.1f)
         {
-            _playerWeapon.transform.position = WeaponPos.position;
-            _playerWeapon.transform.rotation = WeaponPos.rotation;
-
-            if (Input.GetAxis("RightTriggerP"+_playerId) > 0.1f)
-            {
-                _playerWeapon.GetComponent<WeaponBehaviour>().UseWeapon();
-            }
-
+            UseWeapon();
+        }
+        
+    }
+    
+    private void UseWeapon()
+    {
+        if (_timer <= 0)
+        {
+            _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
+            _firedBullet.GetComponent<BulletStats>().BulletPower(_playerPower, false);
+            _timer = _firerateTimer;
         }
     }
-    
-    public void ReplaceWeapon()
-    {
-        Destroy(_playerWeapon);
-        _playerWeapon = null;
-    }
-    
-    //ghost stuff
 
 }

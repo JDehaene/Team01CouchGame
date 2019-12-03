@@ -19,15 +19,18 @@ public class ghostController : MonoBehaviour
 
     //ghost inputs
     [SerializeField] private InputController _inputController;
-    [SerializeField] private int _playerId;
+    [SerializeField] private int _ghostId;
 
     //ghost stats
     [SerializeField] private float _ghostHealth, _ghostMaxHealth;
     [SerializeField] private float _ghostSpeed, _ghostPower;
-
-    //ghost weapon
-    [SerializeField] private GameObject _ghostWeapon;
+    
+    //new weapon
     public Transform WeaponPos;
+    [SerializeField] private GameObject _bullet;
+    [SerializeField] private float _firerateTimer;
+    private GameObject _firedBullet;
+    private float _timer;
     private bool _weaponEnabled = true;
 
     //ghost live status
@@ -39,16 +42,20 @@ public class ghostController : MonoBehaviour
     private void Start()
     {
         _inputController = (InputController)FindObjectOfType(typeof(InputController));
-        WeaponPickUp(_ghostWeapon);
+        //WeaponPickUp(_ghostWeapon);
+        _timer = _firerateTimer;
         NewStage();
     }
 
     private void Update()
     {
-        if(_ghostIsAlive)
+        if(_ghostIsAlive && _ghostId != 0)
         {
-            GhostCheck();
+            _timer -= Time.deltaTime;
+
             WeaponCheck();
+            GhostCheck();
+            
             GetInput();
             if (Mathf.Abs(_input.x) < 0.2 && Mathf.Abs(_input.y) < 0.2) return;
             CalculateDirection();
@@ -78,8 +85,8 @@ public class ghostController : MonoBehaviour
 
     private void GetInput()
     {
-        _input.x = _inputController.LeftStickHorizontal(_playerId);
-        _input.y = _inputController.LeftStickVertical(_playerId);
+        _input.x = _inputController.LeftStickHorizontal(_ghostId);
+        _input.y = _inputController.LeftStickVertical(_ghostId);
     }
 
     private void ApplyCollision()
@@ -119,7 +126,6 @@ public class ghostController : MonoBehaviour
         _ghostHealth += currenthp;
         _ghostSpeed += speed;
         _ghostPower += power;
-        UpdateWeapon();
     }
 
     private void GhostDies()
@@ -148,39 +154,33 @@ public class ghostController : MonoBehaviour
         _ghostSpawnerFinalRoom.GetComponent<GhostSpawner>().GhostNeedsRespawn();
     }
 
+    public void GhostTakesDamage(float damage)
+    {
+        _ghostHealth -= damage;
+    }
+
     //ghost weapon
     public void WeaponPickUp(GameObject weapon)
     {
-        _ghostWeapon = weapon;
-        _ghostWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _ghostPower, true);
+        _bullet = weapon;
     }
-
-    private void UpdateWeapon()
-    {
-        _ghostWeapon.GetComponent<WeaponBehaviour>().WeaponStats(this.transform, _ghostPower, true);
-        _ghostWeapon.GetComponent<WeaponBehaviour>().SetWeapon();
-    }
-
+    
     private void WeaponCheck()
     {
-        if (_ghostWeapon != null)
+        if (Input.GetAxis("RightTriggerP" + _ghostId) > 0.1f)
         {
-            _ghostWeapon.transform.position = WeaponPos.position;
-            _ghostWeapon.transform.rotation = WeaponPos.rotation;
-
-            if (Input.GetAxis("RightTriggerP" + _playerId) > 0.1f && _weaponEnabled)
-            {
-                _ghostWeapon.GetComponent<WeaponBehaviour>().UseWeapon();
-                Debug.Log("pew");
-            }
-
+            UseWeapon();
         }
     }
-
-    public void ReplaceWeapon()
+    
+    private void UseWeapon()
     {
-        Destroy(_ghostWeapon);
-        _ghostWeapon = null;
+        if (_timer <= 0l && _weaponEnabled)
+        {
+            _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
+            _firedBullet.GetComponent<BulletStats>().BulletPower(_ghostPower, true);
+            _timer = _firerateTimer;
+        }
     }
 
     //ghost spawn / next room
@@ -203,8 +203,13 @@ public class ghostController : MonoBehaviour
 
     public void NewStage()
     {
-        _ghostSpawnerFinalRoom = GameObject.Find("GhostSpawnerFinal" + _playerId);
+        _ghostSpawnerFinalRoom = GameObject.Find("GhostSpawnerFinal" + _ghostId);
         _ghostSpawnerFinalRoom.GetComponent<GhostSpawner>().SetGhost(this.GetComponent<ghostController>());
+    }
+
+    public void SetGhostID(int ghostid)
+    {
+        _ghostId = ghostid;
     }
 
 }
