@@ -6,7 +6,7 @@ public class BulletBehaviour : MonoBehaviour
 {
     private float _speed;
     private float _damage;
-    private bool _isGhost = false;
+    private bool _isHostile = false;
 
     public GameObject BulletPrefab;
 
@@ -14,7 +14,7 @@ public class BulletBehaviour : MonoBehaviour
     {
         _speed = BulletPrefab.GetComponent<BulletStats>().BulletSpeed;
         _damage = BulletPrefab.GetComponent<BulletStats>().CurrentBulletDamage;
-        _isGhost = BulletPrefab.GetComponent<BulletStats>().IsGhost;
+        _isHostile = BulletPrefab.GetComponent<BulletStats>().IsHostile;
     }
 
     private void Update()
@@ -24,18 +24,24 @@ public class BulletBehaviour : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "Ghost" && !_isGhost)
+        if (col.tag != "Ghost" || col.tag != "Player" || col.tag != "Enemy")
+        {
+            Destroy(gameObject);
+        }
+
+        if (col.tag == "Ghost" && !_isHostile)
         {
             col.GetComponent<ghostController>().GhostTakesDamage(_damage);
             Destroy(gameObject);
         }
 
-        if (col.tag == "Wall")
+        if(col.tag == "Enemy" && !_isHostile)
         {
+            col.GetComponent<EnemyBehaviour>().EnemyTakesDamage(_damage);
             Destroy(gameObject);
         }
-
-        if (col.tag == "Player" && _isGhost)
+        
+        if (col.tag == "Player" && _isHostile)
         {
             col.GetComponent<PlayerBehaviour>().PlayerTakesDamage(_damage);
             Destroy(gameObject);

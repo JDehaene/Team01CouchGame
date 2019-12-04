@@ -26,12 +26,16 @@ public class EnemyBehaviour : MonoBehaviour
     private Vector3 _chargePos;
 
     [Header("Shooting variables")]
-    [SerializeField]
-    private GameObject _bullet;
+    [SerializeField] private GameObject _bullet;
+    [SerializeField] private float _rateOfFire;
     private float _fireCooldown;
-    [SerializeField]
-    private float _rateOfFire;
+    private GameObject _firedBullet;
 
+    //enemy stats
+    [Header("Enemy Stats")]
+    [SerializeField] private float _enemyHp;
+    [SerializeField] private float _enemyPower;
+    
     private void Start()
     {
         //assign random enemy type
@@ -39,6 +43,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Update()
     {
+        EnemyCheck();
         _colliders = Physics.OverlapSphere(this.transform.position, _radius);      
         EnemyPicker();
     }
@@ -73,6 +78,7 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
     }
+
     private void EnemyBehaviourTwo()
     {
         foreach (Collider collider in _colliders)
@@ -121,7 +127,8 @@ public class EnemyBehaviour : MonoBehaviour
         Debug.Log(_fireCooldown);
         if(_fireCooldown >= _rateOfFire)
         {
-            Instantiate(_bullet,this.transform.position + transform.forward,this.transform.rotation);
+            _firedBullet = Instantiate(_bullet,this.transform.position + transform.forward,this.transform.rotation);
+            _firedBullet.GetComponent<BulletStats>().BulletPower(_enemyPower, true);
             _fireCooldown = 0;
         }
     }
@@ -146,4 +153,24 @@ public class EnemyBehaviour : MonoBehaviour
             StopCoroutine("Charge");
         }
     }
+
+    //enemy stats
+    public void EnemyCheck()
+    {
+        if(_enemyHp <= 0)
+        {
+            EnemyDies();
+        }
+    }
+
+    public void EnemyTakesDamage(float damage)
+    {
+        _enemyHp -= damage;
+    }
+
+    private void EnemyDies()
+    {
+        Destroy(gameObject);
+    }
+
 }

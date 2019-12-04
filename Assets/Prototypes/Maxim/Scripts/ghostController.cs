@@ -22,10 +22,14 @@ public class ghostController : MonoBehaviour
     [SerializeField] private int _ghostId;
 
     //ghost stats
-    [SerializeField] private float _ghostHealth, _ghostMaxHealth;
-    [SerializeField] private float _ghostSpeed, _ghostPower;
-    
-    //new weapon
+    [Header("Ghost Stats")]
+    [SerializeField] private float _ghostHealth;
+    [SerializeField] private float _ghostMaxHealth;
+    [SerializeField] private float _ghostSpeed;
+    [SerializeField] private float _ghostPower;
+
+    //weapon
+    [Header("Ghost Weapon")]
     public Transform WeaponPos;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private float _firerateTimer;
@@ -123,9 +127,35 @@ public class ghostController : MonoBehaviour
     public void GhostChangeStats(float maxhp, float currenthp, float speed, float power)
     {
         _ghostMaxHealth += maxhp;
-        _ghostHealth += currenthp;
         _ghostSpeed += speed;
         _ghostPower += power;
+
+        GhostMinStatsCheck();
+
+        _ghostHealth += currenthp;
+
+        if (_ghostHealth > _ghostMaxHealth)
+        {
+            _ghostHealth = _ghostMaxHealth;
+        }
+    }
+
+    private void GhostMinStatsCheck()
+    {
+        if (_ghostMaxHealth <= 15)
+        {
+            _ghostMaxHealth = 15;
+        }
+
+        if (_ghostSpeed <= 0.5)
+        {
+            _ghostSpeed = 0.5f;
+        }
+
+        if (_ghostPower <= 0.5)
+        {
+            _ghostPower = 0.5f;
+        }
     }
 
     private void GhostDies()
@@ -135,23 +165,17 @@ public class ghostController : MonoBehaviour
 
     private void GhostCheck()
     {
-        if (_ghostHealth > _ghostMaxHealth)
-        {
-            _ghostHealth = _ghostMaxHealth;
-        }
-
         if (_ghostHealth <= 0)
         {
             GhostDies();
         }
-
     }
 
     public void GhostIsDead()
     {
         _ghostIsAlive = false;
         GhostMovesToFinalRoom();
-        _ghostSpawnerFinalRoom.GetComponent<GhostSpawner>().GhostNeedsRespawn();
+        _ghostSpawnerFinalRoom.GetComponent<GhostSpawner>().GhostNeedsRespawn(_ghostId);
     }
 
     public void GhostTakesDamage(float damage)

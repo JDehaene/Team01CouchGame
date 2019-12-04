@@ -22,9 +22,10 @@ public class GhostSpawner : MonoBehaviour
         _ghostScript = ghostscript;
     }
 
-    public void GhostNeedsRespawn()
+    public void GhostNeedsRespawn(int ghostid)
     {
-        _spawnerControlScript.EnableRespawn(_spawnerId);
+        _spawnerId = ghostid;
+        _spawnerControlScript.EnableRespawn(_spawnerId -1);
     }
 
 }

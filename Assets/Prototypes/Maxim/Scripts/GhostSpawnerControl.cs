@@ -38,14 +38,17 @@ public class GhostSpawnerControl : MonoBehaviour
         if(_spawnerActive[0])
         {
             _spawner1.SpawnGhost();
+            Debug.Log("Ghost 1 spawnded");
         }
         if (_spawnerActive[1])
         {
             _spawner2.SpawnGhost();
+            Debug.Log("Ghost 2 spawnded");
         }
         if (_spawnerActive[2])
         {
             _spawner3.SpawnGhost();
+            Debug.Log("Ghost 3 spawnded");
         }
         if (_spawnerActive[3])
         {
@@ -56,14 +59,7 @@ public class GhostSpawnerControl : MonoBehaviour
     public void EnableRespawn(int spawnerid)
     {
         _spawnerActive[spawnerid] = true;
+        Debug.Log("spawner " + spawnerid + " is active");
     }
-
-    //private void OnTriggerEnter(Collider col)
-    //{
-    //    if(col.tag == "Player")
-    //    {
-    //        SpawnGhosts();
-    //    }
-    //}
-
+    
 }

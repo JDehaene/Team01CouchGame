@@ -24,14 +24,18 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private int _playerId;
 
     //player stats
-    [SerializeField] private float _playerHealth, _playerMaxHealth;
-    [SerializeField] private float _playerSpeed, _playerPower;
+    [Header("Player Stats")]
+    [SerializeField] private float _playerHealth;
+    [SerializeField] private float _playerMaxHealth;
+    [SerializeField] private float _playerSpeed;
+    [SerializeField] private float _playerPower;
     
     //weapon
+    [Header("Player Weapon")]
     public Transform WeaponPos;
     [SerializeField] private GameObject _bullet;
-    private GameObject _firedBullet;
     [SerializeField] private float _firerateTimer;
+    private GameObject _firedBullet;
     private BulletStats _bulletStats;
     private float _timer;
     
@@ -124,11 +128,37 @@ public class PlayerBehaviour : MonoBehaviour
     public void PlayerChangeStats(float maxhp, float currenthp, float speed, float power)
     {
         _playerMaxHealth += maxhp;
-        _playerHealth += currenthp;
         _playerSpeed += speed;
         _playerPower += power;
+
+        PlayerMinStatsCheck();
+
+        _playerHealth += currenthp;
+
+        if (_playerHealth > _playerMaxHealth)
+        {
+            _playerHealth = _playerMaxHealth;
+        }
     }
     
+    private void PlayerMinStatsCheck()
+    {
+        if (_playerMaxHealth <= 15)
+        {
+            _playerMaxHealth = 15;
+        }
+
+        if (_playerSpeed <= 0.5)
+        {
+            _playerSpeed = 0.5f;
+        }
+
+        if (_playerPower <= 0.5)
+        {
+            _playerPower = 0.5f;
+        }
+    }
+
     private void PlayerDies()
     {
         //spawn ghost / activate ghost system
@@ -141,16 +171,10 @@ public class PlayerBehaviour : MonoBehaviour
     
     private void PlayerCheck()
     {
-        if(_playerHealth > _playerMaxHealth)
-        {
-            _playerHealth = _playerMaxHealth;
-        }
-
         if(_playerHealth <= 0)
         {
             PlayerDies();
         }
-
     }
 
     public void PlayerTakesDamage(float damage)
