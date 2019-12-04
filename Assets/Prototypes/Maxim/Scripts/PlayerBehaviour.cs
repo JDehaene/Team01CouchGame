@@ -41,6 +41,9 @@ public class PlayerBehaviour : MonoBehaviour
     
     //ghost 
     [SerializeField] private GameObject _ghost;
+
+    [Header("model testing stuf")]
+    public bool HasModel = false;
     
     private void Start()
     {
@@ -163,7 +166,16 @@ public class PlayerBehaviour : MonoBehaviour
     {
         //spawn ghost / activate ghost system
         Debug.Log("player " + _playerId + " died");
-        _ghost = Instantiate(_ghost, transform.position, transform.rotation);
+        if(HasModel)
+        {
+            _ghost = Instantiate(_ghost, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
+        }
+        else
+        {
+            _ghost = Instantiate(_ghost, transform.position, transform.rotation);
+        }
+
+        
         _ghost.GetComponent<ghostController>().SetGhostID(_playerId);
 
         gameObject.active = false;
