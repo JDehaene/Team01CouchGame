@@ -7,8 +7,14 @@ public class GhostSpawner : MonoBehaviour
     [SerializeField] private int _spawnerId;
     [SerializeField] private GhostSpawnerControl _spawnerControlScript;
 
+    private GameObject _spawnControll;
     private ghostController _ghostScript;
-    
+
+    private void Start()
+    {
+        _spawnControll = GameObject.Find("Generator");
+        _spawnerControlScript = _spawnControll.GetComponent<GhostSpawnerControl>();
+    }
 
     //spawner to door information
     public void SpawnGhost()
