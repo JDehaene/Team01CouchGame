@@ -24,7 +24,7 @@ public class BulletBehaviour : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.tag != "Ghost" || col.tag != "Player" || col.tag != "Enemy")
+        if (col.tag != "Ghost" || col.tag != "Player" || col.tag != "Enemy" || col.tag != "PickUp")
         {
             Destroy(gameObject);
         }

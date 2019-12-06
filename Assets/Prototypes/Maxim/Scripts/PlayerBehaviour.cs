@@ -189,13 +189,13 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    private void PlayerDies()
+    public void PlayerDies()
     {
         //spawn ghost / activate ghost system
         Debug.Log("player " + _playerId + " died");
         if(HasModel)
         {
-            _ghost = Instantiate(_ghost, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
+            _ghost = Instantiate(_ghost, new Vector3(transform.position.x, 1, transform.position.z), transform.rotation);
         }
         else
         {

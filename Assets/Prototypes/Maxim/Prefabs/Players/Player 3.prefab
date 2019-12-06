@@ -91,7 +91,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7459b67757163a34db547727821008df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _velocity: 5
   _turnSpeed: 10
   _showGizmo: 1
   LayerMask:
@@ -101,10 +100,12 @@ MonoBehaviour:
   _playerId: 3
   _playerHealth: 100
   _playerMaxHealth: 100
-  _playerSpeed: 1
+  _playerSpeed: 5
   _playerPower: 1
+  _dashPower: 500
+  _dashReload: 3
   WeaponPos: {fileID: 201186217477069721}
-  _bullet: {fileID: 5469998021822787824, guid: baf0199f93173a64f9871fdd42cca5f1, type: 3}
+  _bullet: {fileID: 2708580928364576551, guid: ee3b4572f57a3024fbb9b0414e065b9e, type: 3}
   _firerateTimer: 0.5
   _ghost: {fileID: 1067463925828638064, guid: db11727233155a247bae467ac29a176d, type: 3}
   HasModel: 1
