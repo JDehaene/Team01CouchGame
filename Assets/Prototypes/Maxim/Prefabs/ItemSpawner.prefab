@@ -43,4 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55941f8d50633f4482744629b133f7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pickups: []
+  _pickups:
+  - {fileID: 776946403553151703, guid: 077e3f46718755a43858e24aaef8e676, type: 3}
+  - {fileID: 7788150181956056302, guid: 48a8aa247b649e443a8129c77295418a, type: 3}
+  - {fileID: 512295835888104127, guid: 9ee0ff47089350c46836bd54cfe664a4, type: 3}
+  - {fileID: 5311920394174795284, guid: 77588197fb8f475419aa2fea5a397758, type: 3}

@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHpStat: 0
   _hpStat: 0
-  _speedStat: 0.5
+  _speedStat: 0.2
   _powerStat: 0
 --- !u!54 &5398287619188077293
 Rigidbody:
