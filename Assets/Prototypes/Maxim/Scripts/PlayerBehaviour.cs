@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    [SerializeField]
-    private float _velocity = 5;
+    //[SerializeField]
+    //private float _velocity = 5;
     [SerializeField]
     private float _turnSpeed = 10;
     [SerializeField]
@@ -16,6 +16,8 @@ public class PlayerBehaviour : MonoBehaviour
     private Vector2 _inputRightJoystick;
     private float _angle;
     private Quaternion _targetRotation;
+
+    private bool _aButton = false;
 
     public LayerMask LayerMask;
     
@@ -29,7 +31,9 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float _playerMaxHealth;
     [SerializeField] private float _playerSpeed;
     [SerializeField] private float _playerPower;
-    
+    [SerializeField] private float _dashPower = 500;
+    [SerializeField] private float _dashReload = 3;
+
     //weapon
     [Header("Player Weapon")]
     public Transform WeaponPos;
@@ -38,6 +42,9 @@ public class PlayerBehaviour : MonoBehaviour
     private GameObject _firedBullet;
     private BulletStats _bulletStats;
     private float _timer;
+    private float _dashTimer;
+
+    private Rigidbody _rb;
     
     //ghost 
     [SerializeField] private GameObject _ghost;
@@ -48,6 +55,8 @@ public class PlayerBehaviour : MonoBehaviour
     private void Start()
     {
         _inputController = (InputController)FindObjectOfType(typeof(InputController));
+        _rb = GetComponent<Rigidbody>();
+        _dashTimer = _dashReload;
         //WeaponPickUp(_playerWeapon);
         _timer = _firerateTimer;
     }
@@ -55,22 +64,38 @@ public class PlayerBehaviour : MonoBehaviour
     private void Update()
     {
         _timer -= Time.deltaTime;
+        _dashTimer += Time.deltaTime;
 
         WeaponCheck();
         PlayerCheck();
 
         GetInput();
+        Dash();
 
-        if (Mathf.Abs(_inputLeftJoystick.x) < 0.2 && Mathf.Abs(_inputLeftJoystick.y) < 0.2) return;
+        if (Mathf.Abs(_inputLeftJoystick.x) < 0.2 && Mathf.Abs(_inputLeftJoystick.y) < 0.2)
+        {
+            _rb.rotation = Quaternion.Euler(0, _angle, 0);
+            return;
+        } 
 
         CalculateDirection();
         Rotate();
         Move();
     }
 
+    private void Dash()
+    {
+        if (_aButton && _dashTimer > _dashReload)
+        {
+            _dashTimer = 0;
+            _rb.AddForce(transform.forward * _dashPower, ForceMode.Force);
+        }
+    }
+
     private void Move()
     {
-        transform.position += transform.forward * _velocity * _playerSpeed * Time.deltaTime;
+        transform.position += transform.forward * _playerSpeed * Time.deltaTime;
+        //_rb.velocity += transform.forward * _playerSpeed * Time.deltaTime;
 
         //transform.position += new Vector3(_inputLeftJoystick.x, 0, _inputLeftJoystick.y) * _velocity * _playerSpeed * Time.deltaTime;
     }
@@ -94,37 +119,39 @@ public class PlayerBehaviour : MonoBehaviour
         _inputLeftJoystick.x = _inputController.LeftStickHorizontal(_playerId);
         _inputLeftJoystick.y = _inputController.LeftStickVertical(_playerId);
 
+        _aButton = _inputController.AButton(_playerId);
+
         //_inputRightJoystick.x = _inputController.RightStickHorizontal2(_playerId);
     }
 
-    private void ApplyCollision()
-    {
-        Collider[] hitColliders = Physics.OverlapBox(transform.position + new Vector3(0, 0, 0),
-            new Vector3(1, 1, 1), transform.rotation, LayerMask);
+    //private void ApplyCollision()
+    //{
+    //    Collider[] hitColliders = Physics.OverlapBox(transform.position + new Vector3(0, 0, 0),
+    //        new Vector3(1, 1, 1), transform.rotation, LayerMask);
 
-        foreach (Collider collider in hitColliders)
-        {
-            if (collider.CompareTag("Pushable"))
-            {
-                Debug.Log("FoundPushableOBject");
-                Rigidbody rb = collider.GetComponent<Rigidbody>();
+    //    foreach (Collider collider in hitColliders)
+    //    {
+    //        if (collider.CompareTag("Pushable"))
+    //        {
+    //            Debug.Log("FoundPushableOBject");
+    //            Rigidbody rb = collider.GetComponent<Rigidbody>();
 
-                if (Input.GetButtonDown("A"))
-                {
-                    rb.AddForce(Vector3.forward * 500, ForceMode.Impulse);
-                }
-            }
-        }
-    }
+    //            if (Input.GetButtonDown("A"))
+    //            {
+    //                rb.AddForce(Vector3.forward * 500, ForceMode.Impulse);
+    //            }
+    //        }
+    //    }
+    //}
 
-    private void OnDrawGizmos()
-    {
-        if (_showGizmo)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(transform.position + new Vector3(0, 0, 1), new Vector3(2, 2, 2));
-        }
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    if (_showGizmo)
+    //    {
+    //        Gizmos.color = Color.red;
+    //        Gizmos.DrawWireCube(transform.position + new Vector3(0, 0, 1), new Vector3(2, 2, 2));
+    //    }
+    //}
 
 
     // player stats

@@ -263,10 +263,30 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1570193944643339687, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1570193944643339690, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
         type: 3}
       propertyPath: _playerId
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570193944643339690, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
+        type: 3}
+      propertyPath: _dashPower
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570193944643339690, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
+        type: 3}
+      propertyPath: _playerSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570193944643339691, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31f6064ac3fe99b4e88b9914f08b78d3, type: 3}
@@ -367,7 +387,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-9110
+  m_Name: pb_Mesh-2848
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -962,6 +982,11 @@ PrefabInstance:
       propertyPath: _playerId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1570193944643339691, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31f6064ac3fe99b4e88b9914f08b78d3, type: 3}
 --- !u!43 &1155236197
@@ -970,7 +995,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-9090
+  m_Name: pb_Mesh-2828
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5935,7 +5960,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-9132
+  m_Name: pb_Mesh-2870
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19197,7 +19222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7459b67757163a34db547727821008df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _velocity: 5
   _turnSpeed: 10
   _showGizmo: 1
   LayerMask:
@@ -19209,10 +19233,13 @@ MonoBehaviour:
   _playerMaxHealth: 100
   _playerSpeed: 1
   _playerPower: 1
+  _dashPower: 0
+  _dashReload: 3
   WeaponPos: {fileID: 876820533}
   _bullet: {fileID: 0}
   _firerateTimer: 0
   _ghost: {fileID: 0}
+  HasModel: 0
 --- !u!143 &1470440186
 CharacterController:
   m_ObjectHideFlags: 0
@@ -19711,6 +19738,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _playerId
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570193944643339691, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31f6064ac3fe99b4e88b9914f08b78d3, type: 3}
