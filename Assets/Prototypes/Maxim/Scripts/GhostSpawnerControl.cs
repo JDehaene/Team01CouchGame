@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GhostSpawnerControl : MonoBehaviour
 {
-
-    [SerializeField] private GhostSpawner _spawner1, _spawner2, _spawner3, _spawner4;
-    [SerializeField] private GameObject _generatorPrefab;
+    private GameObject _spawner1Prefab, _spawner2Prefab, _spawner3Prefab, _spawner4Prefab;
+    private GhostSpawner _spawner1, _spawner2, _spawner3, _spawner4;
+    private GameObject _generatorPrefab;
     private Generator _generator;
 
     private int _finalRoomNumber, _currentRoom;
@@ -16,7 +16,9 @@ public class GhostSpawnerControl : MonoBehaviour
 
     private void Start()
     {
+        _generatorPrefab = GameObject.Find("Generator");
         _generator = _generatorPrefab.GetComponent<Generator>();
+        //SetSpawners();
     }
 
     private void Update()
@@ -31,6 +33,20 @@ public class GhostSpawnerControl : MonoBehaviour
 
         }
 
+    }
+
+    private void SetSpawners()
+    {
+        _spawner1Prefab = GameObject.Find("GhostSpawnerFinal1");
+        _spawner2Prefab = GameObject.Find("GhostSpawnerFinal2");
+        _spawner3Prefab = GameObject.Find("GhostSpawnerFinal3");
+        _spawner4Prefab = GameObject.Find("GhostSpawnerFinal4");
+
+        _spawner1 = _spawner1Prefab.GetComponent<GhostSpawner>();
+        _spawner2 = _spawner2Prefab.GetComponent<GhostSpawner>();
+        _spawner3 = _spawner3Prefab.GetComponent<GhostSpawner>();
+        _spawner4 = _spawner4Prefab.GetComponent<GhostSpawner>();
+        
     }
 
     private void SpawnGhosts()
@@ -60,6 +76,7 @@ public class GhostSpawnerControl : MonoBehaviour
     {
         _spawnerActive[spawnerid] = true;
         Debug.Log("spawner " + spawnerid + " is active");
+        SetSpawners();
     }
     
 }

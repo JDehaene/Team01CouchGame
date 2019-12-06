@@ -46,9 +46,7 @@ public class ghostController : MonoBehaviour
     private void Start()
     {
         _inputController = (InputController)FindObjectOfType(typeof(InputController));
-        //WeaponPickUp(_ghostWeapon);
         _timer = _firerateTimer;
-        NewStage();
     }
 
     private void Update()
@@ -67,6 +65,10 @@ public class ghostController : MonoBehaviour
             Move();
         }
 
+        if(_ghostSpawnerFinalRoom == null)
+        {
+            NewStage();
+        }
 
     }
 
