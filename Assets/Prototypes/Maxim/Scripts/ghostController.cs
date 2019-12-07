@@ -8,8 +8,6 @@ public class ghostController : MonoBehaviour
     private float _velocity = 5;
     [SerializeField]
     private float _turnSpeed = 10;
-    [SerializeField]
-    private bool _showGizmo = true;
 
     private Vector2 _input;
     private float _angle;
@@ -95,36 +93,6 @@ public class ghostController : MonoBehaviour
         _input.y = _inputController.LeftStickVertical(_ghostId);
     }
 
-    private void ApplyCollision()
-    {
-        Collider[] hitColliders = Physics.OverlapBox(transform.position + new Vector3(0, 0, 0),
-            new Vector3(1, 1, 1), transform.rotation, LayerMask);
-
-        foreach (Collider collider in hitColliders)
-        {
-            if (collider.CompareTag("Pushable"))
-            {
-                Debug.Log("FoundPushableOBject");
-                Rigidbody rb = collider.GetComponent<Rigidbody>();
-
-                if (Input.GetButtonDown("A"))
-                {
-                    rb.AddForce(Vector3.forward * 500, ForceMode.Impulse);
-                }
-            }
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (_showGizmo)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(transform.position + new Vector3(0, 0, 1), new Vector3(2, 2, 2));
-        }
-    }
-
-
     //ghost stats
     public void GhostChangeStats(float maxhp, float currenthp, float speed, float power)
     {
@@ -201,7 +169,7 @@ public class ghostController : MonoBehaviour
     
     private void UseWeapon()
     {
-        if (_timer <= 0l && _weaponEnabled)
+        if (_timer <= 0 && _weaponEnabled)
         {
             _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
             _firedBullet.GetComponent<BulletStats>().BulletPower(_ghostPower, true);

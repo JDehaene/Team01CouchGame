@@ -9,8 +9,6 @@ public class PlayerBehaviour : MonoBehaviour
     //private float _velocity = 5;
     [SerializeField]
     private float _turnSpeed = 10;
-    [SerializeField]
-    private bool _showGizmo = true;
 
     private Vector2 _inputLeftJoystick;
     private Vector2 _inputRightJoystick;
@@ -98,17 +96,12 @@ public class PlayerBehaviour : MonoBehaviour
     private void Move()
     {
         transform.position += transform.forward * _playerSpeed * Time.deltaTime;
-        //_rb.velocity += transform.forward * _playerSpeed * Time.deltaTime;
-
-        //transform.position += new Vector3(_inputLeftJoystick.x, 0, _inputLeftJoystick.y) * _velocity * _playerSpeed * Time.deltaTime;
     }
 
     private void Rotate()
     {
         _targetRotation = Quaternion.Euler(0, _angle, 0);
         transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, _turnSpeed * Time.deltaTime);
-
-        //transform.Rotate(0, _inputRightJoystick.x * Time.deltaTime * _turnSpeed * 50, 0);
     }
 
     private void CalculateDirection()
@@ -123,39 +116,7 @@ public class PlayerBehaviour : MonoBehaviour
         _inputLeftJoystick.y = _inputController.LeftStickVertical(_playerId);
 
         _aButton = _inputController.AButton(_playerId);
-
-        //_inputRightJoystick.x = _inputController.RightStickHorizontal2(_playerId);
     }
-
-    //private void ApplyCollision()
-    //{
-    //    Collider[] hitColliders = Physics.OverlapBox(transform.position + new Vector3(0, 0, 0),
-    //        new Vector3(1, 1, 1), transform.rotation, LayerMask);
-
-    //    foreach (Collider collider in hitColliders)
-    //    {
-    //        if (collider.CompareTag("Pushable"))
-    //        {
-    //            Debug.Log("FoundPushableOBject");
-    //            Rigidbody rb = collider.GetComponent<Rigidbody>();
-
-    //            if (Input.GetButtonDown("A"))
-    //            {
-    //                rb.AddForce(Vector3.forward * 500, ForceMode.Impulse);
-    //            }
-    //        }
-    //    }
-    //}
-
-    //private void OnDrawGizmos()
-    //{
-    //    if (_showGizmo)
-    //    {
-    //        Gizmos.color = Color.red;
-    //        Gizmos.DrawWireCube(transform.position + new Vector3(0, 0, 1), new Vector3(2, 2, 2));
-    //    }
-    //}
-
 
     // player stats
     public void PlayerChangeStats(float maxhp, float currenthp, float speed, float power)
