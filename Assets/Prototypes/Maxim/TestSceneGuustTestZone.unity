@@ -7573,6 +7573,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LWay_Room_04
       objectReference: {fileID: 0}
+    - target: {fileID: 4941833642768562075, guid: 0300fe39b3a0b3e4781befdaf1e3c5b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4941833642768562074, guid: 0300fe39b3a0b3e4781befdaf1e3c5b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7814,7 +7819,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3270
+  m_Name: pb_Mesh-2100
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8922,7 +8927,8 @@ PrefabInstance:
       propertyPath: _playerSpeed
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4446312546992325629, guid: f26ca6da786de764e807ade16e02d120, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f26ca6da786de764e807ade16e02d120, type: 3}
 --- !u!1 &1956007157
 GameObject:
@@ -8975,7 +8981,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3294
+  m_Name: pb_Mesh-2124
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9874,7 +9880,7 @@ PrefabInstance:
     - target: {fileID: 3202632712509085968, guid: 213057d568f4b5441ad7797adcce047d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3202632712509085974, guid: 213057d568f4b5441ad7797adcce047d,
         type: 3}
@@ -10822,7 +10828,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1991803272}
     - target: {fileID: 2436507262700834794, guid: aaa9fc26fddad104ba780fc729f9ecaa,
         type: 3}
       propertyPath: m_Mesh
