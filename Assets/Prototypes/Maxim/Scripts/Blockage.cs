@@ -10,6 +10,9 @@ public class Blockage : MonoBehaviour
     private List<GameObject> _walls = new List<GameObject>();
 
     private BoxCollider _collider;
+
+    [SerializeField]
+    private bool _sacrifice = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +27,16 @@ public class Blockage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_enemies.transform.childCount == 0)
+        if (_sacrifice)
         {
-            EnableWalls(false);
+            return;
+        }
+        else
+        {
+            if (_enemies.transform.childCount == 0)
+            {
+                EnableWalls(false);
+            }
         }
     }
 
