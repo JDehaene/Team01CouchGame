@@ -1,16 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerSelection : MonoBehaviour
 {
     public PlayerControl[] _players;
     private List<int> _activePlayers = new List<int>();
 
+    public GameObject bannerTimer;
+    private bool isCounting = false;
+    public Text txtCounter;
+    public float maxTime = 30;
+    private float counter = 0;
+
     private void Update()
     {
         CheckInput();
+        CheckCounter();
     }
+    void CheckCounter()
+    {
+        if (isCounting)
+        {
+            if (_activePlayers.Count < 2)
+            {
+                counter = 0;
+                isCounting = false;
+                bannerTimer.SetActive(false);
+                return;
+            }
+
+            counter += Time.deltaTime;
+            txtCounter.text = "Time Left: " + (int)(maxTime - counter);
+
+            if (counter >= maxTime)
+            {
+                this.enabled = false;
+                txtCounter.text = "Start";
+                for (int i = 0; i < _players.Length; ++i)
+                {
+                    _players[i].StartGame();
+                }
+            }
+        }
+        else if (_activePlayers.Count > 1)
+        {
+            counter = 0;
+            isCounting = true;
+            bannerTimer.SetActive(true);
+        }
+    }
+
     void CheckInput()
     {
         //to join
@@ -56,4 +98,5 @@ public class PlayerSelection : MonoBehaviour
             }
         }
     }
+    
 }

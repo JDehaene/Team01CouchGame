@@ -51,10 +51,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     [Header("model testing stuf")]
     public bool HasModel = false;
-    
+
     private void Start()
     {
-        _inputController = (InputController)FindObjectOfType(typeof(InputController));
         _rb = GetComponent<Rigidbody>();
         _dashTimer = _dashReload;
         //WeaponPickUp(_playerWeapon);
@@ -63,6 +62,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
+        _inputController = (InputController)FindObjectOfType(typeof(InputController));
+        if (!this.GetComponent<PlayerControl>()._lockedIn)
+            return;
+        _playerId = this.GetComponent<PlayerControl>().controllerID;
         _timer -= Time.deltaTime;
         _dashTimer += Time.deltaTime;
 
