@@ -496,6 +496,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9197516472408947041, guid: 2c7f46bb6b6ef6343b40298cdf620212,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 9039078248821105796, guid: 2c7f46bb6b6ef6343b40298cdf620212,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -504,7 +509,7 @@ PrefabInstance:
     - target: {fileID: 9039078248821105796, guid: 2c7f46bb6b6ef6343b40298cdf620212,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.42
+      value: 7.9
       objectReference: {fileID: 0}
     - target: {fileID: 9039078248821105796, guid: 2c7f46bb6b6ef6343b40298cdf620212,
         type: 3}
@@ -551,11 +556,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9197516472408947041, guid: 2c7f46bb6b6ef6343b40298cdf620212,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 7694902345579983502, guid: 2c7f46bb6b6ef6343b40298cdf620212,
         type: 3}
       propertyPath: m_Constraints
@@ -564,7 +564,7 @@ PrefabInstance:
     - target: {fileID: 2384932032695385140, guid: 2c7f46bb6b6ef6343b40298cdf620212,
         type: 3}
       propertyPath: _enemyType
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2384932032695385140, guid: 2c7f46bb6b6ef6343b40298cdf620212,
         type: 3}
