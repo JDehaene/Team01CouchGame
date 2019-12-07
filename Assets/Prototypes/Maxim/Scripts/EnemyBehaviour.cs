@@ -80,6 +80,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             if (collider.CompareTag("Player"))
             {
+                _player = collider.GetComponent<Transform>().gameObject;
                 Rotation();
                 transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
             }
