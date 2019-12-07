@@ -898,6 +898,28 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &524499489 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1570193944643339688, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2107842751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &524499498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524499489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c41e746628c054fa76d817c9156cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerID: 3
+  controllerID: 3
+  _lockedIn: 1
+  _txtInfo: {fileID: 0}
 --- !u!43 &676837057
 Mesh:
   m_ObjectHideFlags: 0
@@ -1091,6 +1113,28 @@ Transform:
   m_Father: {fileID: 1470440183}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &983110633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1570193944643339688, guid: 31f6064ac3fe99b4e88b9914f08b78d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1027699416}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &983110642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983110633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c41e746628c054fa76d817c9156cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerID: 2
+  controllerID: 2
+  _lockedIn: 1
+  _txtInfo: {fileID: 0}
 --- !u!1001 &1027699416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19562,10 +19606,10 @@ MonoBehaviour:
   - {fileID: 3337876728262431850, guid: aaa9fc26fddad104ba780fc729f9ecaa, type: 3}
   - {fileID: 8665085578843171427, guid: 059c63db79dbd0645b1e25d140db3dfd, type: 3}
   LWayRooms:
-  - {fileID: 8769557727138140160, guid: 4e266c25b7a58074c95c6760bc2d2542, type: 3}
-  - {fileID: 8769557727138140160, guid: 4e266c25b7a58074c95c6760bc2d2542, type: 3}
-  - {fileID: 8769557727138140160, guid: 4e266c25b7a58074c95c6760bc2d2542, type: 3}
-  - {fileID: 8769557727138140160, guid: 4e266c25b7a58074c95c6760bc2d2542, type: 3}
+  - {fileID: 5831414138206958146, guid: 60269d0f828ac4b45800beb4d0cc014a, type: 3}
+  - {fileID: 7146618478582519317, guid: 8ea4f086b68c3f14bad52b21514b6a92, type: 3}
+  - {fileID: 7931769842059283599, guid: fd1947536ad3dc44ea6990476980a207, type: 3}
+  - {fileID: 4941833642768562075, guid: 0300fe39b3a0b3e4781befdaf1e3c5b3, type: 3}
   Doors:
   - {fileID: 4231216170069501908, guid: 3b00d514684036842be3f16be7c160c6, type: 3}
   _roomPositionList: []
