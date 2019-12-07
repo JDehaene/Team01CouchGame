@@ -92,7 +92,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             if (collider.CompareTag("Player"))
             {
-                _player = collider.GetComponent<GameObject>();
+                _player = collider.GetComponent<Transform>().gameObject;
                 Rotation();
 
                 if(Vector3.Distance(transform.position, collider.transform.position) > _radius/2 + _radius/4)
@@ -150,7 +150,8 @@ public class EnemyBehaviour : MonoBehaviour
 
         if(!_chargePosDetermined)
         {
-            _chargePos = _player.transform.position;
+            _chargePos = new Vector3(_player.transform.position.x,transform.position.y, _player.transform.position.z);
+            //_chargePos = _player.transform.position;
             _chargePosDetermined = true;
         }
 
