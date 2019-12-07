@@ -24,11 +24,12 @@ public class BulletBehaviour : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.tag != "Ghost" || col.tag != "Player" || col.tag != "Enemy" || col.tag != "PickUp")
+        
+        if (col.tag == "Wall")
         {
             Destroy(gameObject);
         }
-
+        
         if (col.tag == "Ghost" && !_isHostile)
         {
             col.GetComponent<ghostController>().GhostTakesDamage(_damage);
