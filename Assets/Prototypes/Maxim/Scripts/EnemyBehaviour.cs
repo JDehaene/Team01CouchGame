@@ -47,6 +47,13 @@ public class EnemyBehaviour : MonoBehaviour
         _colliders = Physics.OverlapSphere(this.transform.position, _radius);      
         EnemyPicker();
     }
+    private void Rotation()
+    {
+        Vector3 lookVector = _player.transform.position - transform.position;
+        lookVector.y = 0;
+        Quaternion rot = Quaternion.LookRotation(lookVector);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rot, 1);
+    }
 
     void EnemyPicker()
     {
@@ -73,7 +80,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             if (collider.CompareTag("Player"))
             {
-                transform.LookAt(collider.transform);
+                Rotation();
                 transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
             }
         }
@@ -85,7 +92,8 @@ public class EnemyBehaviour : MonoBehaviour
         {
             if (collider.CompareTag("Player"))
             {
-                transform.LookAt(collider.transform);
+                _player = collider.GetComponent<GameObject>();
+                Rotation();
 
                 if(Vector3.Distance(transform.position, collider.transform.position) > _radius/2 + _radius/4)
                 {
@@ -111,11 +119,15 @@ public class EnemyBehaviour : MonoBehaviour
         {
             if (collider.CompareTag("Player"))
             {
-                transform.LookAt(collider.transform);
+                _player = collider.GetComponent<Transform>().gameObject;
+
+                //transform.RotateAround(Vector3.up, transform.LookAt(_player.transform));
+                Rotation();
+
                 if (Vector3.Distance(transform.position, collider.transform.position) > _radius)
                     transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
 
-                if (Vector3.Distance(transform.position, collider.transform.position) < _radius - 1)
+                if (Vector3.Distance(transform.position, collider.transform.position) < _radius)
                     Shoot();
             }
         }
@@ -124,7 +136,6 @@ public class EnemyBehaviour : MonoBehaviour
     private void Shoot()
     {
         _fireCooldown += Time.deltaTime;
-        Debug.Log(_fireCooldown);
         if(_fireCooldown >= _rateOfFire)
         {
             _firedBullet = Instantiate(_bullet,this.transform.position + transform.forward,this.transform.rotation);
