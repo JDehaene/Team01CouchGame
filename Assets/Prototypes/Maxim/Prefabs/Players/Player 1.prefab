@@ -63,7 +63,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _turnSpeed: 10
-  _showGizmo: 1
   LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -78,7 +77,7 @@ MonoBehaviour:
   WeaponPos: {fileID: 1416130819344741741}
   _bullet: {fileID: 2708580928364576551, guid: ee3b4572f57a3024fbb9b0414e065b9e, type: 3}
   _firerateTimer: 0.5
-  _ghost: {fileID: 1067463925828638064, guid: db11727233155a247bae467ac29a176d, type: 3}
+  _ghost: {fileID: 3094114604619793440, guid: fa5a71a209f0c6f4295e7c1d33766c3a, type: 3}
   HasModel: 1
 --- !u!54 &1416130818918632766
 Rigidbody:
