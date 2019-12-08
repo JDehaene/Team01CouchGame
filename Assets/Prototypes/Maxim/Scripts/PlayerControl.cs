@@ -16,6 +16,7 @@ public class PlayerControl : MonoBehaviour
         this.enabled = true;
         _lockedIn = true;
         controllerID = ctrl;
+        this.gameObject.AddComponent<DontDestroyOnLoad>();
 
         _txtInfo.text = "'B' to back out";
 
@@ -24,11 +25,11 @@ public class PlayerControl : MonoBehaviour
 
     public void DeActive()
     {
+        Destroy(this.gameObject.GetComponent<DontDestroyOnLoad>());
         this.enabled = false;
         _lockedIn = false;
         //iTex = 0;
         //matDevil.SetTexture("_Main", texs[iTex]);
-
         _txtInfo.text = "'A' to join";
 
         //anim.SetInteger("state", 3);

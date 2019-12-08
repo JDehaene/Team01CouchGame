@@ -657,6 +657,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2822071306367507604, guid: 53071c94d9517244fa4eea3f05553f48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2822071306367507600, guid: 53071c94d9517244fa4eea3f05553f48,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18819,7 +18824,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _turnSpeed: 10
-  _showGizmo: 1
   LayerMask:
     serializedVersion: 2
     m_Bits: 0

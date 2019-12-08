@@ -30,8 +30,18 @@ public class Generator : MonoBehaviour
     private int _randomRoomIndex = 0;
     public int CameraIndex = 0;
 
+    private GameObject[] _activePlayers;
+
     private void Start()
     {
+        _activePlayers = GameObject.FindGameObjectsWithTag("Player");
+        NumberOfRooms = _activePlayers.Length * 5;
+
+        if(_activePlayers.Length == 1)
+        {
+            Debug.Log("LastPlayer remaining");
+        }
+
         GeneratePositions();
         AddRooms();
     }
