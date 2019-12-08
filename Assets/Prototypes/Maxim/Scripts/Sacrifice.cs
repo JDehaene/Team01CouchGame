@@ -9,10 +9,11 @@ public class Sacrifice : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Destroy(other.GetComponent<DontDestroyOnLoad>());
             SceneManager.LoadScene(0);
         }
         else
-        {
+        {          
             Destroy(other.gameObject);
         }
     }

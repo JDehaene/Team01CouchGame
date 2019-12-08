@@ -156,6 +156,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void PlayerDies()
     {
         //spawn ghost / activate ghost system
+        Destroy(this.GetComponent<DontDestroyOnLoad>());
         Debug.Log("player " + _playerId + " died");
         if(HasModel)
         {
