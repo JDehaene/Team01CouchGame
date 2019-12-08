@@ -5,12 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class Sacrifice : MonoBehaviour
 {
+    private GameObject[] _activePlayers;
+    private GameObject[] _activeGhosts; //biep
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            
+
             Destroy(other.GetComponent<DontDestroyOnLoad>());
-            SceneManager.LoadScene(0);
+            other.GetComponent<PlayerBehaviour>().PlayerDies();
+            Destroy(other.gameObject);
+            
+
+            SceneManager.LoadScene(1);
+
+            
         }
         else
         {          

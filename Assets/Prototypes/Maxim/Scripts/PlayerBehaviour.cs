@@ -167,6 +167,7 @@ public class PlayerBehaviour : MonoBehaviour
             _ghost = Instantiate(_ghost, transform.position, transform.rotation);
         }
 
+
         
         _ghost.GetComponent<ghostController>().SetGhostID(_playerId);
 

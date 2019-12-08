@@ -908,7 +908,7 @@ MonoBehaviour:
   - {fileID: 972988985}
   bannerTimer: {fileID: 759826071}
   txtCounter: {fileID: 759826073}
-  maxTime: 10
+  maxTime: 5
 --- !u!4 &856335590
 Transform:
   m_ObjectHideFlags: 0

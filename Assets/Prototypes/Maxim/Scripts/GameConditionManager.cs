@@ -9,29 +9,30 @@ public class GameConditionManager : MonoBehaviour
     private GameObject[] _activePlayers;
     private GameObject[] _activeGhosts;
     private Sacrifice _sacrificeBehaviour;
-    private Generator _generator;
+    [SerializeField]private Generator _generator;
     [SerializeField] private Text _winnerText;
     private float _timer;
     [SerializeField] private float _restartGameTimer;
 
+
     private void Update()
     {
-        CheckPlayersAlive();
+        _activePlayers = GameObject.FindGameObjectsWithTag("Player");
+        _activeGhosts = GameObject.FindGameObjectsWithTag("Ghost");
 
-        if (_generator.CameraIndex <= _generator.NumberOfRooms)
-        {
-            CheckEndFight();
-        }
+        if (_generator.CameraIndex == _generator.NumberOfRooms || _activePlayers.Length < 1 && _generator.CameraIndex < _generator.NumberOfRooms)        
+            CheckPlayersAlive();
+
     }
 
     private void CheckPlayersAlive()
     {
-        _activePlayers = GameObject.FindGameObjectsWithTag("Player");
-        _activeGhosts = GameObject.FindGameObjectsWithTag("Ghost");
         if (_activePlayers.Length < 1)
         {
             _timer += Time.deltaTime;
-            CheckEndFight();
+            Debug.Log(_timer);
+            if(_timer < _restartGameTimer)
+                CheckEndFight();
             if(_timer > _restartGameTimer)
                 EndGame();
 
@@ -48,6 +49,10 @@ public class GameConditionManager : MonoBehaviour
 
     private void EndGame()
     {
+        //for(int i = 0; i < _activeGhosts.Length; ++i)
+        //{
+        //    Destroy(_activeGhosts[i].GetComponent<DontDestroyOnLoad>());
+        //}
         SceneManager.LoadScene("CharacterSelection");
     }
 }

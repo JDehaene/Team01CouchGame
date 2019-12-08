@@ -9,11 +9,14 @@ public class CameraBehaviour : MonoBehaviour
     private Transform[] _waypointsNextRoom = new Transform[4];
     private Transform[] _waypointsPreviousRoom = new Transform[4];
 
+    private Transform[] _waypointsGhostsNextRoom = new Transform[3];
+    private Transform[] _waypointsGhostsPreviousRoom = new Transform[3];
     private Generator _generator;
 
     //private PlayerSelection _playerSelection;
 
     private GameObject[] _activePlayers;
+    private GameObject[] _activeGhosts; //biep
 
     public bool _enteredNextRoom = false;
     public bool _moveTowardsRoom = false;
@@ -22,7 +25,9 @@ public class CameraBehaviour : MonoBehaviour
     {
         _camera = Camera.main;
         _generator = transform.parent.GetComponentInParent<Generator>();
+
         _activePlayers = GameObject.FindGameObjectsWithTag("Player");
+        _activeGhosts = GameObject.FindGameObjectsWithTag("Ghost");
 
         for (int i = 0; i < 4; i++)
         {
@@ -33,12 +38,37 @@ public class CameraBehaviour : MonoBehaviour
         {
             _waypointsPreviousRoom[i] = transform.GetChild(i + 4).transform;
         }
+        for (int i = 0; i < 3; i++)
+        {
+            _waypointsGhostsNextRoom[i] = transform.GetChild(i + 8).transform;
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            _waypointsGhostsPreviousRoom[i] = transform.GetChild(i + 11).transform;
+        }
 
-        Debug.Log(_activePlayers.Length);
+        //Biep
+        for (int i = 0; i < _activePlayers.Length; i++)
+        {
+            _activePlayers[i].transform.position = new Vector3(1 + i, 0, 1 + i);
+
+        }
+        if (_activeGhosts.Length >= 1)
+        {
+            for (int i = 0; i < _activeGhosts.Length; i++)
+            {
+                _activeGhosts[i].transform.position = new Vector3(-1 - i, 0, -1 - i);
+            }
+
+        }
+
+
     }
 
     void LateUpdate()
     {
+        _activePlayers = GameObject.FindGameObjectsWithTag("Player");
+        _activeGhosts = GameObject.FindGameObjectsWithTag("Ghost");
         if (_moveTowardsRoom)
         {
             _camera.transform.position = Vector3.Lerp(_camera.transform.position, _generator._roomPositionList[_generator.CameraIndex] + new Vector3(0, 21, -12), 5 * Time.deltaTime);
@@ -62,7 +92,14 @@ public class CameraBehaviour : MonoBehaviour
                 for (int i = 0; i < _activePlayers.Length; i++)
                 {
                     _activePlayers[i].transform.position = _waypointsPreviousRoom[i].transform.position;
+                    
                 }
+                for (int i = 0; i < _activeGhosts.Length; i++)
+                {
+                    _activeGhosts[i].transform.position = _waypointsGhostsPreviousRoom[i].transform.position;
+
+                }
+
             }
             else
             {
@@ -72,6 +109,10 @@ public class CameraBehaviour : MonoBehaviour
                 for (int i = 0; i < _activePlayers.Length; i++)
                 {
                     _activePlayers[i].transform.position = _waypointsNextRoom[i].transform.position;
+                }
+                for (int i = 0; i < _activeGhosts.Length; i++)
+                {
+                    _activeGhosts[i].transform.position = _waypointsGhostsNextRoom[i].transform.position;
                 }
             }
             _moveTowardsRoom = true;

@@ -37,12 +37,13 @@ public class ghostController : MonoBehaviour
 
     //ghost live status
     private bool _ghostIsAlive = true;
-
+    private Rigidbody _rb;
     //ghost spawn stuff
     private GameObject _ghostSpawnerFinalRoom;
 
     private void Start()
     {
+        _rb = this.GetComponent<Rigidbody>();
         _inputController = (InputController)FindObjectOfType(typeof(InputController));
         _timer = _firerateTimer;
     }
@@ -57,7 +58,11 @@ public class ghostController : MonoBehaviour
             GhostCheck();
             
             GetInput();
-            if (Mathf.Abs(_input.x) < 0.2 && Mathf.Abs(_input.y) < 0.2) return;
+            if (Mathf.Abs(_input.x) < 0.2 && Mathf.Abs(_input.y) < 0.2)
+            {
+                _rb.rotation = Quaternion.Euler(0, _angle, 0);
+                return;
+            }
             CalculateDirection();
             Rotate();
             Move();

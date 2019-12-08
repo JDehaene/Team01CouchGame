@@ -31,11 +31,12 @@ public class Generator : MonoBehaviour
     public int CameraIndex = 0;
 
     private GameObject[] _activePlayers;
+    [SerializeField] private int _roomsPerPlayer;
 
     private void Start()
     {
         _activePlayers = GameObject.FindGameObjectsWithTag("Player");
-        NumberOfRooms = _activePlayers.Length * 5;
+        NumberOfRooms = _activePlayers.Length * _roomsPerPlayer;
 
         if(_activePlayers.Length == 1)
         {
