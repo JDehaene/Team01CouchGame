@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1699089090517789387}
   - component: {fileID: 7694902345579983502}
   - component: {fileID: 2384932032695385140}
+  - component: {fileID: 2586626587585513617}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -132,3 +133,16 @@ MonoBehaviour:
   _rateOfFire: 0
   _enemyHp: 0
   _enemyPower: 0
+--- !u!65 &2586626587585513617
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9197516472408947041}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.15, y: 1, z: 1.15}
+  m_Center: {x: 0, y: 0.00000023841858, z: 0}
