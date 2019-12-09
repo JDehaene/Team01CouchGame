@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 92ccb0b3b959aa94d9fc4ad02ebc26e3, type: 2}
+  - {fileID: 2100000, guid: 21bea89baa67f4a41b827751de82541a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8044,11 +8044,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8098209391305480490}
     m_Modifications:
-    - target: {fileID: 8714537108247107449, guid: 789cd5425ab1fce4d89bf1a593c55058,
-        type: 3}
-      propertyPath: m_Name
-      value: RollingBlade
-      objectReference: {fileID: 0}
     - target: {fileID: 8516982378368980676, guid: 789cd5425ab1fce4d89bf1a593c55058,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8103,6 +8098,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714537108247107449, guid: 789cd5425ab1fce4d89bf1a593c55058,
+        type: 3}
+      propertyPath: m_Name
+      value: RollingBlade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 789cd5425ab1fce4d89bf1a593c55058, type: 3}
