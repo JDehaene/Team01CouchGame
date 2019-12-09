@@ -11,6 +11,9 @@ public class Generator : MonoBehaviour
     public GameObject[] LWayRooms;
     public GameObject[] Doors;
 
+    [SerializeField]
+    private GameObject _finalRoom;
+
     public List<Vector3> _roomPositionList = new List<Vector3>();
     private List<GameObject> _roomList = new List<GameObject>();
 
@@ -33,6 +36,8 @@ public class Generator : MonoBehaviour
     private GameObject[] _activePlayers;
     [SerializeField] private int _roomsPerPlayer;
 
+    [SerializeField]
+    private bool _finalRoomSpawned = false;
     private void Start()
     {
         _activePlayers = GameObject.FindGameObjectsWithTag("Player");
@@ -47,31 +52,78 @@ public class Generator : MonoBehaviour
         AddRooms();
     }
 
-    //private void Update()
-    //{
-    //    if (_currentNumberOfRooms != _numberOfRooms)
-    //    {
-    //        for (int i = 0; i < _roomPositionList.Count; i++)
-    //        {
-    //            _roomPositionList.Remove(_roomPositionList[i]);
-    //        }
+    private void Update()
+    {
+        if (!_finalRoomSpawned)
+        {
+            _activePlayers = GameObject.FindGameObjectsWithTag("Player");
+            Debug.Log("Active Players: " + _activePlayers.Length);
+            if (_activePlayers.Length == 1)
+            {
+                Debug.Log("Finalroom position calculated");
+                Vector3 previousPosition = _roomPositionList[_roomPositionList.Count - 2];
+                Vector3 position = _roomPositionList[_roomPositionList.Count - 1];
 
-    //        foreach (GameObject room in _roomList)
-    //        {
-    //            Destroy(room.gameObject);
-    //        }
+                Vector3 previousPositionCalculation;
 
-    //        _roomPositionList.Clear();
-    //        _roomList.Clear();
+                previousPositionCalculation = previousPosition - position;
 
-    //        this.transform.position = Vector3.zero;
+                Debug.Log("EndRoom removed");
+                _roomList.RemoveAt(_roomPositionList.Count - 1);
 
-    //        GeneratePositions();
-    //        AddRooms();
+                Debug.Log("Finalroom rotation calculated");
+                Quaternion rotation = Quaternion.identity;
 
-    //        _currentNumberOfRooms = _numberOfRooms;
-    //    }
-    //}
+                if (previousPositionCalculation == Vector3.left * _offset)
+                {
+                    rotation = Quaternion.identity;
+                }
+                else if (previousPositionCalculation == Vector3.right * _offset)
+                {
+                    rotation = Quaternion.Euler(0, 180, 0);
+                }
+                else if (previousPositionCalculation == Vector3.forward * _offset)
+                {
+                    rotation = Quaternion.Euler(0, 90, 0);
+                }
+                else if (previousPositionCalculation == Vector3.back * _offset)
+                {
+                    rotation = Quaternion.Euler(0, -90, 0);
+                }
+
+                Debug.Log("Finalroom instantiated calculated");
+                GameObject finalRoom = Instantiate(_finalRoom, _roomPositionList[_roomPositionList.Count - 1], rotation);
+                _roomList.Add(finalRoom);
+
+                _finalRoomSpawned = true;
+            }
+            
+        }
+        
+
+        //if (_currentNumberOfRooms != _numberOfRooms)
+        //{
+        //    for (int i = 0; i < _roomPositionList.Count; i++)
+        //    {
+        //        _roomPositionList.Remove(_roomPositionList[i]);
+        //    }
+
+        //    foreach (GameObject room in _roomList)
+        //    {
+        //        Destroy(room.gameObject);
+        //    }
+
+        //    _roomPositionList.Clear();
+        //    _roomList.Clear();
+
+        //    this.transform.position = Vector3.zero;
+
+        //    GeneratePositions();
+        //    AddRooms();
+
+        //    _currentNumberOfRooms = _numberOfRooms;
+        //}
+    }
 
     private void AddRooms()
     {

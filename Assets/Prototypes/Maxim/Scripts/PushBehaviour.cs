@@ -15,10 +15,13 @@ public class PushBehaviour : MonoBehaviour
 
     [SerializeField]
     private float _pushingPower = 5;
+
+    private PlayerBehaviour _playerBehaviour;
     private void Start()
     {
         _inputController = (InputController)FindObjectOfType(typeof(InputController));
         _playerId = GetComponentInParent<PlayerControl>().controllerID;
+        _playerBehaviour = GetComponentInParent<PlayerBehaviour>();
     }
     private void Update()
     {
@@ -34,7 +37,7 @@ public class PushBehaviour : MonoBehaviour
             if (_bButton && _timer > _pushingDelay)
             {
                 _timer = 0;
-                rb.AddForce(transform.forward * _pushingPower, ForceMode.Impulse);
+                rb.AddForce(transform.forward * _pushingPower * _playerBehaviour.PlayeRower, ForceMode.Impulse);
             }
         }
     }

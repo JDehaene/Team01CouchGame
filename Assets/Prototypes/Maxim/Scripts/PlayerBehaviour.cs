@@ -33,6 +33,8 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float _dashPower = 500;
     [SerializeField] private float _dashReload = 3;
 
+    public float PlayeRower { get => _playerPower; }
+
     //weapon
     [Header("Player Weapon")]
     public Transform WeaponPos;
