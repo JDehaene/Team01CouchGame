@@ -16,8 +16,9 @@ public class PlayerBehaviour : MonoBehaviour
     private Quaternion _targetRotation;
 
     private bool _aButton = false;
+    private bool _bButton = false; 
 
-    public LayerMask LayerMask;
+    //public LayerMask LayerMask;
     
     //player inputs
     [SerializeField] private InputController _inputController;
@@ -43,6 +44,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float _dashTimer;
 
     private Rigidbody _rb;
+    private bool _showGizmo = true;
     
     //ghost 
     [SerializeField] private GameObject _ghost;
@@ -69,8 +71,9 @@ public class PlayerBehaviour : MonoBehaviour
 
         WeaponCheck();
         PlayerCheck();
-
+        
         GetInput();
+        //ApplyCollision();
         Dash();
 
         if (Mathf.Abs(_inputLeftJoystick.x) < 0.2 && Mathf.Abs(_inputLeftJoystick.y) < 0.2)
@@ -83,6 +86,35 @@ public class PlayerBehaviour : MonoBehaviour
         Rotate();
         Move();
     }
+
+    private void ApplyCollision()
+    {
+        Collider[] hitColliders = Physics.OverlapBox(transform.position + new Vector3(0, 1, 2f),
+            new Vector3(1, 1, 0.5f), transform.rotation/*, LayerMask*/);
+
+        foreach (Collider collider in hitColliders)
+        {
+            if (collider.CompareTag("Player"))
+            {
+                Debug.Log(collider.gameObject.name);
+                Rigidbody rb = collider.GetComponent<Rigidbody>();
+
+                if (_bButton)
+                {
+                    rb.AddForce(Vector3.forward * 5, ForceMode.Impulse);
+                }
+            }
+        }
+    }
+
+    //private void OnDrawGizmos()
+    //{
+    //    if (_showGizmo)
+    //    {
+    //        Gizmos.color = Color.red;
+    //        Gizmos.DrawWireCube(transform.position + new Vector3(0, 1, 1.5f), new Vector3(1, 2, 1));
+    //    }
+    //}
 
     private void Dash()
     {
@@ -116,6 +148,7 @@ public class PlayerBehaviour : MonoBehaviour
         _inputLeftJoystick.y = _inputController.LeftStickVertical(_playerId);
 
         _aButton = _inputController.AButton(_playerId);
+        
     }
 
     // player stats
