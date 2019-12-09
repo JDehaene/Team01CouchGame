@@ -10,7 +10,10 @@ public class PlayerControl : MonoBehaviour
     public bool _lockedIn = false;
 
     [SerializeField] private Text _txtInfo;
-    
+    private void Start()
+    {
+        
+    }
     public void Active(int ctrl)
     {
         this.enabled = true;
