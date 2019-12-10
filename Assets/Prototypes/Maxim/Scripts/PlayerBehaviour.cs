@@ -33,7 +33,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float _dashPower = 500;
     [SerializeField] private float _dashReload = 3;
 
-    public float PlayeRower { get => _playerPower; }
+    public float PlayerPower { get => _playerPower; }
 
     //weapon
     [Header("Player Weapon")]
@@ -54,12 +54,15 @@ public class PlayerBehaviour : MonoBehaviour
     [Header("model testing stuf")]
     public bool HasModel = false;
 
+    private ParticleManager _particleManager;
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _dashTimer = _dashReload;
         //WeaponPickUp(_playerWeapon);
         _timer = _firerateTimer;
+        _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
     }
 
     private void Update()
@@ -75,7 +78,6 @@ public class PlayerBehaviour : MonoBehaviour
         PlayerCheck();
         
         GetInput();
-        //ApplyCollision();
         Dash();
 
         if (Mathf.Abs(_inputLeftJoystick.x) < 0.2 && Mathf.Abs(_inputLeftJoystick.y) < 0.2)
@@ -88,35 +90,6 @@ public class PlayerBehaviour : MonoBehaviour
         Rotate();
         Move();
     }
-
-    private void ApplyCollision()
-    {
-        Collider[] hitColliders = Physics.OverlapBox(transform.position + new Vector3(0, 1, 2f),
-            new Vector3(1, 1, 0.5f), transform.rotation/*, LayerMask*/);
-
-        foreach (Collider collider in hitColliders)
-        {
-            if (collider.CompareTag("Player"))
-            {
-                Debug.Log(collider.gameObject.name);
-                Rigidbody rb = collider.GetComponent<Rigidbody>();
-
-                if (_bButton)
-                {
-                    rb.AddForce(Vector3.forward * 5, ForceMode.Impulse);
-                }
-            }
-        }
-    }
-
-    //private void OnDrawGizmos()
-    //{
-    //    if (_showGizmo)
-    //    {
-    //        Gizmos.color = Color.red;
-    //        Gizmos.DrawWireCube(transform.position + new Vector3(0, 1, 1.5f), new Vector3(1, 2, 1));
-    //    }
-    //}
 
     private void Dash()
     {
@@ -153,9 +126,15 @@ public class PlayerBehaviour : MonoBehaviour
         
     }
 
+    public void PlayerTeleport()
+    {
+        _particleManager.TeleportParticleEffect(this.transform.position);
+    }
+
     // player stats
     public void PlayerChangeStats(float maxhp, float currenthp, float speed, float power)
     {
+        _particleManager.StatsParticleEffect(this.transform.position);
         _playerMaxHealth += maxhp;
         _playerSpeed += speed;
         _playerPower += power;
@@ -190,6 +169,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void PlayerDies()
     {
+        _particleManager.DeathParticleEffect(this.transform.position);
         //spawn ghost / activate ghost system
         Destroy(this.GetComponent<DontDestroyOnLoad>());
         Debug.Log("player " + _playerId + " died");
@@ -201,9 +181,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             _ghost = Instantiate(_ghost, transform.position, transform.rotation);
         }
-
-
-        
+    
         _ghost.GetComponent<ghostController>().SetGhostID(_playerId);
 
         gameObject.active = false;
@@ -213,7 +191,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if(_playerHealth <= 0)
         {
-            PlayerDies();
+            PlayerDies();          
         }
     }
 
@@ -246,5 +224,7 @@ public class PlayerBehaviour : MonoBehaviour
             _timer = _firerateTimer;
         }
     }
+
+    
 
 }

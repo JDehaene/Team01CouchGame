@@ -16,6 +16,7 @@ public class CameraBehaviour : MonoBehaviour
     //private PlayerSelection _playerSelection;
 
     private GameObject[] _activePlayers;
+    private PlayerBehaviour[] _playerBehaviours;
     private GameObject[] _activeGhosts; //biep
 
     public bool _enteredNextRoom = false;
@@ -27,6 +28,7 @@ public class CameraBehaviour : MonoBehaviour
         _generator = transform.parent.GetComponentInParent<Generator>();
 
         _activePlayers = GameObject.FindGameObjectsWithTag("Player");
+        _playerBehaviours = new PlayerBehaviour[_activePlayers.Length];
         _activeGhosts = GameObject.FindGameObjectsWithTag("Ghost");
 
         for (int i = 0; i < 4; i++)
@@ -51,7 +53,7 @@ public class CameraBehaviour : MonoBehaviour
         for (int i = 0; i < _activePlayers.Length; i++)
         {
             _activePlayers[i].transform.position = new Vector3(1 + i, 0, 1 + i);
-
+            _playerBehaviours[i] = _activePlayers[i].GetComponent<PlayerBehaviour>();
         }
         if (_activeGhosts.Length >= 1)
         {
@@ -69,6 +71,7 @@ public class CameraBehaviour : MonoBehaviour
     {
         _activePlayers = GameObject.FindGameObjectsWithTag("Player");
         _activeGhosts = GameObject.FindGameObjectsWithTag("Ghost");
+
         if (_moveTowardsRoom)
         {
             _camera.transform.position = Vector3.Lerp(_camera.transform.position, _generator._roomPositionList[_generator.CameraIndex] + new Vector3(0, 21, -12), 5 * Time.deltaTime);
@@ -92,7 +95,7 @@ public class CameraBehaviour : MonoBehaviour
                 for (int i = 0; i < _activePlayers.Length; i++)
                 {
                     _activePlayers[i].transform.position = _waypointsPreviousRoom[i].transform.position;
-                    
+                    _playerBehaviours[i].PlayerTeleport();
                 }
                 for (int i = 0; i < _activeGhosts.Length; i++)
                 {
@@ -109,6 +112,7 @@ public class CameraBehaviour : MonoBehaviour
                 for (int i = 0; i < _activePlayers.Length; i++)
                 {
                     _activePlayers[i].transform.position = _waypointsNextRoom[i].transform.position;
+                    _playerBehaviours[i].PlayerTeleport();
                 }
                 for (int i = 0; i < _activeGhosts.Length; i++)
                 {

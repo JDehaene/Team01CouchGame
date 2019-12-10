@@ -69,6 +69,7 @@ public class Generator : MonoBehaviour
                 previousPositionCalculation = previousPosition - position;
 
                 Debug.Log("EndRoom removed");
+                Destroy(_roomList[_roomPositionList.Count - 1]);
                 _roomList.RemoveAt(_roomPositionList.Count - 1);
 
                 Debug.Log("Finalroom rotation calculated");

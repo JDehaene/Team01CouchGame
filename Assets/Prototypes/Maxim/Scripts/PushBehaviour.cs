@@ -37,7 +37,7 @@ public class PushBehaviour : MonoBehaviour
             if (_bButton && _timer > _pushingDelay)
             {
                 _timer = 0;
-                rb.AddForce(transform.forward * _pushingPower * _playerBehaviour.PlayeRower, ForceMode.Impulse);
+                rb.AddForce(transform.forward * _pushingPower * _playerBehaviour.PlayerPower, ForceMode.Impulse);
             }
         }
     }
