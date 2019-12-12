@@ -35,10 +35,15 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("Enemy Stats")]
     [SerializeField] private float _enemyHp;
     [SerializeField] private float _enemyPower;
-    
+
+    private ParticleManager _particleManager;
+    private SoundManager _soundManager;
+
     private void Start()
     {
         //assign random enemy type
+        _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
+        _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
     }
 
     void Update()
@@ -183,6 +188,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void EnemyDies()
     {
+        _soundManager.DeathSound();
+        _particleManager.DeathParticleEffect(transform.position);
         Destroy(gameObject);
     }
 

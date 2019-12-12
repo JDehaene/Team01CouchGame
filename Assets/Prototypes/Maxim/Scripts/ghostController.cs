@@ -17,6 +17,7 @@ public class ghostController : MonoBehaviour
 
     //ghost inputs
     [SerializeField] private InputController _inputController;
+    private ParticleManager _particleManager;
     [SerializeField] private int _ghostId;
 
     //ghost stats
@@ -41,10 +42,14 @@ public class ghostController : MonoBehaviour
     //ghost spawn stuff
     private GameObject _ghostSpawnerFinalRoom;
 
+    private SoundManager _soundManager;
+
     private void Start()
     {
         _rb = this.GetComponent<Rigidbody>();
         _inputController = (InputController)FindObjectOfType(typeof(InputController));
+        _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
+        _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
         _timer = _firerateTimer;
     }
 
@@ -101,6 +106,8 @@ public class ghostController : MonoBehaviour
     //ghost stats
     public void GhostChangeStats(float maxhp, float currenthp, float speed, float power)
     {
+        _soundManager.PickupSound();
+        _particleManager.StatsParticleEffect(transform.position);
         _ghostMaxHealth += maxhp;
         _ghostSpeed += speed;
         _ghostPower += power;
@@ -148,6 +155,8 @@ public class ghostController : MonoBehaviour
 
     public void GhostIsDead()
     {
+        _soundManager.DeathSound();
+        _particleManager.DeathParticleEffect(transform.position);
         _ghostIsAlive = false;
         GhostMovesToFinalRoom();
         _ghostSpawnerFinalRoom.GetComponent<GhostSpawner>().GhostNeedsRespawn(_ghostId);
@@ -176,19 +185,26 @@ public class ghostController : MonoBehaviour
     {
         if (_timer <= 0 && _weaponEnabled)
         {
+            _soundManager.ShootingSound();
             _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
             _firedBullet.GetComponent<BulletStats>().BulletPower(_ghostPower, true);
             _timer = _firerateTimer;
         }
     }
 
+    public void GhostTeleport()
+    {
+        _particleManager.TeleportParticleEffect(this.transform.position);
+    }
+
     //ghost spawn / next room
     private void GhostMovesToFinalRoom()
-    {
+    {    
         _weaponEnabled = false;
         this.GetComponent<Collider>().enabled = false;
         this.GetComponent<MeshRenderer>().enabled = false;
         this.transform.position = _ghostSpawnerFinalRoom.transform.position;
+        _particleManager.TeleportParticleEffect(transform.position);
     }
 
     public void GhostHasBeenMoved()
