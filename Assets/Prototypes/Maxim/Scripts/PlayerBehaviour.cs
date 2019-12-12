@@ -55,7 +55,7 @@ public class PlayerBehaviour : MonoBehaviour
     public bool HasModel = false;
 
     private ParticleManager _particleManager;
-
+    private SoundManager _soundManager;
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -63,6 +63,7 @@ public class PlayerBehaviour : MonoBehaviour
         //WeaponPickUp(_playerWeapon);
         _timer = _firerateTimer;
         _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
+        _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
     }
 
     private void Update()
@@ -95,6 +96,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (_aButton && _dashTimer > _dashReload)
         {
+            _soundManager.TeleportSound();
             _dashTimer = 0;
             _rb.AddForce(transform.forward * _dashPower, ForceMode.Force);
         }
@@ -122,18 +124,19 @@ public class PlayerBehaviour : MonoBehaviour
         _inputLeftJoystick.x = _inputController.LeftStickHorizontal(_playerId);
         _inputLeftJoystick.y = _inputController.LeftStickVertical(_playerId);
 
-        _aButton = _inputController.AButton(_playerId);
-        
+        _aButton = _inputController.AButton(_playerId);       
     }
 
     public void PlayerTeleport()
     {
+        _soundManager.TeleportSound();
         _particleManager.TeleportParticleEffect(this.transform.position);
     }
 
     // player stats
     public void PlayerChangeStats(float maxhp, float currenthp, float speed, float power)
     {
+        _soundManager.PickupSound();
         _particleManager.StatsParticleEffect(this.transform.position);
         _playerMaxHealth += maxhp;
         _playerSpeed += speed;
@@ -169,6 +172,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void PlayerDies()
     {
+        _soundManager.DeathSound();
         _particleManager.DeathParticleEffect(this.transform.position);
         //spawn ghost / activate ghost system
         Destroy(this.GetComponent<DontDestroyOnLoad>());
@@ -219,6 +223,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (_timer <= 0)
         {
+            _soundManager.ShootingSound();
             _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
             _firedBullet.GetComponent<BulletStats>().BulletPower(_playerPower, false);
             _timer = _firerateTimer;
