@@ -13130,13 +13130,13 @@ MonoBehaviour:
     m_Bits: 0
   _inputController: {fileID: 0}
   _ghostId: 0
-  _ghostHealth: 80
-  _ghostMaxHealth: 80
+  _ghostHealth: 75
+  _ghostMaxHealth: 75
   _ghostSpeed: 0.75
   _ghostPower: 0.5
   WeaponPos: {fileID: 1124634854018233710}
   _bullet: {fileID: 7520379337234756086, guid: b8af69d43b5506845943cd6e66c0d065, type: 3}
-  _firerateTimer: 1
+  _firerateTimer: 0.5
 --- !u!54 &1124634852797482444
 Rigidbody:
   m_ObjectHideFlags: 0
