@@ -12,21 +12,17 @@ public class SoundManager : MonoBehaviour
     private AudioClip _teleportSound;
     [SerializeField]
     private AudioClip[] _pickupSounds;
-    [SerializeField]
-    private AudioClip _backgroundMusic;
 
     private AudioSource _audioSource;
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        //_audioSource.PlayOneShot(_backgroundMusic);
-        //_audioSource.loop = true;
     }
 
     public void DeathSound()
     {
-        int randomIndex = Random.Range(0, _deathSounds.Length + 1);
+        int randomIndex = Random.Range(0, _deathSounds.Length);
         _audioSource.PlayOneShot(_deathSounds[randomIndex]);
     }
     public void ShootingSound()
@@ -39,7 +35,7 @@ public class SoundManager : MonoBehaviour
     }
     public void PickupSound()
     {
-        int randomIndex = Random.Range(0, _pickupSounds.Length + 1);
+        int randomIndex = Random.Range(0, _pickupSounds.Length);
         _audioSource.PlayOneShot(_pickupSounds[randomIndex]);
     }
 }
