@@ -8,7 +8,9 @@ public class InputController : MonoBehaviour
     private bool _bButton;
 
     private float _horizontalL;
+    private float _horizontalR;
     private float _verticalL;
+    private float _verticalR;
     private float _rightTrigger;
 
     public bool AButton(int _playerID)
@@ -31,15 +33,20 @@ public class InputController : MonoBehaviour
         _verticalL = Input.GetAxisRaw("VerticalLP" + _playerID);
         return _verticalL;
     }
-    public float RightStickHorizontal(int _playerID)
+    public float RightTrigger(int _playerID)
     {
         _rightTrigger = Input.GetAxis("RightTriggerP" + _playerID);
         return _rightTrigger;
     }
-    public float RightStickHorizontal2(int _playerID)
+    public float RightStickHorizontal(int _playerID)
     {
-        _rightTrigger = Input.GetAxis("HorizontalRP" + _playerID);
-        return _rightTrigger;
+        _horizontalR = Input.GetAxisRaw("HorizontalRP" + _playerID);
+        return _horizontalR;
+    }
+    public float RightStickVertical(int _playerID)
+    {
+        _verticalR = Input.GetAxisRaw("VerticalRP" + _playerID);
+        return _verticalR;
     }
 
 }

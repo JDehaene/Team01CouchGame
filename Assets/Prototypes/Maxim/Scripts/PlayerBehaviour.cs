@@ -81,10 +81,9 @@ public class PlayerBehaviour : MonoBehaviour
         GetInput();
         Dash();
 
-        if (Mathf.Abs(_inputLeftJoystick.x) < 0.2 && Mathf.Abs(_inputLeftJoystick.y) < 0.2)
+        if (Mathf.Abs(_inputRightJoystick.x) < 0.1f && Mathf.Abs(_inputRightJoystick.y) < 0.1f)
         {
             _rb.rotation = Quaternion.Euler(0, _angle, 0);
-            return;
         } 
 
         CalculateDirection();
@@ -104,7 +103,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Move()
     {
-        transform.position += transform.forward * _playerSpeed * Time.deltaTime;
+        if(_inputLeftJoystick.magnitude > 0)
+        transform.position += new Vector3(_inputLeftJoystick.x,transform.position.y,_inputLeftJoystick.y) * _playerSpeed * Time.deltaTime;
     }
 
     private void Rotate()
@@ -115,7 +115,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void CalculateDirection()
     {
-        _angle = Mathf.Atan2(_inputLeftJoystick.x, _inputLeftJoystick.y);
+        _angle = Mathf.Atan2(_inputRightJoystick.x, _inputRightJoystick.y);
         _angle = Mathf.Rad2Deg * _angle;
     }
 
@@ -123,6 +123,9 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _inputLeftJoystick.x = _inputController.LeftStickHorizontal(_playerId);
         _inputLeftJoystick.y = _inputController.LeftStickVertical(_playerId);
+
+        _inputRightJoystick.x = _inputController.RightStickHorizontal(_playerId);
+        _inputRightJoystick.y = _inputController.RightStickVertical(_playerId);
 
         _aButton = _inputController.AButton(_playerId);       
     }

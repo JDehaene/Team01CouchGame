@@ -52,12 +52,12 @@ public class EnemyBehaviour : MonoBehaviour
         _colliders = Physics.OverlapSphere(this.transform.position, _radius);      
         EnemyPicker();
     }
-    private void Rotation()
+    private void Rotation(float rotationSpeed)
     {
         Vector3 lookVector = _player.transform.position - transform.position;
         lookVector.y = 0;
         Quaternion rot = Quaternion.LookRotation(lookVector);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rot, 1);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rot, rotationSpeed);
     }
 
     void EnemyPicker()
@@ -73,6 +73,9 @@ public class EnemyBehaviour : MonoBehaviour
             case 3:
                 EnemyBehaviourThree();
                 break;
+            case 4:
+                EnemyBehaviourFour();
+                break;
 
         }
     }
@@ -86,7 +89,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (collider.CompareTag("Player"))
             {
                 _player = collider.GetComponent<Transform>().gameObject;
-                Rotation();
+                Rotation(1);
                 transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
             }
         }
@@ -99,7 +102,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (collider.CompareTag("Player"))
             {
                 _player = collider.GetComponent<Transform>().gameObject;
-                Rotation();
+                Rotation(1);
 
                 if(Vector3.Distance(transform.position, collider.transform.position) > _radius/2 + _radius/4)
                 {
@@ -128,7 +131,7 @@ public class EnemyBehaviour : MonoBehaviour
                 _player = collider.GetComponent<Transform>().gameObject;
 
                 //transform.RotateAround(Vector3.up, transform.LookAt(_player.transform));
-                Rotation();
+                Rotation(1);
 
                 if (Vector3.Distance(transform.position, collider.transform.position) > _radius)
                     transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
@@ -138,6 +141,21 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
     }
+    private void EnemyBehaviourFour()
+    {
+        foreach (Collider collider in _colliders)
+        {
+            if (collider.CompareTag("Player"))
+            {
+                _player = collider.GetComponent<Transform>().gameObject;
+                Rotation(0.5f);
+                if (Vector3.Distance(transform.position, collider.transform.position) < _radius && Vector3.Distance(transform.position, collider.transform.position) > _radius/8)
+                    transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
+
+            }
+        }
+    }
+
 
     private void Shoot()
     {

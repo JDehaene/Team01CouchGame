@@ -14,13 +14,15 @@ public class PlayerSelection : MonoBehaviour
     public Text txtCounter;
     public float maxTime = 30;
     private float counter = 0;
+    private int _playersNeededToStart;
 
     private void Update()
     {
         CheckInput();
-        CheckCounter();
+        _playersNeededToStart = _activePlayers.Count;
+        //CheckCounter();
     }
-    void CheckCounter()
+    public void CheckCounter()
     {
         if (isCounting)
         {
@@ -41,6 +43,7 @@ public class PlayerSelection : MonoBehaviour
                 txtCounter.text = "Start";
                 for (int i = 0; i < _players.Length; ++i)
                 {
+                    RemoveNonPlayedChars();
                     _players[i].StartGame();
                 }
             }
@@ -97,6 +100,14 @@ public class PlayerSelection : MonoBehaviour
                 _players[i].DeActive();
                 return;
             }
+        }
+    }
+    void RemoveNonPlayedChars()
+    {
+        foreach(PlayerControl _player in _players)
+        {
+            if (!_player._lockedIn)
+                Destroy(_player.gameObject);
         }
     }
     
