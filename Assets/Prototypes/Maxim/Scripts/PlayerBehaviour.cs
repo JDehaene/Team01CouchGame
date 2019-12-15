@@ -81,13 +81,15 @@ public class PlayerBehaviour : MonoBehaviour
         GetInput();
         Dash();
 
-        if (Mathf.Abs(_inputRightJoystick.x) < 0.1f && Mathf.Abs(_inputRightJoystick.y) < 0.1f)
+        if (_inputLeftJoystick.magnitude < 0.1f)
         {
             _rb.rotation = Quaternion.Euler(0, _angle, 0);
-        } 
+            return;
+        }
 
         CalculateDirection();
         Rotate();
+  
         Move();
     }
 
@@ -115,8 +117,16 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void CalculateDirection()
     {
+        if(_inputLeftJoystick.magnitude < _inputRightJoystick.magnitude+0.3f)//magic number i know
+        {
         _angle = Mathf.Atan2(_inputRightJoystick.x, _inputRightJoystick.y);
         _angle = Mathf.Rad2Deg * _angle;
+        }
+        else
+        {
+            _angle = Mathf.Atan2(_inputLeftJoystick.x, _inputLeftJoystick.y);
+            _angle = Mathf.Rad2Deg * _angle;
+        }
     }
 
     private void GetInput()
