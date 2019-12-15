@@ -106,7 +106,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void Move()
     {
         if(_inputLeftJoystick.magnitude > 0)
-        transform.position += new Vector3(_inputLeftJoystick.x,transform.position.y,_inputLeftJoystick.y) * _playerSpeed * Time.deltaTime;
+        transform.position += new Vector3(_inputLeftJoystick.x,0,_inputLeftJoystick.y) * _playerSpeed * Time.deltaTime;
     }
 
     private void Rotate()
@@ -119,8 +119,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if(_inputLeftJoystick.magnitude < _inputRightJoystick.magnitude+0.3f)//magic number i know
         {
-        _angle = Mathf.Atan2(_inputRightJoystick.x, _inputRightJoystick.y);
-        _angle = Mathf.Rad2Deg * _angle;
+            _angle = Mathf.Atan2(_inputRightJoystick.x, _inputRightJoystick.y);
+            _angle = Mathf.Rad2Deg * _angle;
         }
         else
         {
