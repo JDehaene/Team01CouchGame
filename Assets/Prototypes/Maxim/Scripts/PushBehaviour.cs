@@ -5,7 +5,7 @@ using UnityEngine;
 public class PushBehaviour : MonoBehaviour
 {
     private InputController _inputController;
-    private int _playerId;
+    private int _controllerID;
     private bool _bButton = false;
 
     private float _timer;
@@ -20,12 +20,14 @@ public class PushBehaviour : MonoBehaviour
     private void Start()
     {
         _inputController = (InputController)FindObjectOfType(typeof(InputController));
-        _playerId = GetComponentInParent<PlayerControl>().controllerID;
+        
         _playerBehaviour = GetComponentInParent<PlayerBehaviour>();
     }
     private void Update()
     {
-        _bButton = _inputController.BButton(_playerId);
+        _controllerID = GetComponentInParent<PlayerControl>().controllerID;
+        _bButton = _inputController.BButton(_controllerID);
+        Debug.Log("playerid: " + _controllerID);
         _timer += Time.deltaTime;
     }
     private void OnTriggerStay(Collider other)
