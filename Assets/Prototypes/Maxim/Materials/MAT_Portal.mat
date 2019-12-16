@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MAT_Lava
+  m_Name: MAT_Portal
   m_Shader: {fileID: 4800000, guid: 8db631202024e044281a3f0426d8890b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -81,14 +81,14 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _SurfaceDistortionAmount: 0.207
-    - _SurfaceNoiseCutoff: 0.798
+    - _SurfaceDistortionAmount: 0.181
+    - _SurfaceNoiseCutoff: 0.863
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DepthGradientDeep: {r: 0.7830189, g: 0.1122177, b: 0.09233712, a: 0.749}
-    - _DepthGradientShallow: {r: 1, g: 0.3721323, b: 0.3537736, a: 0.725}
+    - _DepthGradientDeep: {r: 0.7219622, g: 0.086274505, b: 1, a: 0.749}
+    - _DepthGradientShallow: {r: 0.86226016, g: 0.2745098, b: 0.99215686, a: 0.725}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FoamColor: {r: 0.6698113, g: 0.091625154, b: 0.1322615, a: 1}
+    - _FoamColor: {r: 0.72156864, g: 0.08627451, b: 1, a: 1}
     - _SurfaceNoiseScroll: {r: 0.03, g: 0.03, b: 0, a: 0}
