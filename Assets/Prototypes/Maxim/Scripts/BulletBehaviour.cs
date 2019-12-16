@@ -39,6 +39,7 @@ public class BulletBehaviour : MonoBehaviour
         if(col.tag == "Enemy" && !_isHostile)
         {
             col.GetComponent<EnemyBehaviour>().EnemyTakesDamage(_damage);
+            Debug.Log("hit's enemy for " + _damage);
             Destroy(gameObject);
         }
         
