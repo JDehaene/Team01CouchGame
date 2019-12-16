@@ -44,7 +44,10 @@ public class GameConditionManager : MonoBehaviour
         if (_activePlayers.Length > _activeGhosts.Length)
             _winnerText.text = "Player wins!";
         else
-            _winnerText.text = "Ghosts win!";
+        {
+            _winnerText.text = "Game Over";
+
+        }
     }
 
     private void EndGame()

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class PlayerControl : MonoBehaviour
 {
-    public int playerID = 1;
+    //public int playerID = 1;
     public int controllerID = 1;
     public bool _lockedIn = false;
 
