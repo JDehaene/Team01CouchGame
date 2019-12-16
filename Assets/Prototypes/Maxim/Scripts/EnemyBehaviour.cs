@@ -162,7 +162,7 @@ public class EnemyBehaviour : MonoBehaviour
         _fireCooldown += Time.deltaTime;
         if(_fireCooldown >= _rateOfFire)
         {
-            _firedBullet = Instantiate(_bullet,this.transform.position + transform.forward,this.transform.rotation);
+            _firedBullet = Instantiate(_bullet,new Vector3(this.transform.position.x, this.transform.position.y +1, this.transform.position.z) + transform.forward,this.transform.rotation);
             _firedBullet.GetComponent<BulletStats>().BulletPower(_enemyPower, true);
             _fireCooldown = 0;
         }

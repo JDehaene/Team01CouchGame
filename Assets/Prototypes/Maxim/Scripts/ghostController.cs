@@ -9,11 +9,15 @@ public class ghostController : MonoBehaviour
     [SerializeField]
     private float _turnSpeed = 10;
 
-    private Vector2 _input;
+    //private Vector2 _input;
     private float _angle;
     private Quaternion _targetRotation;
     
     public LayerMask LayerMask;
+
+    //twinstick
+    private Vector2 _inputLeftJoystick;
+    private Vector2 _inputRightJoystick;
 
     //ghost inputs
     [SerializeField] private InputController _inputController;
@@ -47,7 +51,6 @@ public class ghostController : MonoBehaviour
     private void Start()
     {
         _rb = this.GetComponent<Rigidbody>();
-        _inputController = (InputController)FindObjectOfType(typeof(InputController));
         _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
         _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
         _timer = _firerateTimer;
@@ -55,7 +58,9 @@ public class ghostController : MonoBehaviour
 
     private void Update()
     {
-        if(_ghostIsAlive && _ghostId != 0)
+        _inputController = (InputController)FindObjectOfType(typeof(InputController));
+
+        if (_ghostIsAlive && _ghostId != 0)
         {
             _timer -= Time.deltaTime;
 
@@ -63,11 +68,11 @@ public class ghostController : MonoBehaviour
             GhostCheck();
             
             GetInput();
-            if (Mathf.Abs(_input.x) < 0.2 && Mathf.Abs(_input.y) < 0.2)
-            {
-                _rb.rotation = Quaternion.Euler(0, _angle, 0);
-                return;
-            }
+            //if (Mathf.Abs(_input.x) < 0.2 && Mathf.Abs(_input.y) < 0.2)
+            //{
+            //    _rb.rotation = Quaternion.Euler(0, _angle, 0);
+            //    return;
+            //}
             CalculateDirection();
             Rotate();
             Move();
@@ -82,7 +87,9 @@ public class ghostController : MonoBehaviour
 
     private void Move()
     {
-        transform.position += transform.forward * _velocity * _ghostSpeed * Time.deltaTime;
+        if (_inputLeftJoystick.magnitude > 0)
+            transform.position += new Vector3(_inputLeftJoystick.x, 0, _inputLeftJoystick.y) * _ghostSpeed * Time.deltaTime;
+        //transform.position += transform.forward * _velocity * _ghostSpeed * Time.deltaTime;
     }
 
     private void Rotate()
@@ -93,14 +100,38 @@ public class ghostController : MonoBehaviour
 
     private void CalculateDirection()
     {
-        _angle = Mathf.Atan2(_input.x, _input.y);
-        _angle = Mathf.Rad2Deg * _angle;
+        //_angle = Mathf.Atan2(_input.x, _input.y);
+        //_angle = Mathf.Rad2Deg * _angle;
+        float _previousRotation;
+        if (_inputRightJoystick.magnitude < 0.1f && _inputLeftJoystick.magnitude < 0.1f)
+        {
+            _previousRotation = _angle;
+            _rb.rotation = Quaternion.Euler(0, _previousRotation, 0);
+            return;
+        }
+        if (_inputLeftJoystick.magnitude < _inputRightJoystick.magnitude + 0.3f)//magic number i know
+        {
+            _angle = Mathf.Atan2(_inputRightJoystick.x, _inputRightJoystick.y);
+            _angle = Mathf.Rad2Deg * _angle;
+        }
+        else
+        {
+            _angle = Mathf.Atan2(_inputLeftJoystick.x, _inputLeftJoystick.y);
+            _angle = Mathf.Rad2Deg * _angle;
+        }
     }
 
     private void GetInput()
     {
-        _input.x = _inputController.LeftStickHorizontal(_ghostId);
-        _input.y = _inputController.LeftStickVertical(_ghostId);
+        //_input.x = _inputController.LeftStickHorizontal(_ghostId);
+        //_input.y = _inputController.LeftStickVertical(_ghostId);
+
+        _inputLeftJoystick.x = _inputController.LeftStickHorizontal(_ghostId);
+        _inputLeftJoystick.y = _inputController.LeftStickVertical(_ghostId);
+
+        _inputRightJoystick.x = _inputController.RightStickHorizontal(_ghostId);
+        _inputRightJoystick.y = _inputController.RightStickVertical(_ghostId);
+
     }
 
     //ghost stats
