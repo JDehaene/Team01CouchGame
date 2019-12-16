@@ -74,18 +74,13 @@ public class PlayerBehaviour : MonoBehaviour
         _playerId = this.GetComponent<PlayerControl>().controllerID;
         _timer -= Time.deltaTime;
         _dashTimer += Time.deltaTime;
-
         WeaponCheck();
         PlayerCheck();
         
         GetInput();
         Dash();
 
-        if (_inputLeftJoystick.magnitude < 0.1f)
-        {
-            _rb.rotation = Quaternion.Euler(0, _angle, 0);
-            return;
-        }
+        
 
         CalculateDirection();
         Rotate();
@@ -117,7 +112,14 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void CalculateDirection()
     {
-        if(_inputLeftJoystick.magnitude < _inputRightJoystick.magnitude+0.3f)//magic number i know
+        float _previousRotation;
+        if (_inputRightJoystick.magnitude < 0.1f && _inputLeftJoystick.magnitude < 0.1f)
+        {
+            _previousRotation = _angle;
+            _rb.rotation = Quaternion.Euler(0, _previousRotation, 0);
+            return;
+        }
+        if (_inputLeftJoystick.magnitude < _inputRightJoystick.magnitude+0.3f)//magic number i know
         {
             _angle = Mathf.Atan2(_inputRightJoystick.x, _inputRightJoystick.y);
             _angle = Mathf.Rad2Deg * _angle;
@@ -127,6 +129,7 @@ public class PlayerBehaviour : MonoBehaviour
             _angle = Mathf.Atan2(_inputLeftJoystick.x, _inputLeftJoystick.y);
             _angle = Mathf.Rad2Deg * _angle;
         }
+        
     }
 
     private void GetInput()
