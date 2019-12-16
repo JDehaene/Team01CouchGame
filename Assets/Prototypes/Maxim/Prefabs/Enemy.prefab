@@ -205,13 +205,13 @@ MonoBehaviour:
   _radius: 8
   _speed: 3
   _enemyType: 0
-  _timeUntilCharge: 0
-  _chargeSpeedModifier: 0
+  _timeUntilCharge: 2
+  _chargeSpeedModifier: 3
   _player: {fileID: 0}
   _bullet: {fileID: 7520379337234756086, guid: b8af69d43b5506845943cd6e66c0d065, type: 3}
-  _rateOfFire: 0
-  _enemyHp: 0
-  _enemyPower: 0
+  _rateOfFire: 1.5
+  _enemyHp: 40
+  _enemyPower: 1
 --- !u!65 &2586626587585513617
 BoxCollider:
   m_ObjectHideFlags: 0
