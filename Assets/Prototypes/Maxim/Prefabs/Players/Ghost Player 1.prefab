@@ -717,6 +717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _velocity: 5
   _turnSpeed: 10
+  _model: {fileID: 5052120174783561647}
   LayerMask:
     serializedVersion: 2
     m_Bits: 0

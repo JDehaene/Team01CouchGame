@@ -8,6 +8,8 @@ public class ghostController : MonoBehaviour
     private float _velocity = 5;
     [SerializeField]
     private float _turnSpeed = 10;
+    [SerializeField]
+    private GameObject _model;
 
     //private Vector2 _input;
     private float _angle;
@@ -233,7 +235,7 @@ public class ghostController : MonoBehaviour
     {    
         _weaponEnabled = false;
         this.GetComponent<Collider>().enabled = false;
-        this.GetComponent<MeshRenderer>().enabled = false;
+        _model.active = false;
         this.transform.position = _ghostSpawnerFinalRoom.transform.position;
         _particleManager.TeleportParticleEffect(transform.position);
     }
@@ -241,7 +243,7 @@ public class ghostController : MonoBehaviour
     public void GhostHasBeenMoved()
     {
         this.GetComponent<Collider>().enabled = true;
-        this.GetComponent<MeshRenderer>().enabled = true;
+        _model.active = true;
         _weaponEnabled = true;
         _ghostHealth = _ghostMaxHealth;
         _ghostIsAlive = true;
