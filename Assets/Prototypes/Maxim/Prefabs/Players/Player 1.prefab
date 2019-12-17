@@ -74,7 +74,7 @@ MonoBehaviour:
   WeaponPos: {fileID: 1416130819344741741}
   _bullet: {fileID: 2708580928364576551, guid: ee3b4572f57a3024fbb9b0414e065b9e, type: 3}
   _firerateTimer: 0.5
-  _ghost: {fileID: 3094114604619793440, guid: fa5a71a209f0c6f4295e7c1d33766c3a, type: 3}
+  _ghost: {fileID: 4230806162095874317, guid: fa5a71a209f0c6f4295e7c1d33766c3a, type: 3}
   HasModel: 1
 --- !u!54 &1416130818918632766
 Rigidbody:
@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c41e746628c054fa76d817c9156cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 1
   controllerID: 1
   _lockedIn: 0
   _txtInfo: {fileID: 0}

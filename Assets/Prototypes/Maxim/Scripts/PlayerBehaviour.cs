@@ -195,7 +195,7 @@ public class PlayerBehaviour : MonoBehaviour
         Debug.Log("player " + _playerId + " died");
         if(HasModel)
         {
-            _ghost = Instantiate(_ghost, new Vector3(transform.position.x, 1, transform.position.z), transform.rotation);
+            _ghost = Instantiate(_ghost, new Vector3(transform.position.x, 0, transform.position.z), transform.rotation);
         }
         else
         {
