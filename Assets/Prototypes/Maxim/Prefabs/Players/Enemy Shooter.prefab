@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6713073646850632342}
   - component: {fileID: 6713073646850632343}
   - component: {fileID: 6713073646850632344}
+  - component: {fileID: 6427360102009272588}
   m_Layer: 0
   m_Name: Enemy Shooter
   m_TagString: Enemy
@@ -86,6 +87,25 @@ MonoBehaviour:
   _rateOfFire: 1.5
   _enemyHp: 20
   _enemyPower: 1
+--- !u!95 &6427360102009272588
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6713073646850632345}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 9731c75c2a53654458733ddc6baaef60, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0a287250bf0cf814fac6604381d48910, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7131142227610405024
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -49,6 +50,9 @@ public class ghostController : MonoBehaviour
     private GameObject _ghostSpawnerFinalRoom;
 
     private SoundManager _soundManager;
+    private Animator _animator;
+
+    private float _movementAnimation;
 
     private void Start()
     {
@@ -56,6 +60,7 @@ public class ghostController : MonoBehaviour
         _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
         _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
         _timer = _firerateTimer;
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -78,6 +83,7 @@ public class ghostController : MonoBehaviour
             CalculateDirection();
             Rotate();
             Move();
+            ApplyAnimation();
         }
 
         if(_ghostSpawnerFinalRoom == null)
@@ -85,6 +91,14 @@ public class ghostController : MonoBehaviour
             NewStage();
         }
 
+    }
+
+    private void ApplyAnimation()
+    {
+        _movementAnimation = Mathf.Abs(_inputLeftJoystick.x + _inputLeftJoystick.y);
+        _animator.SetFloat("Speed", _movementAnimation);
+        _animator.SetFloat("Health", _ghostHealth);
+        _animator.SetBool("DamageTaken", false);
     }
 
     private void Move()
@@ -125,9 +139,6 @@ public class ghostController : MonoBehaviour
 
     private void GetInput()
     {
-        //_input.x = _inputController.LeftStickHorizontal(_ghostId);
-        //_input.y = _inputController.LeftStickVertical(_ghostId);
-
         _inputLeftJoystick.x = _inputController.LeftStickHorizontal(_ghostId);
         _inputLeftJoystick.y = _inputController.LeftStickVertical(_ghostId);
 
@@ -197,6 +208,7 @@ public class ghostController : MonoBehaviour
 
     public void GhostTakesDamage(float damage)
     {
+        _animator.SetBool("DamageTaken", true);
         _ghostHealth -= damage;
     }
 
@@ -212,12 +224,17 @@ public class ghostController : MonoBehaviour
         {
             UseWeapon();
         }
+        else
+        {
+            _animator.SetBool("Shooting", false);
+        }
     }
     
     private void UseWeapon()
     {
         if (_timer <= 0 && _weaponEnabled)
         {
+            _animator.SetBool("Shooting", true);
             _soundManager.ShootingSound();
             _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
             _firedBullet.GetComponent<BulletStats>().BulletPower(_ghostPower, true);

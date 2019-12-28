@@ -38,12 +38,14 @@ public class EnemyBehaviour : MonoBehaviour
 
     private ParticleManager _particleManager;
     private SoundManager _soundManager;
+    private Animator _animator;
 
     private void Start()
     {
         //assign random enemy type
         _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
         _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -51,7 +53,14 @@ public class EnemyBehaviour : MonoBehaviour
         EnemyCheck();
         _colliders = Physics.OverlapSphere(this.transform.position, _radius);      
         EnemyPicker();
+        ApplyAnimation();
     }
+
+    private void ApplyAnimation()
+    {
+        _animator.SetFloat("Health", _enemyHp);
+    }
+
     private void Rotation(float rotationSpeed)
     {
         Vector3 lookVector = _player.transform.position - transform.position;
@@ -89,8 +98,13 @@ public class EnemyBehaviour : MonoBehaviour
             if (collider.CompareTag("Player"))
             {
                 _player = collider.GetComponent<Transform>().gameObject;
-                Rotation(1);
+                Rotation(1);                
                 transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
+                _animator.SetFloat("Speed", 1);
+            }
+            else
+            {
+                _animator.SetFloat("Speed", 0);
             }
         }
     }
@@ -107,6 +121,11 @@ public class EnemyBehaviour : MonoBehaviour
                 if(Vector3.Distance(transform.position, collider.transform.position) > _radius/2 + _radius/4)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
+                    _animator.SetFloat("Speed", 1);
+                }
+                else
+                {
+                    _animator.SetFloat("Speed", 0);
                 }
                 if (!_charging && Vector3.Distance(transform.position, collider.transform.position) < _radius / 2 + _radius/4)
                 {
@@ -134,10 +153,21 @@ public class EnemyBehaviour : MonoBehaviour
                 Rotation(1);
 
                 if (Vector3.Distance(transform.position, collider.transform.position) > _radius)
+                {
                     transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
+                    _animator.SetFloat("Speed", 1);
+                }                
+                else
+                {
+                    _animator.SetFloat("Speed", 0);
+                }
 
                 if (Vector3.Distance(transform.position, collider.transform.position) < _radius)
                     Shoot();
+                else
+                {
+                    _animator.SetBool("Shooting", false);
+                }
             }
         }
     }
@@ -149,9 +179,15 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 _player = collider.GetComponent<Transform>().gameObject;
                 Rotation(0.5f);
-                if (Vector3.Distance(transform.position, collider.transform.position) < _radius && Vector3.Distance(transform.position, collider.transform.position) > _radius/8)
+                if (Vector3.Distance(transform.position, collider.transform.position) < _radius && Vector3.Distance(transform.position, collider.transform.position) > _radius / 8)
+                {
                     transform.position = Vector3.MoveTowards(transform.position, collider.transform.position, _speed * Time.deltaTime);
-
+                    _animator.SetFloat("Speed", 1);
+                }
+                else
+                {
+                    _animator.SetFloat("Speed", 0);
+                }                  
             }
         }
     }
@@ -162,6 +198,7 @@ public class EnemyBehaviour : MonoBehaviour
         _fireCooldown += Time.deltaTime;
         if(_fireCooldown >= _rateOfFire)
         {
+            _animator.SetBool("Shooting", true);
             _firedBullet = Instantiate(_bullet,new Vector3(this.transform.position.x, this.transform.position.y +1, this.transform.position.z) + transform.forward,this.transform.rotation);
             _firedBullet.GetComponent<BulletStats>().BulletPower(_enemyPower, true);
             _fireCooldown = 0;
@@ -179,10 +216,14 @@ public class EnemyBehaviour : MonoBehaviour
             _chargePosDetermined = true;
         }
 
-        if (Vector3.Distance(transform.position, _chargePos) > 0.1f)        
-            transform.position = Vector3.MoveTowards(transform.position, _chargePos, _speed * _chargeSpeedModifier * Time.deltaTime);      
+        if (Vector3.Distance(transform.position, _chargePos) > 0.1f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _chargePos, _speed * _chargeSpeedModifier * Time.deltaTime);
+            _animator.SetFloat("Speed", 1);
+        }           
         else
         {
+            _animator.SetFloat("Speed", 0);
             _chargePosDetermined = false;
             _charging = false;
             _chargePos = Vector3.zero;

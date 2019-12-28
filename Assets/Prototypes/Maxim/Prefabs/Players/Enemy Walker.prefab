@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5084112225280126235}
   - component: {fileID: 5084112225280126234}
   - component: {fileID: 5084112225280126229}
+  - component: {fileID: -6765886700809938300}
   m_Layer: 0
   m_Name: Enemy Walker
   m_TagString: Enemy
@@ -87,6 +88,25 @@ MonoBehaviour:
   _rateOfFire: 0
   _enemyHp: 40
   _enemyPower: 1
+--- !u!95 &-6765886700809938300
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5084112225280126228}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 08be2e5503406a04eb06c4de7d0c0d58, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0a287250bf0cf814fac6604381d48910, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5084112225702669719
 GameObject:
   m_ObjectHideFlags: 0

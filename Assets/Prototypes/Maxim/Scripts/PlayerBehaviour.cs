@@ -56,14 +56,17 @@ public class PlayerBehaviour : MonoBehaviour
 
     private ParticleManager _particleManager;
     private SoundManager _soundManager;
+    private Animator _animator;
+
+    private float _animationMovement;
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _dashTimer = _dashReload;
-        //WeaponPickUp(_playerWeapon);
         _timer = _firerateTimer;
         _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
         _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -78,14 +81,21 @@ public class PlayerBehaviour : MonoBehaviour
         PlayerCheck();
         
         GetInput();
-        Dash();
-
-        
+        Dash();    
 
         CalculateDirection();
         Rotate();
   
         Move();
+        ApplyAnimation();
+    }
+
+    private void ApplyAnimation()
+    {
+        _animationMovement = Mathf.Abs(_inputLeftJoystick.x + _inputLeftJoystick.y);
+        _animator.SetFloat("Speed", _animationMovement);
+        _animator.SetFloat("Health", _playerHealth);
+        _animator.SetBool("DamageTaken", false);
     }
 
     private void Dash()
@@ -217,6 +227,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void PlayerTakesDamage(float damage)
     {
+        _animator.SetBool("DamageTaken", true);
         _playerHealth -= damage;
     }
 
@@ -232,6 +243,10 @@ public class PlayerBehaviour : MonoBehaviour
         {
             UseWeapon();
         }
+        else
+        {
+            _animator.SetBool("Shooting", false);
+        }
         
     }
     
@@ -239,10 +254,11 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (_timer <= 0)
         {
+            _animator.SetBool("Shooting", true);
             _soundManager.ShootingSound();
             _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
             _firedBullet.GetComponent<BulletStats>().BulletPower(_playerPower, false);
-            _timer = _firerateTimer;
+            _timer = _firerateTimer;         
         }
     }
 
