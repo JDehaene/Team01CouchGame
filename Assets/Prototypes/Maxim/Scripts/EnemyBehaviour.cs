@@ -39,13 +39,19 @@ public class EnemyBehaviour : MonoBehaviour
     private ParticleManager _particleManager;
     private SoundManager _soundManager;
     private Animator _animator;
+    private GameConditionManager _gameConditionManager;
 
     private void Start()
     {
         //assign random enemy type
+        _gameConditionManager = (GameConditionManager)FindObjectOfType(typeof(GameConditionManager));
         _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
         _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
         _animator = GetComponent<Animator>();
+
+        //scalable stats
+        _enemyHp = _enemyHp * _gameConditionManager.Multiplier;
+        _enemyPower = _enemyPower * _gameConditionManager.Multiplier;
     }
 
     void Update()
