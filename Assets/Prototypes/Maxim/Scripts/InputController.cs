@@ -23,6 +23,11 @@ public class InputController : MonoBehaviour
         _bButton = Input.GetButtonDown("BButtonP"+ _playerID);
         return _bButton;
     }
+    public bool PauseButton(int _playerID)
+    {
+        _bButton = Input.GetButtonDown("BButtonP" + _playerID);
+        return _bButton;
+    }
     public float LeftStickHorizontal(int _playerID)
     {
         _horizontalL = Input.GetAxisRaw("HorizontalLP" + _playerID);

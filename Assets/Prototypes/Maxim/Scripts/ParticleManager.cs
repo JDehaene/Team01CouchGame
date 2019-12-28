@@ -14,18 +14,18 @@ public class ParticleManager : MonoBehaviour
     {
         ParticleSystem pSystem = Instantiate(_deathParticle, pos + _offset, Quaternion.identity);
         _deathParticle.Play();
-        Destroy(pSystem, _deathParticle.duration);
+        Destroy(pSystem.gameObject, _deathParticle.duration);
     }
     public void TeleportParticleEffect(Vector3 pos)
     {
         ParticleSystem pSystem = Instantiate(_teleportParticle, pos + _offset, Quaternion.identity);
         _teleportParticle.Play();
-        Destroy(pSystem, _teleportParticle.duration);
+        Destroy(pSystem.gameObject, _teleportParticle.duration);
     }
     public void StatsParticleEffect(Vector3 pos)
     {
         ParticleSystem pSystem = Instantiate(_statsChangeParticle, pos + _offset, Quaternion.identity);
         _statsChangeParticle.Play();
-        Destroy(pSystem, _statsChangeParticle.duration);
+        Destroy(pSystem.gameObject, _statsChangeParticle.duration);
     }
 }
