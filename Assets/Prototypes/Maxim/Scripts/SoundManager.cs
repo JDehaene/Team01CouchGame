@@ -13,12 +13,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioClip[] _pickupSounds;
 
+    [SerializeField]
     private AudioSource _audioSource;
-
-    private void Start()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
 
     public void DeathSound()
     {
