@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 55432225}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: JoinButton2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,11 +189,11 @@ Transform:
   m_GameObject: {fileID: 55432224}
   m_LocalRotation: {x: -0.3222079, y: 0, z: 0, w: 0.946669}
   m_LocalPosition: {x: -4.01, y: 3.43, z: -7.571145}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.19807, y: 0.19807, z: 0.19807}
   m_Children:
   - {fileID: 2146470383}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: -37.593, y: 0, z: 0}
 --- !u!1 &71133066
 GameObject:
@@ -346,6 +346,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: af18fb49f9c92a448bda6698101d4837, type: 3}
   - {fileID: 8300000, guid: af0a2c764753373408ebe1718c99f30b, type: 3}
   - {fileID: 8300000, guid: ee69725d085c4f74898b2c868de897aa, type: 3}
+  _audioSource: {fileID: 0}
 --- !u!114 &71133069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +516,7 @@ Transform:
   - {fileID: 1932124624}
   - {fileID: 1101803781}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &248566528
 PrefabInstance:
@@ -528,6 +529,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5143225310390366050, guid: 7d3cb6ab3fb958e4f9d4838254f7cfcc,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.07450981
+      objectReference: {fileID: 0}
+    - target: {fileID: 5143225310390366050, guid: 7d3cb6ab3fb958e4f9d4838254f7cfcc,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.08235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 5143225310390366050, guid: 7d3cb6ab3fb958e4f9d4838254f7cfcc,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.08235294
       objectReference: {fileID: 0}
     - target: {fileID: 5143225310390366077, guid: 7d3cb6ab3fb958e4f9d4838254f7cfcc,
         type: 3}
@@ -584,21 +600,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5143225310390366050, guid: 7d3cb6ab3fb958e4f9d4838254f7cfcc,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.07450981
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143225310390366050, guid: 7d3cb6ab3fb958e4f9d4838254f7cfcc,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.08235294
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143225310390366050, guid: 7d3cb6ab3fb958e4f9d4838254f7cfcc,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.08235294
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d3cb6ab3fb958e4f9d4838254f7cfcc, type: 3}
 --- !u!1 &283898501
@@ -629,7 +630,7 @@ Transform:
   m_GameObject: {fileID: 283898501}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0.15}
-  m_LocalScale: {x: 0.30419984, y: 0.22879049, z: 0.22879049}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1225804953}
   m_RootOrder: 0
@@ -665,7 +666,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a40e60d1b71ce034c983f8d323c4a8bf, type: 2}
+  - {fileID: 2100000, guid: c7ab9209a69f2e946869f7881a8f8706, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -704,7 +705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 372308509}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: JoinButton4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -719,7 +720,7 @@ Transform:
   m_GameObject: {fileID: 372308508}
   m_LocalRotation: {x: -0.3222079, y: 0, z: 0, w: 0.946669}
   m_LocalPosition: {x: 8.99, y: 3.43, z: -7.571145}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.19807, y: 0.19807, z: 0.19807}
   m_Children:
   - {fileID: 1187464630}
   m_Father: {fileID: 0}
@@ -1274,6 +1275,10 @@ MonoBehaviour:
   controllerID: 1
   _lockedIn: 0
   _txtInfo: {fileID: 705080286}
+  _joinButton: {fileID: 759093853}
+  _buttonMaterial:
+  - {fileID: 2100000, guid: c7ab9209a69f2e946869f7881a8f8706, type: 2}
+  - {fileID: 2100000, guid: 1e4331c03a51e6f489e55700df59ffa9, type: 2}
 --- !u!1001 &680227138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1450,7 +1455,7 @@ Transform:
   m_GameObject: {fileID: 759093853}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0.15}
-  m_LocalScale: {x: 0.30419984, y: 0.22879049, z: 0.22879049}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1641895099}
   m_RootOrder: 0
@@ -1486,7 +1491,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a40e60d1b71ce034c983f8d323c4a8bf, type: 2}
+  - {fileID: 2100000, guid: c7ab9209a69f2e946869f7881a8f8706, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1805,6 +1810,10 @@ MonoBehaviour:
   controllerID: 1
   _lockedIn: 0
   _txtInfo: {fileID: 1039047048}
+  _joinButton: {fileID: 1187464629}
+  _buttonMaterial:
+  - {fileID: 2100000, guid: c7ab9209a69f2e946869f7881a8f8706, type: 2}
+  - {fileID: 2100000, guid: 1e4331c03a51e6f489e55700df59ffa9, type: 2}
 --- !u!1001 &1002643096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1896,6 +1905,10 @@ MonoBehaviour:
   controllerID: 1
   _lockedIn: 0
   _txtInfo: {fileID: 459742195}
+  _joinButton: {fileID: 2146470382}
+  _buttonMaterial:
+  - {fileID: 2100000, guid: c7ab9209a69f2e946869f7881a8f8706, type: 2}
+  - {fileID: 2100000, guid: 1e4331c03a51e6f489e55700df59ffa9, type: 2}
 --- !u!1 &1039047046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,7 +2129,7 @@ PrefabInstance:
     - target: {fileID: 1416130818918632763, guid: f26ca6da786de764e807ade16e02d120,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1416130818918632763, guid: f26ca6da786de764e807ade16e02d120,
         type: 3}
@@ -2162,6 +2175,10 @@ MonoBehaviour:
   controllerID: 1
   _lockedIn: 0
   _txtInfo: {fileID: 406626056}
+  _joinButton: {fileID: 283898501}
+  _buttonMaterial:
+  - {fileID: 2100000, guid: c7ab9209a69f2e946869f7881a8f8706, type: 2}
+  - {fileID: 2100000, guid: 1e4331c03a51e6f489e55700df59ffa9, type: 2}
 --- !u!1001 &1144673547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2259,7 +2276,7 @@ Transform:
   m_GameObject: {fileID: 1187464629}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0.15}
-  m_LocalScale: {x: 0.30419984, y: 0.22879049, z: 0.22879049}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 372308509}
   m_RootOrder: 0
@@ -2295,7 +2312,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a40e60d1b71ce034c983f8d323c4a8bf, type: 2}
+  - {fileID: 2100000, guid: c7ab9209a69f2e946869f7881a8f8706, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2334,7 +2351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1225804953}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: JoinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2348,8 +2365,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225804952}
   m_LocalRotation: {x: -0.32220697, y: -0, z: -0, w: 0.9466692}
-  m_LocalPosition: {x: -9.086287, y: 3.3384957, z: -7.54}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -9.086287, y: 3.4119, z: -7.4447}
+  m_LocalScale: {x: 0.19807, y: 0.19807, z: 0.19807}
   m_Children:
   - {fileID: 283898502}
   m_Father: {fileID: 0}
@@ -2568,7 +2585,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23466
+  m_Name: pb_Mesh55460
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2735,7 +2752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1641895099}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: JoinButton3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2750,11 +2767,11 @@ Transform:
   m_GameObject: {fileID: 1641895098}
   m_LocalRotation: {x: -0.3222079, y: 0, z: 0, w: 0.946669}
   m_LocalPosition: {x: 3.99, y: 3.43, z: -7.571145}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.19807, y: 0.19807, z: 0.19807}
   m_Children:
   - {fileID: 759093854}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: -37.593, y: 0, z: 0}
 --- !u!43 &1647227668
 Mesh:
@@ -2762,7 +2779,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-45226
+  m_Name: pb_Mesh-199744
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3248,7 +3265,7 @@ Transform:
   m_GameObject: {fileID: 2146470382}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0.15}
-  m_LocalScale: {x: 0.30419984, y: 0.22879049, z: 0.22879049}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 55432225}
   m_RootOrder: 0
@@ -3284,7 +3301,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a40e60d1b71ce034c983f8d323c4a8bf, type: 2}
+  - {fileID: 2100000, guid: c7ab9209a69f2e946869f7881a8f8706, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

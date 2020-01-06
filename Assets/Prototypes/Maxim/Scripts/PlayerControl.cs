@@ -10,6 +10,8 @@ public class PlayerControl : MonoBehaviour
     public bool _lockedIn = false;
 
     [SerializeField] private Text _txtInfo;
+    [SerializeField] private GameObject _joinButton;
+    [SerializeField] private Material[] _buttonMaterial;
     private void Start()
     {
         
@@ -19,11 +21,11 @@ public class PlayerControl : MonoBehaviour
         this.enabled = true;
         _lockedIn = true;
         controllerID = ctrl;
+        _joinButton.GetComponent<Renderer>().material = _buttonMaterial[1];
         this.gameObject.AddComponent<DontDestroyOnLoad>();
 
         _txtInfo.text = "'B' to back out";
 
-        //anim.SetInteger("state", 1);
     }
 
     public void DeActive()
@@ -31,11 +33,9 @@ public class PlayerControl : MonoBehaviour
         Destroy(this.gameObject.GetComponent<DontDestroyOnLoad>());
         this.enabled = false;
         _lockedIn = false;
-        //iTex = 0;
-        //matDevil.SetTexture("_Main", texs[iTex]);
+        _joinButton.GetComponent<Renderer>().material = _buttonMaterial[0];
         _txtInfo.text = "'A' to join";
 
-        //anim.SetInteger("state", 3);
     }
     public void StartGame()
     {

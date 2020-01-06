@@ -20,7 +20,6 @@ public class PlayerSelection : MonoBehaviour
     {
         CheckInput();
         _playersNeededToStart = _activePlayers.Count;
-        //CheckCounter();
     }
     public void CheckCounter()
     {
@@ -63,7 +62,6 @@ public class PlayerSelection : MonoBehaviour
         {
             if (!_activePlayers.Contains(i) && Input.GetButtonDown("AButtonP" + i))
             {
-                Debug.Log("Player" + i + "joined");
                 _activePlayers.Add(i);
                 _players[GetDevil()].Active(i);
             }
