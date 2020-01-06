@@ -184,3 +184,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 2708580928364576551}
+  _isFireSpell: 0
+  _isEletricSpell: 0

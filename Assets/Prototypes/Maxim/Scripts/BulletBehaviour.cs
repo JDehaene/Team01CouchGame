@@ -10,7 +10,7 @@ public class BulletBehaviour : MonoBehaviour
     private float _timer;
 
     public GameObject BulletPrefab;
-    public bool _isFireSpell= false;
+    public bool _isFireSpell= false, _isEletricSpell = false;
 
     private void Start()
     {
@@ -21,9 +21,13 @@ public class BulletBehaviour : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+        if(!_isEletricSpell)
+        {
+            transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+        }
+        
         _timer += Time.deltaTime;
-        if(_timer >= 0.6f)
+        if(_timer >= 0.6f && _isFireSpell)
         {
             Destroy(gameObject);
         }
@@ -40,20 +44,28 @@ public class BulletBehaviour : MonoBehaviour
         if (col.tag == "Ghost" && !_isHostile)
         {
             col.GetComponent<ghostController>().GhostTakesDamage(_damage);
-            Destroy(gameObject);
+            if(!_isFireSpell)
+            {
+                Destroy(gameObject);
+            }
         }
 
         if(col.tag == "Enemy" && !_isHostile)
         {
             col.GetComponent<EnemyBehaviour>().EnemyTakesDamage(_damage);
-            Debug.Log("hit's enemy for " + _damage);
-            Destroy(gameObject);
+            if (!_isFireSpell)
+            {
+                Destroy(gameObject);
+            }
         }
         
         if (col.tag == "Player" && _isHostile)
         {
             col.GetComponent<PlayerBehaviour>().PlayerTakesDamage(_damage);
-            Destroy(gameObject);
+            if (!_isFireSpell)
+            {
+                Destroy(gameObject);
+            }
         }
 
     }

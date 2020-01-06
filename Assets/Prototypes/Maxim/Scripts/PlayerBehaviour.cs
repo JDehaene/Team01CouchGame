@@ -47,6 +47,9 @@ public class PlayerBehaviour : MonoBehaviour
     private string _spellName;
     private float _fuel, _maxfuel = 10, _temptimer;
     private bool _reload = false;
+    private float _chargeMeter, _maxCharge = 10, _minCharge = 1;
+    private bool _isCharging = false;
+    private Vector3 _keepos;
 
     private Rigidbody _rb;
     private bool _showGizmo = true;
@@ -250,7 +253,7 @@ public class PlayerBehaviour : MonoBehaviour
     
     private void WeaponCheck()
     {
-        if (Input.GetAxis("RightTriggerP" + _playerId) > 0.1f)
+        if (Input.GetAxis("RightTriggerP" + _playerId) > 0.1f && !_eletric)
         {
             UseWeapon();
         }
@@ -259,6 +262,18 @@ public class PlayerBehaviour : MonoBehaviour
             _animator.SetBool("Shooting", false);
         }
         
+        if (Input.GetAxis("RightTriggerP" + _playerId) > 0.5f && _eletric)
+        {
+            Debug.Log("charging");
+            _isCharging = true;
+            _chargeMeter += Time.deltaTime;
+        }
+        else if (Input.GetAxis("RightTriggerP" + _playerId) < 0.5f && _eletric && _isCharging)
+        {
+            CastChargeSpell();
+            _isCharging = false;
+        }
+
     }
     
     private void UseWeapon()
@@ -281,7 +296,7 @@ public class PlayerBehaviour : MonoBehaviour
             _maxfuel = 30;
             CastFuelSpell();
         }
-
+        
     }
 
     //spell that resets timer to be shot again
@@ -309,7 +324,7 @@ public class PlayerBehaviour : MonoBehaviour
                 _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
                 _firedBullet.GetComponent<BulletStats>().BulletPower(_playerPower, false);
                 _timer = _firerateTimer;
-                _fuel -= 0.25f;
+                _fuel -= 0.5f;
             }
         }
     }
@@ -344,6 +359,31 @@ public class PlayerBehaviour : MonoBehaviour
         {
             _temptimer += Time.deltaTime;
             _fuel = -1;
+        }
+        
+    }
+
+    //spell you need to charge up to cast
+    private void CastChargeSpell()
+    {
+
+        Debug.Log("spel is casted");
+
+        if(_chargeMeter <= _minCharge)
+        {
+            Debug.Log("no charge no attack");
+            _chargeMeter = 0;
+        }
+
+        if(_chargeMeter >= _minCharge)
+        {
+            Debug.Log("attack was charged and fired");
+            _animator.SetBool("Shooting", true);
+            _soundManager.ShootingSound();
+            _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
+            _firedBullet.GetComponent<BulletStats>().BulletPower(_playerPower, false);
+            //_firedBullet.transform.localScale = new Vector3(_firedBullet.transform.localScale.x, _firedBullet.transform.localScale.y, _firedBullet.transform.localScale.z + (_chargeMeter * 2));
+            _chargeMeter = 0;
         }
         
     }
