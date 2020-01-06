@@ -7,8 +7,10 @@ public class BulletBehaviour : MonoBehaviour
     private float _speed;
     private float _damage;
     private bool _isHostile = false;
+    private float _timer;
 
     public GameObject BulletPrefab;
+    public bool _isFireSpell= false;
 
     private void Start()
     {
@@ -20,6 +22,11 @@ public class BulletBehaviour : MonoBehaviour
     private void Update()
     {
         transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+        _timer += Time.deltaTime;
+        if(_timer >= 0.6f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void OnTriggerEnter(Collider col)

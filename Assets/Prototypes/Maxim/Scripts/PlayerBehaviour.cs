@@ -39,15 +39,21 @@ public class PlayerBehaviour : MonoBehaviour
     [Header("Player Weapon")]
     public Transform WeaponPos;
     [SerializeField] private GameObject _bullet;
-    [SerializeField] private float _firerateTimer;
+    private float _firerateTimer;
     private GameObject _firedBullet;
     private BulletStats _bulletStats;
     private float _timer;
     private float _dashTimer;
+    private string _spellName;
+    private float _fuel, _maxfuel = 10, _temptimer;
+    private bool _reload = false;
 
     private Rigidbody _rb;
     private bool _showGizmo = true;
-    
+
+    //spells
+    private bool _snowstorm = false, _eletric = false, _fire = false, _darkorb = true;
+
     //ghost 
     [SerializeField] private GameObject _ghost;
 
@@ -76,6 +82,7 @@ public class PlayerBehaviour : MonoBehaviour
             return;
         _playerId = this.GetComponent<PlayerControl>().controllerID;
         _timer -= Time.deltaTime;
+        FuelCheck();
         _dashTimer += Time.deltaTime;
         WeaponCheck();
         PlayerCheck();
@@ -232,9 +239,13 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     // player weapon
-    public void WeaponPickUp(GameObject weapon)
+    public void WeaponPickUp(GameObject weapon, bool snowstorm, bool eletric, bool fire, bool darkorb)
     {
         _bullet = weapon;
+        _snowstorm = snowstorm;
+        _eletric = eletric;
+        _fire = fire;
+        _darkorb = darkorb;
     }
     
     private void WeaponCheck()
@@ -252,16 +263,89 @@ public class PlayerBehaviour : MonoBehaviour
     
     private void UseWeapon()
     {
+        if(_darkorb)
+        {
+            _firerateTimer = 0.4f;
+            CastSpell();
+        }
+
+        if(_snowstorm)
+        {
+            _firerateTimer = 0.8f;
+            CastSpell();
+        }
+        
+        if(_fire)
+        {
+            _firerateTimer = 0.08f;
+            _maxfuel = 30;
+            CastFuelSpell();
+        }
+
+    }
+
+    //spell that resets timer to be shot again
+    private void CastSpell()
+    {
         if (_timer <= 0)
         {
             _animator.SetBool("Shooting", true);
             _soundManager.ShootingSound();
             _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
             _firedBullet.GetComponent<BulletStats>().BulletPower(_playerPower, false);
-            _timer = _firerateTimer;         
+            _timer = _firerateTimer;
         }
     }
 
-    
+    //spell you can shoot until fuel is empty, it rechareges while waiting
+    private void CastFuelSpell()
+    {
+        if(_fuel >= 0)
+        {
+            if(_timer <= 0)
+            {
+                _animator.SetBool("Shooting", true);
+                _soundManager.ShootingSound();
+                _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
+                _firedBullet.GetComponent<BulletStats>().BulletPower(_playerPower, false);
+                _timer = _firerateTimer;
+                _fuel -= 0.25f;
+            }
+        }
+    }
+
+    private void FuelCheck()
+    {
+        if (_fuel >= +_maxfuel)
+        {
+            _fuel = _maxfuel;
+        }
+
+        if (!_reload)
+        {
+            _fuel += Time.deltaTime * 2;
+        }
+
+        if (_temptimer >= 3)
+        {
+            _fuel = 1;
+            _reload = false;
+            _temptimer = 0;
+            Debug.Log("reloaded");
+        }
+
+        if (_fuel < 0)
+        {
+            _reload = true;
+            Debug.Log("reload");
+        }
+        
+        if (_reload)
+        {
+            _temptimer += Time.deltaTime;
+            _fuel = -1;
+        }
+        
+    }
 
 }

@@ -5,7 +5,9 @@ using UnityEngine;
 public class WeaponPickUp : MonoBehaviour
 {
     public GameObject Weapon;
+    public bool Snowstorm= false, Eltric = false , Fire = false, Darkorb = false;
 
+    private string _spellName;
     private PlayerBehaviour _playerScript;
     private ghostController _ghostScript;
 
@@ -27,7 +29,8 @@ public class WeaponPickUp : MonoBehaviour
 
     public void PlayerPickUp(Collider player)
     {
-        _playerScript.WeaponPickUp(Weapon);
+        _spellName = gameObject.name;
+        _playerScript.WeaponPickUp(Weapon, Snowstorm, Eltric, Fire, Darkorb);
         Destroy(gameObject);
     }
 
