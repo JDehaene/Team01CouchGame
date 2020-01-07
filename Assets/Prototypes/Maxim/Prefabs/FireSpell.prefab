@@ -123,7 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 1818868560962702249}
-  _isFireSpell: 1
+  _hasMaxRange: 1
+  _noDestroyOnHit: 1
 --- !u!1 &1818868560962702249
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +313,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 1818868560962702249}
-  _isFireSpell: 1
+  _hasMaxRange: 1
+  _noDestroyOnHit: 1
 --- !u!1 &3936044983628935645
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +438,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 1818868560962702249}
-  _isFireSpell: 1
+  _hasMaxRange: 1
+  _noDestroyOnHit: 1
 --- !u!1 &5068116910184874291
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +563,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 1818868560962702249}
-  _isFireSpell: 1
+  _hasMaxRange: 1
+  _noDestroyOnHit: 1
 --- !u!1 &7151388297917165741
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,4 +688,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 1818868560962702249}
-  _isFireSpell: 1
+  _hasMaxRange: 1
+  _noDestroyOnHit: 1

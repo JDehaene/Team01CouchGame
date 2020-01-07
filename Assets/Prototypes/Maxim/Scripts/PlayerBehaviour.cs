@@ -47,15 +47,12 @@ public class PlayerBehaviour : MonoBehaviour
     private string _spellName;
     private float _fuel, _maxfuel = 10, _temptimer;
     private bool _reload = false;
-    private float _chargeMeter, _maxCharge = 10, _minCharge = 1;
-    private bool _isCharging = false;
-    private Vector3 _keepos;
 
     private Rigidbody _rb;
     private bool _showGizmo = true;
 
     //spells
-    private bool _snowstorm = false, _eletric = false, _fire = false, _darkorb = true;
+    private bool _snowstorm = false, _earth = false, _fire = false, _darkorb = true;
 
     //ghost 
     [SerializeField] private GameObject _ghost;
@@ -242,18 +239,18 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     // player weapon
-    public void WeaponPickUp(GameObject weapon, bool snowstorm, bool eletric, bool fire, bool darkorb)
+    public void WeaponPickUp(GameObject weapon, bool snowstorm, bool earth, bool fire, bool darkorb)
     {
         _bullet = weapon;
         _snowstorm = snowstorm;
-        _eletric = eletric;
+        _earth = earth;
         _fire = fire;
         _darkorb = darkorb;
     }
     
     private void WeaponCheck()
     {
-        if (Input.GetAxis("RightTriggerP" + _playerId) > 0.1f && !_eletric)
+        if (Input.GetAxis("RightTriggerP" + _playerId) > 0.1f)
         {
             UseWeapon();
         }
@@ -262,18 +259,6 @@ public class PlayerBehaviour : MonoBehaviour
             _animator.SetBool("Shooting", false);
         }
         
-        if (Input.GetAxis("RightTriggerP" + _playerId) > 0.5f && _eletric)
-        {
-            Debug.Log("charging");
-            _isCharging = true;
-            _chargeMeter += Time.deltaTime;
-        }
-        else if (Input.GetAxis("RightTriggerP" + _playerId) < 0.5f && _eletric && _isCharging)
-        {
-            CastChargeSpell();
-            _isCharging = false;
-        }
-
     }
     
     private void UseWeapon()
@@ -297,6 +282,12 @@ public class PlayerBehaviour : MonoBehaviour
             CastFuelSpell();
         }
         
+        if(_earth)
+        {
+            _firerateTimer = 0.8f;
+            CastSpell();
+        }
+
     }
 
     //spell that resets timer to be shot again
@@ -362,30 +353,5 @@ public class PlayerBehaviour : MonoBehaviour
         }
         
     }
-
-    //spell you need to charge up to cast
-    private void CastChargeSpell()
-    {
-
-        Debug.Log("spel is casted");
-
-        if(_chargeMeter <= _minCharge)
-        {
-            Debug.Log("no charge no attack");
-            _chargeMeter = 0;
-        }
-
-        if(_chargeMeter >= _minCharge)
-        {
-            Debug.Log("attack was charged and fired");
-            _animator.SetBool("Shooting", true);
-            _soundManager.ShootingSound();
-            _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
-            _firedBullet.GetComponent<BulletStats>().BulletPower(_playerPower, false);
-            //_firedBullet.transform.localScale = new Vector3(_firedBullet.transform.localScale.x, _firedBullet.transform.localScale.y, _firedBullet.transform.localScale.z + (_chargeMeter * 2));
-            _chargeMeter = 0;
-        }
-        
-    }
-
+    
 }
