@@ -84,6 +84,7 @@ MonoBehaviour:
   _timeUntilCharge: 1.5
   _chargeSpeedModifier: 3
   _player: {fileID: 0}
+  _chargeForce: {x: 0, y: 0, z: 5}
   _bullet: {fileID: 7520379337234756086, guid: b8af69d43b5506845943cd6e66c0d065, type: 3}
   _rateOfFire: 1.5
   _enemyHp: 30

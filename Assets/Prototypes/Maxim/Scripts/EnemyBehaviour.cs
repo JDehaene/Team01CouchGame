@@ -24,6 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
     private bool _charging;
     private bool _chargePosDetermined;
     private Vector3 _chargePos;
+    [SerializeField] private Vector3 _chargeForce;
 
     [Header("Shooting variables")]
     [SerializeField] private GameObject _bullet;
@@ -272,6 +273,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Debug.Log("Charged at");
             _player.GetComponent<PlayerBehaviour>().PlayerTakesDamage(_enemyPower * 5);
+            _player.GetComponent<Rigidbody>().AddForce(-_player.transform.forward * _chargeForce.z, ForceMode.Impulse);
         }
     }
 }
