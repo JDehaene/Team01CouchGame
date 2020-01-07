@@ -12,9 +12,15 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private Text _txtInfo;
     [SerializeField] private GameObject _joinButton;
     [SerializeField] private Material[] _buttonMaterial;
-    private void Start()
+    [SerializeField] private Material _playerMaterial;
+    private bool _notPressed;
+
+    private void Update()
     {
-        
+        if(this._lockedIn == true && SceneManager.GetActiveScene().name == "CharacterSelection")
+        {
+            RandomizeColor();
+        }
     }
     public void Active(int ctrl)
     {
@@ -40,5 +46,15 @@ public class PlayerControl : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("TestSceneMaxim");
+    }
+    public void RandomizeColor()
+    {
+        if (_notPressed && Mathf.Abs(Input.GetAxis("DPadHorizontalP" + controllerID)) > 0.1f)
+        {
+            _playerMaterial.SetColor("_Color", new Color(Random.Range(0.1f, 1), Random.Range(0.1f, 1), Random.Range(0.1f, 1)));
+            _notPressed = false;
+        }
+        else if(Mathf.Abs(Input.GetAxis("DPadHorizontalP" + controllerID)) < 0.1f)
+            _notPressed = true;
     }
 }

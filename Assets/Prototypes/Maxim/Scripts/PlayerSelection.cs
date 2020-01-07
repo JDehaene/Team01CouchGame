@@ -21,6 +21,7 @@ public class PlayerSelection : MonoBehaviour
         CheckInput();
         _playersNeededToStart = _activePlayers.Count;
     }
+
     public void CheckCounter()
     {
         if (isCounting)
