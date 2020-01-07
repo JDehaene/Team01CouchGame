@@ -36,7 +36,7 @@ public class WeaponPickUp : MonoBehaviour
 
     public void GhostPickUp(Collider ghost)
     {
-        _ghostScript.WeaponPickUp(Weapon);
+        _ghostScript.WeaponPickUp(Weapon, Snowstorm, Earth, Fire, Darkorb);
         Destroy(gameObject);
     }
 

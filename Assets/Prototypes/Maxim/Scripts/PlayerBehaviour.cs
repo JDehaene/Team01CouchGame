@@ -44,16 +44,15 @@ public class PlayerBehaviour : MonoBehaviour
     private BulletStats _bulletStats;
     private float _timer;
     private float _dashTimer;
-    private string _spellName;
     private float _fuel, _maxfuel = 10, _temptimer;
     private bool _reload = false;
-
-    private Rigidbody _rb;
-    private bool _showGizmo = true;
 
     //spells
     private bool _snowstorm = false, _earth = false, _fire = false, _darkorb = true;
 
+    private Rigidbody _rb;
+    private bool _showGizmo = true;
+    
     //ghost 
     [SerializeField] private GameObject _ghost;
 

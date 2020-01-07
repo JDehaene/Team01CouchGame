@@ -40,7 +40,8 @@ public class ItemPickup : MonoBehaviour
             _ghostScript.GhostChangeStats(_maxHpStat, _hpStat, _speedStat, _powerStat);
         }
 
-        Destroy(transform.parent.gameObject);
+        //Destroy(transform.parent.gameObject);
+        Destroy(gameObject);
     }
 
 }

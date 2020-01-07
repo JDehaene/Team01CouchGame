@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7612033245251951361}
   - component: {fileID: 7563341349487063570}
   - component: {fileID: 6925519742486167634}
+  - component: {fileID: 2785262400309225694}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Wall
@@ -309,3 +310,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
+--- !u!65 &2785262400309225694
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046780168969503140}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 28, y: 0, z: 28}
+  m_Center: {x: 12.25, y: 4, z: -12.25}

@@ -42,6 +42,11 @@ public class ghostController : MonoBehaviour
     private GameObject _firedBullet;
     private float _timer;
     private bool _weaponEnabled = true;
+    private float _fuel, _maxfuel = 10, _temptimer;
+    private bool _reload = false;
+    
+    //spells
+    private bool _snowstorm = false, _earth = false, _fire = false, _darkorb = true;
 
     //ghost live status
     private bool _ghostIsAlive = true;
@@ -70,6 +75,7 @@ public class ghostController : MonoBehaviour
         if (_ghostIsAlive && _ghostId != 0)
         {
             _timer -= Time.deltaTime;
+            FuelCheck();
 
             WeaponCheck();
             GhostCheck();
@@ -213,9 +219,13 @@ public class ghostController : MonoBehaviour
     }
 
     //ghost weapon
-    public void WeaponPickUp(GameObject weapon)
+    public void WeaponPickUp(GameObject weapon, bool snowstorm, bool earth, bool fire, bool darkorb)
     {
         _bullet = weapon;
+        _snowstorm = snowstorm;
+        _earth = earth;
+        _fire = fire;
+        _darkorb = darkorb;
     }
     
     private void WeaponCheck()
@@ -232,7 +242,36 @@ public class ghostController : MonoBehaviour
     
     private void UseWeapon()
     {
-        if (_timer <= 0 && _weaponEnabled)
+        if (_darkorb)
+        {
+            _firerateTimer = 0.4f;
+            CastSpell();
+        }
+
+        if (_snowstorm)
+        {
+            _firerateTimer = 0.8f;
+            CastSpell();
+        }
+
+        if (_fire)
+        {
+            _firerateTimer = 0.08f;
+            _maxfuel = 30;
+            CastFuelSpell();
+        }
+
+        if (_earth)
+        {
+            _firerateTimer = 0.8f;
+            CastSpell();
+        }
+    }
+
+    //spell that resets timer to be shot again
+    private void CastSpell()
+    {
+        if (_timer <= 0)
         {
             _animator.SetBool("Shooting", true);
             _soundManager.ShootingSound();
@@ -242,12 +281,62 @@ public class ghostController : MonoBehaviour
         }
     }
 
+    //spell you can shoot until fuel is empty, it rechareges while waiting
+    private void CastFuelSpell()
+    {
+        if (_fuel >= 0)
+        {
+            if (_timer <= 0)
+            {
+                _animator.SetBool("Shooting", true);
+                _soundManager.ShootingSound();
+                _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
+                _firedBullet.GetComponent<BulletStats>().BulletPower(_ghostPower, true);
+                _timer = _firerateTimer;
+                _fuel -= 0.5f;
+            }
+        }
+    }
+
+    private void FuelCheck()
+    {
+        if (_fuel >= +_maxfuel)
+        {
+            _fuel = _maxfuel;
+        }
+
+        if (!_reload)
+        {
+            _fuel += Time.deltaTime * 2;
+        }
+
+        if (_temptimer >= 3)
+        {
+            _fuel = 1;
+            _reload = false;
+            _temptimer = 0;
+        }
+
+        if (_fuel < 0)
+        {
+            _reload = true;
+        }
+
+        if (_reload)
+        {
+            _temptimer += Time.deltaTime;
+            _fuel = -1;
+        }
+
+    }
+
+    
+    //ghost spawn / next room
     public void GhostTeleport()
     {
         _particleManager.TeleportParticleEffect(this.transform.position);
     }
 
-    //ghost spawn / next room
     private void GhostMovesToFinalRoom()
     {    
         _weaponEnabled = false;
