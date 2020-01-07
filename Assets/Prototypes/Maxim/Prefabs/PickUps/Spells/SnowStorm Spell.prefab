@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6578490981341221310}
   - component: {fileID: 1911492444429752417}
   m_Layer: 0
-  m_Name: SnowStormSpell
+  m_Name: SnowStorm Spell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,8 +70,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletSpeed: 10
-  StartBulletDamage: 1
-  CurrentBulletDamage: 1
+  StartBulletDamage: 1.5
+  CurrentBulletDamage: 1.5
   IsHostile: 0
 --- !u!114 &1911492444429752417
 MonoBehaviour:
@@ -208,6 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &930773617352128358
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &1605597504756005242
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +458,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &2036113546801256691
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +583,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &2327322867410783938
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,6 +708,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &2332228621835065009
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,6 +833,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &2337956750214143813
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,6 +958,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &2982448228889082738
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,6 +1083,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &3127029238128181187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &3637733932203385333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,6 +1333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &4089281635560831910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,6 +1458,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &4889600463762390087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,6 +1583,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &5212034941560188605
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,6 +1708,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &5330382879834487322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,6 +1833,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &5379196837974052549
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,6 +1958,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &5489437991651196828
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,6 +2083,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &5719674116797101918
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,6 +2208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &6621349154453242331
 GameObject:
   m_ObjectHideFlags: 0
@@ -2299,6 +2333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &6882017797254909062
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,6 +2458,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &7134458633911850632
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,6 +2583,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &7726245331420566737
 GameObject:
   m_ObjectHideFlags: 0
@@ -2668,6 +2708,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &7900402581243015937
 GameObject:
   m_ObjectHideFlags: 0
@@ -2791,6 +2833,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &8145413367120443847
 GameObject:
   m_ObjectHideFlags: 0
@@ -2914,6 +2958,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &8450519217526415470
 GameObject:
   m_ObjectHideFlags: 0
@@ -3037,6 +3083,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0
 --- !u!1 &8579923835906329581
 GameObject:
   m_ObjectHideFlags: 0
@@ -3160,3 +3208,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 65773416224720412}
+  _hasMaxRange: 0
+  _noDestroyOnHit: 0

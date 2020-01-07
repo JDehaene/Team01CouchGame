@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 4800618891267513355}
   - component: {fileID: 239459902557771220}
   m_Layer: 0
-  m_Name: FireSpell
+  m_Name: Flamethrower Spell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

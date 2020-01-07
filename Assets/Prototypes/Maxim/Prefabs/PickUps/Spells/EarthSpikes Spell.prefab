@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 9e7b076180106f34f87c7a2ed95e0243, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1149,7 +1149,7 @@ GameObject:
   - component: {fileID: 4174663362348719426}
   - component: {fileID: 8656728570074387613}
   m_Layer: 0
-  m_Name: EarthSpell
+  m_Name: EarthSpikes Spell
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1183,8 +1183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletSpeed: 10
-  StartBulletDamage: 10
-  CurrentBulletDamage: 10
+  StartBulletDamage: 15
+  CurrentBulletDamage: 15
   IsHostile: 0
 --- !u!114 &8656728570074387613
 MonoBehaviour:

@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4ac4de325cd1040b3f32aed0f21574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: {fileID: 7083511397743282912, guid: 0870070ddd0594846ae830a977ae3274, type: 3}
+  Weapon: {fileID: 1919450267003293197, guid: 8825f2ae0612100459d574757da0f5ac, type: 3}
   Snowstorm: 0
-  Earth: 1
+  Earth: 0
   Fire: 0
-  Darkorb: 0
+  Darkorb: 1
