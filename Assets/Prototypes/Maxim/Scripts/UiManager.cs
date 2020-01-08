@@ -21,6 +21,16 @@ public class UiManager : MonoBehaviour
 
     void Update()
     {
+        
+        if (_mainMenuScreen.active)
+        {
+            _mainMenu = true;
+        }
+        else
+        {
+            _mainMenu = false;
+        }
+
         if (!_gamePaused && Input.GetButtonDown("Pause") && !_mainMenu)
         {
             PauseGame();
@@ -30,29 +40,20 @@ public class UiManager : MonoBehaviour
             ResumeGame();
         }
 
-        if(_help && Input.GetButtonDown("B") || _options && Input.GetButtonDown("B"))
+        if (_help && Input.GetButtonDown("B") || _options && Input.GetButtonDown("B"))
         {
-            PauseGame();
-        }
-
-        if(_mainMenuScreen.active)
-        {
-            _mainMenu = true;
-        }
-        else
-        {
-            _mainMenu = false;
+            Back();
         }
 
     }
 
     public void MainMenu()
     {
-        _mainMenuScreen.active = true;
         _mainMenu = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 1.0f;
+        _mainMenuScreen.active = true;
         SceneManager.LoadScene(0);
     }
 
@@ -105,6 +106,7 @@ public class UiManager : MonoBehaviour
     public void Options()
     {
         _options = true;
+        _mainMenuScreen.active = false;
         _pauseScreen.active = false;
         _optionScreen.active = true;
     }
@@ -112,8 +114,30 @@ public class UiManager : MonoBehaviour
     public void Help()
     {
         _help = true;
+        _mainMenuScreen.active = false;
         _pauseScreen.active = false;
         _helpScreen.active = true;
+    }
+
+    private void MainMenuScreen()
+    {
+        _mainMenuScreen.active = true;
+        _helpScreen.active = false;
+        _optionScreen.active = false;
+    }
+
+    public void Back()
+    {
+        if(!_gamePaused)
+        {
+            MainMenuScreen();
+        }
+
+        if(_gamePaused)
+        {
+            PauseGame();
+        }
+
     }
 
 }

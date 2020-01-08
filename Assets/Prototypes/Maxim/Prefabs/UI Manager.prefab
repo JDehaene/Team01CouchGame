@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3009826412898642261}
   - component: {fileID: 3009826412898642260}
   m_Layer: 0
-  m_Name: Pause Screen
+  m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3009826413343902367}
-        m_MethodName: PauseGame
+        m_MethodName: Back
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2983,7 +2983,7 @@ GameObject:
   - component: {fileID: 3009826414313595434}
   - component: {fileID: 3009826414313595435}
   m_Layer: 0
-  m_Name: MainMenuUI
+  m_Name: UI Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4911,7 +4911,7 @@ GameObject:
   - component: {fileID: 3009826414938071100}
   - component: {fileID: 3009826414938071103}
   m_Layer: 0
-  m_Name: Pause Screen
+  m_Name: Back Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5019,7 +5019,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3009826413343902367}
-        m_MethodName: PauseGame
+        m_MethodName: Back
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
