@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class UiManager : MonoBehaviour
 {
 
-    private bool _gamePaused = false, _help =false, _options= false;
+    private bool _gamePaused = false, _help =false, _options= false, _mainMenu = true;
 
-    [SerializeField] private GameObject _pauseScreen, _helpScreen, _optionScreen;
+    [SerializeField] private GameObject _mainMenuScreen ,_pauseScreen, _optionScreen, _helpScreen;
 
     private void Start()
     {
@@ -21,11 +21,11 @@ public class UiManager : MonoBehaviour
 
     void Update()
     {
-        if (!_gamePaused && Input.GetButtonDown("Pause"))
+        if (!_gamePaused && Input.GetButtonDown("Pause") && !_mainMenu)
         {
             PauseGame();
         }
-        else if (_gamePaused && Input.GetButtonDown("Pause") || _gamePaused && Input.GetButtonDown("B") && !_options && !_help)
+        else if (_gamePaused && Input.GetButtonDown("Pause") || _gamePaused && Input.GetButtonDown("B") && !_options && !_help && !_mainMenu)
         {
             ResumeGame();
         }
@@ -35,11 +35,21 @@ public class UiManager : MonoBehaviour
             PauseGame();
         }
 
+        if(_mainMenuScreen.active)
+        {
+            _mainMenu = true;
+        }
+        else
+        {
+            _mainMenu = false;
+        }
 
     }
 
     public void MainMenu()
     {
+        _mainMenuScreen.active = true;
+        _mainMenu = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 1.0f;
@@ -48,6 +58,8 @@ public class UiManager : MonoBehaviour
 
     public void StartGame()
     {
+        _mainMenuScreen.active = false;
+        _mainMenu = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1.0f;
