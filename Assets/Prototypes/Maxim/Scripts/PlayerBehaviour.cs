@@ -64,6 +64,12 @@ public class PlayerBehaviour : MonoBehaviour
     private Animator _animator;
 
     private float _animationMovement;
+
+    //ui stuff
+    [Header("Player UI")]
+    [SerializeField] private UiPlayer _playerUi;
+
+    //functions
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -72,15 +78,17 @@ public class PlayerBehaviour : MonoBehaviour
         _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
         _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
         _animator = GetComponent<Animator>();
+        _playerUi.StartStats(_playerHealth, _playerMaxHealth, _timer, _firerateTimer);
+        _playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
     }
-
+    
     private void Update()
     {
         _inputController = (InputController)FindObjectOfType(typeof(InputController));
         if (!this.GetComponent<PlayerControl>()._lockedIn)
             return;
         _playerId = this.GetComponent<PlayerControl>().controllerID;
-        _timer -= Time.deltaTime;
+        _timer += Time.deltaTime;
         FuelCheck();
         _dashTimer += Time.deltaTime;
         WeaponCheck();
@@ -182,6 +190,9 @@ public class PlayerBehaviour : MonoBehaviour
         {
             _playerHealth = _playerMaxHealth;
         }
+
+        _playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
+
     }
     
     private void PlayerMinStatsCheck()
@@ -225,6 +236,15 @@ public class PlayerBehaviour : MonoBehaviour
     
     private void PlayerCheck()
     {
+        if(_fire)
+        {
+            _playerUi.StaminaMeter(_fuel, _maxfuel);
+        }
+        else
+        {
+            _playerUi.StaminaMeter(_timer, _firerateTimer);
+        }
+
         if(_playerHealth <= 0)
         {
             PlayerDies();          
@@ -235,6 +255,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _animator.SetBool("DamageTaken", true);
         _playerHealth -= damage;
+
+        _playerUi.TakesDamage(damage);
     }
 
     // player weapon
@@ -292,13 +314,13 @@ public class PlayerBehaviour : MonoBehaviour
     //spell that resets timer to be shot again
     private void CastSpell()
     {
-        if (_timer <= 0)
+        if (_timer >= _firerateTimer)
         {
             _animator.SetBool("Shooting", true);
             _soundManager.ShootingSound();
             _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
             _firedBullet.GetComponent<BulletStats>().BulletPower(_playerPower, false);
-            _timer = _firerateTimer;
+            _timer = 0;
         }
     }
 
@@ -307,13 +329,13 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if(_fuel >= 0)
         {
-            if(_timer <= 0)
+            if(_timer >= _firerateTimer)
             {
                 _animator.SetBool("Shooting", true);
                 _soundManager.ShootingSound();
                 _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
                 _firedBullet.GetComponent<BulletStats>().BulletPower(_playerPower, false);
-                _timer = _firerateTimer;
+                _timer = 0;
                 _fuel -= 0.5f;
             }
         }
