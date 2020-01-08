@@ -219,7 +219,6 @@ public class EnemyBehaviour : MonoBehaviour
         if(!_chargePosDetermined)
         {
             _chargePos = new Vector3(_player.transform.position.x ,transform.position.y, _player.transform.position.z);
-            //_chargePos = _player.transform.position;
             _chargePosDetermined = true;
         }
 
@@ -263,17 +262,15 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("damage taken");
-            _player.GetComponent<PlayerBehaviour>().PlayerTakesDamage(_enemyPower);
+            other.GetComponent<PlayerBehaviour>().PlayerTakesDamage(_enemyPower);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player") && _charging)
         {
-            Debug.Log("Charged at");
-            _player.GetComponent<PlayerBehaviour>().PlayerTakesDamage(_enemyPower * 5);
-            _player.GetComponent<Rigidbody>().AddForce(-_player.transform.forward * _chargeForce.z, ForceMode.Impulse);
+            other.GetComponent<PlayerBehaviour>().PlayerTakesDamage(_enemyPower * 5);
+            other.GetComponent<Rigidbody>().AddForce(-other.transform.forward * _chargeForce.z, ForceMode.Impulse);
         }
     }
 }

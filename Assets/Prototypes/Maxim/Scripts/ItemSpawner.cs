@@ -32,10 +32,10 @@ public class ItemSpawner : MonoBehaviour
                 ChooseCommon();
                 break;
             case 2:
-                ChooseUncommon();
+                ChooseCommon();
                 break;
             case 3:
-                ChooseUncommon();
+                ChooseCommon();
                 break;
             case 4:
                 ChooseUncommon();
@@ -44,7 +44,7 @@ public class ItemSpawner : MonoBehaviour
                 ChooseUncommon();
                 break;
             case 6:
-                ChooseRare();
+                ChooseUncommon();
                 break;
             case 7:
                 ChooseRare();
