@@ -175,8 +175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletSpeed: 7
-  StartBulletDamage: 1
-  CurrentBulletDamage: 1
+  StartBulletDamage: 1.2
+  CurrentBulletDamage: 1.2
   IsHostile: 0
 --- !u!114 &239459902557771220
 MonoBehaviour:

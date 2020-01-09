@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHpStat: 10
-  _hpStat: 0
+  _hpStat: 10
   _speedStat: 0
   _powerStat: 0
 --- !u!114 &2844429224374905856
@@ -158,6 +158,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 5955068219559015578, guid: 86a35e8f2ba59a1489a171c1cc8fef17,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5848919313595553126, guid: 86a35e8f2ba59a1489a171c1cc8fef17,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964766334600187441, guid: 86a35e8f2ba59a1489a171c1cc8fef17,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360204247806379654, guid: 86a35e8f2ba59a1489a171c1cc8fef17,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1525947366258270890, guid: 86a35e8f2ba59a1489a171c1cc8fef17,
         type: 3}
       propertyPath: m_Mesh
@@ -168,27 +188,7 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 8360204247806379654, guid: 86a35e8f2ba59a1489a171c1cc8fef17,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4964766334600187441, guid: 86a35e8f2ba59a1489a171c1cc8fef17,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4323724525002078039, guid: 86a35e8f2ba59a1489a171c1cc8fef17,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848919313595553126, guid: 86a35e8f2ba59a1489a171c1cc8fef17,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5955068219559015578, guid: 86a35e8f2ba59a1489a171c1cc8fef17,
         type: 3}
       propertyPath: m_Mesh
       value: 

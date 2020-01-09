@@ -78,8 +78,8 @@ public class PlayerBehaviour : MonoBehaviour
         _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
         _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
         _animator = GetComponent<Animator>();
-        //_playerUi.StartStats(_playerHealth, _playerMaxHealth, _timer, _firerateTimer);
-        //_playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
+        _playerUi.StartStats(_playerHealth, _playerMaxHealth, _timer, _firerateTimer);
+        _playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
     }
     
     private void Update()
@@ -191,7 +191,7 @@ public class PlayerBehaviour : MonoBehaviour
             _playerHealth = _playerMaxHealth;
         }
 
-        //_playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
+        _playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
         
 
     }
@@ -203,9 +203,9 @@ public class PlayerBehaviour : MonoBehaviour
             _playerMaxHealth = 15;
         }
 
-        if (_playerSpeed <= 0.5)
+        if (_playerSpeed <= 1.5f)
         {
-            _playerSpeed = 0.5f;
+            _playerSpeed = 1.5f;
         }
 
         if (_playerPower <= 0.5)
@@ -239,11 +239,11 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if(_fire)
         {
-            //_playerUi.StaminaMeter(_fuel, _maxfuel);
+            _playerUi.StaminaMeter(_fuel, _maxfuel);
         }
         else
         {
-            //_playerUi.StaminaMeter(_timer, _firerateTimer);
+            _playerUi.StaminaMeter(_timer, _firerateTimer);
         }
 
         if(_playerHealth <= 0)
@@ -257,7 +257,7 @@ public class PlayerBehaviour : MonoBehaviour
         _animator.SetBool("DamageTaken", true);
         _playerHealth -= damage;
 
-        //_playerUi.TakesDamage(damage);
+        _playerUi.TakesDamage(damage);
     }
 
     // player weapon
@@ -300,7 +300,7 @@ public class PlayerBehaviour : MonoBehaviour
         if(_fire)
         {
             _firerateTimer = 0.08f;
-            _maxfuel = 30;
+            _maxfuel = 10;
             CastFuelSpell();
         }
         
@@ -337,7 +337,7 @@ public class PlayerBehaviour : MonoBehaviour
                 _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
                 _firedBullet.GetComponent<BulletStats>().BulletPower(_playerPower, false);
                 _timer = 0;
-                _fuel -= 0.5f;
+                _fuel -= 0.6f;
             }
         }
     }
@@ -351,10 +351,10 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (!_reload)
         {
-            _fuel += Time.deltaTime * 2;
+            _fuel += Time.deltaTime * 4;
         }
 
-        if (_temptimer >= 3)
+        if (_temptimer >= 1.5f)
         {
             _fuel = 1;
             _reload = false;
