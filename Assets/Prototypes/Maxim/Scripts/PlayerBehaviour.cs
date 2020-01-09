@@ -261,6 +261,8 @@ public class PlayerBehaviour : MonoBehaviour
     // player weapon
     public void WeaponPickUp(GameObject weapon, bool snowstorm, bool earth, bool fire, bool darkorb)
     {
+        _soundManager.PickupSound();
+        _particleManager.StatsParticleEffect(this.transform.position);
         _bullet = weapon;
         _snowstorm = snowstorm;
         _earth = earth;

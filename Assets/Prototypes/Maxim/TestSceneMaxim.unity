@@ -432,6 +432,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3202632712509085969, guid: 213057d568f4b5441ad7797adcce047d,
         type: 3}
+      propertyPath: HorizontalRooms.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202632712509085969, guid: 213057d568f4b5441ad7797adcce047d,
+        type: 3}
+      propertyPath: LWayRooms.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202632712509085969, guid: 213057d568f4b5441ad7797adcce047d,
+        type: 3}
       propertyPath: _roomsPerPlayer
       value: 5
       objectReference: {fileID: 0}
@@ -440,6 +450,30 @@ PrefabInstance:
       propertyPath: _finalRoom
       value: 
       objectReference: {fileID: 8772487321109450464, guid: 25037e2c9d9dd074a9ca95a02385d94e,
+        type: 3}
+    - target: {fileID: 3202632712509085969, guid: 213057d568f4b5441ad7797adcce047d,
+        type: 3}
+      propertyPath: HorizontalRooms.Array.data[4]
+      value: 
+      objectReference: {fileID: 187188034142424357, guid: 12941db6d97d52546b71b5675f0541d0,
+        type: 3}
+    - target: {fileID: 3202632712509085969, guid: 213057d568f4b5441ad7797adcce047d,
+        type: 3}
+      propertyPath: HorizontalRooms.Array.data[5]
+      value: 
+      objectReference: {fileID: 4237963088874032432, guid: df0473e967a372145bdc00d1266caf1b,
+        type: 3}
+    - target: {fileID: 3202632712509085969, guid: 213057d568f4b5441ad7797adcce047d,
+        type: 3}
+      propertyPath: LWayRooms.Array.data[4]
+      value: 
+      objectReference: {fileID: 526347210006203395, guid: 47533716696d99b409ef996b7c750d03,
+        type: 3}
+    - target: {fileID: 3202632712509085969, guid: 213057d568f4b5441ad7797adcce047d,
+        type: 3}
+      propertyPath: LWayRooms.Array.data[5]
+      value: 
+      objectReference: {fileID: 6701103798592884976, guid: 107fa9371202e5a4082d961c74dd66b5,
         type: 3}
     - target: {fileID: 3202632712509085974, guid: 213057d568f4b5441ad7797adcce047d,
         type: 3}
