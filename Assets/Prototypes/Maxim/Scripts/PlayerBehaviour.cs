@@ -220,18 +220,9 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _soundManager.DeathSound();
         _particleManager.DeathParticleEffect(this.transform.position);
-        //spawn ghost / activate ghost system
         Destroy(this.GetComponent<DontDestroyOnLoad>());
-        Debug.Log("player " + _playerId + " died");
-        if(HasModel)
-        {
-            _ghost = Instantiate(_ghost, new Vector3(transform.position.x, 0, transform.position.z), transform.rotation);
-        }
-        else
-        {
-            _ghost = Instantiate(_ghost, transform.position, transform.rotation);
-        }
-    
+        _ghost = Instantiate(_ghost, new Vector3(transform.position.x, 0, transform.position.z), transform.rotation);
+        
         _ghost.GetComponent<ghostController>().SetGhost(_playerId);
         _ghost.GetComponent<ghostController>().SetUi(_playerUi);
 

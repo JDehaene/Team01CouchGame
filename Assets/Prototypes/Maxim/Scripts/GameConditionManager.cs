@@ -13,6 +13,7 @@ public class GameConditionManager : MonoBehaviour
     [SerializeField] private Text _winnerText;
     private float _timer;
     [SerializeField] private float _restartGameTimer;
+    private GameObject _uiController;
 
     private float _multiplier = 1;
 
@@ -21,6 +22,8 @@ public class GameConditionManager : MonoBehaviour
     private void Start()
     {
         _activePlayers = GameObject.FindGameObjectsWithTag("Player");
+        _uiController = GameObject.FindGameObjectWithTag("PlayerUiController");
+
         switch (_activePlayers.Length)
         {
             case 1:
@@ -86,7 +89,7 @@ public class GameConditionManager : MonoBehaviour
                 Destroy(item);
             }
         }
-        
+        _uiController.GetComponent<PlayerUiController>().GameHasBeenRestarted();
         SceneManager.LoadScene("CharacterSelection");
     }
 }

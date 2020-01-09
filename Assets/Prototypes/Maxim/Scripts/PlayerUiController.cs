@@ -10,7 +10,6 @@ public class PlayerUiController : MonoBehaviour
 
     public void Start()
     {
-
         foreach (var player in _playerUi)
         {
             player.active = false;
@@ -25,6 +24,14 @@ public class PlayerUiController : MonoBehaviour
     public void SetPlayerInactive(int player)
     {
         _playerUi[player -1].active = false;
+    }
+
+    public void GameHasBeenRestarted()
+    {
+        foreach (var player in _playerUi)
+        {
+            player.active = false;
+        }
     }
 
 }
