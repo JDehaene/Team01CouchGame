@@ -15,6 +15,16 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private Material _playerMaterial;
     private bool _notPressed;
 
+    //ui stuff
+    [SerializeField] private UiPlayer _playerUi;
+    private Color _playerColor;
+
+    private void Start()
+    {
+        _playerColor = _playerMaterial.color;
+        _playerUi.NewPlayerColor(_playerColor);
+    }
+
     private void Update()
     {
         if(this._lockedIn == true && SceneManager.GetActiveScene().name == "CharacterSelection")
@@ -51,7 +61,9 @@ public class PlayerControl : MonoBehaviour
     {
         if (_notPressed && Mathf.Abs(Input.GetAxis("DPadHorizontalP" + controllerID)) > 0.1f)
         {
-            _playerMaterial.SetColor("_Color", new Color(Random.Range(0.1f, 1), Random.Range(0.1f, 1), Random.Range(0.1f, 1)));
+            _playerColor = new Color(Random.Range(0.1f, 1), Random.Range(0.1f, 1), Random.Range(0.1f, 1));
+            _playerMaterial.SetColor("_Color", _playerColor);
+            _playerUi.NewPlayerColor(_playerColor);
             _notPressed = false;
         }
         else if(Mathf.Abs(Input.GetAxis("DPadHorizontalP" + controllerID)) < 0.1f)

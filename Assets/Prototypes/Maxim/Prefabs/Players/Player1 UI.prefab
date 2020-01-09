@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3392298052435280141}
   - component: {fileID: 382483261647403312}
   m_Layer: 0
-  m_Name: Image
+  m_Name: WizardPicture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -920,6 +920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 2808039729843703506}
   _staminaBar: {fileID: 747801637213645583}
+  _wizard: {fileID: 382483261647403312}
   _speedStat: {fileID: 1491440502162540488}
   _powerStat: {fileID: 926798055225761418}
   _maxHpStat: {fileID: 5443947109168505612}
