@@ -591,7 +591,7 @@ GameObject:
   - component: {fileID: 375794638}
   m_Layer: 0
   m_Name: Player UI's
-  m_TagString: Untagged
+  m_TagString: PlayerUiController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2309,6 +2309,26 @@ PrefabInstance:
       propertyPath: _playerUi
       value: 
       objectReference: {fileID: 815650373}
+    - target: {fileID: 1416130818918632765, guid: f26ca6da786de764e807ade16e02d120,
+        type: 3}
+      propertyPath: _playerPower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416130818918632765, guid: f26ca6da786de764e807ade16e02d120,
+        type: 3}
+      propertyPath: _playerMaxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416130818918632765, guid: f26ca6da786de764e807ade16e02d120,
+        type: 3}
+      propertyPath: _playerHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416130818918632765, guid: f26ca6da786de764e807ade16e02d120,
+        type: 3}
+      propertyPath: _playerSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 901575749453974214, guid: f26ca6da786de764e807ade16e02d120,
         type: 3}
       propertyPath: m_LocalPosition.z

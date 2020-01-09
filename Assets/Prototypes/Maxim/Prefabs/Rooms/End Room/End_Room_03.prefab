@@ -282,7 +282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916652143036296640}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7, y: 1, z: -7}
+  m_LocalPosition: {x: -7, y: 0, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1916652143118395996}
@@ -327,7 +327,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916652143040611556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7, y: 1, z: -7}
+  m_LocalPosition: {x: 7, y: 0, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1916652143118395996}
@@ -440,7 +440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916652143866052162}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7, y: 1, z: 7}
+  m_LocalPosition: {x: -7, y: 0, z: 7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1916652143118395996}
@@ -615,7 +615,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916652144626276034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7, y: 1, z: 7}
+  m_LocalPosition: {x: 7, y: 0, z: 7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1916652143118395996}
@@ -1067,11 +1067,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7612033245251951361, guid: 33c1674ea31a3db4c9c712709fcd88e5,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 9f9cc9143659667498c3837e13fb932f, type: 2}
     - target: {fileID: 7563341349487063570, guid: 33c1674ea31a3db4c9c712709fcd88e5,
         type: 3}
       propertyPath: m_SelectedEdges.Array.size
@@ -28587,6 +28582,11 @@ PrefabInstance:
       propertyPath: m_Colors.Array.data[327].a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7612033245251951361, guid: 33c1674ea31a3db4c9c712709fcd88e5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f9cc9143659667498c3837e13fb932f, type: 2}
     - target: {fileID: 6925519742486167634, guid: 33c1674ea31a3db4c9c712709fcd88e5,
         type: 3}
       propertyPath: m_Mesh
