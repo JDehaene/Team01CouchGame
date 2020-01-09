@@ -192,6 +192,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
         _playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
+        
 
     }
     
