@@ -68,6 +68,7 @@ public class PlayerBehaviour : MonoBehaviour
     //ui stuff
     [Header("Player UI")]
     [SerializeField] private UiPlayer _playerUi;
+    private bool _hasUi = false;
 
     //functions
     private void Start()
@@ -78,8 +79,6 @@ public class PlayerBehaviour : MonoBehaviour
         _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
         _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
         _animator = GetComponent<Animator>();
-        _playerUi.StartStats(_playerHealth, _playerMaxHealth, _timer, _firerateTimer);
-        _playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
     }
     
     private void Update()
@@ -102,6 +101,7 @@ public class PlayerBehaviour : MonoBehaviour
   
         Move();
         ApplyAnimation();
+        UiUpdate();
     }
 
     private void ApplyAnimation()
@@ -191,9 +191,11 @@ public class PlayerBehaviour : MonoBehaviour
             _playerHealth = _playerMaxHealth;
         }
 
-        _playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
+        if(_hasUi)
+        {
+            _playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
+        }
         
-
     }
     
     private void PlayerMinStatsCheck()
@@ -230,18 +232,19 @@ public class PlayerBehaviour : MonoBehaviour
             _ghost = Instantiate(_ghost, transform.position, transform.rotation);
         }
     
-        _ghost.GetComponent<ghostController>().SetGhostID(_playerId);
+        _ghost.GetComponent<ghostController>().SetGhost(_playerId);
+        _ghost.GetComponent<ghostController>().SetUi(_playerUi);
 
         gameObject.active = false;
     }
     
     private void PlayerCheck()
     {
-        if(_fire)
+        if(_fire && _hasUi)
         {
             _playerUi.StaminaMeter(_fuel, _maxfuel);
         }
-        else
+        else if(_hasUi)
         {
             _playerUi.StaminaMeter(_timer, _firerateTimer);
         }
@@ -257,7 +260,11 @@ public class PlayerBehaviour : MonoBehaviour
         _animator.SetBool("DamageTaken", true);
         _playerHealth -= damage;
 
-        _playerUi.TakesDamage(damage);
+        if(_hasUi)
+        {
+            _playerUi.TakesDamage(damage);
+        }
+        
     }
 
     // player weapon
@@ -376,4 +383,20 @@ public class PlayerBehaviour : MonoBehaviour
         
     }
     
+    //ui stuff
+    private void UiUpdate()
+    {
+        if(_playerUi != null)
+        {
+            _playerUi.StartStats(_playerHealth, _playerMaxHealth, _timer, _firerateTimer);
+            _playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
+            _hasUi = true;
+        }
+        else if(_playerUi == null)
+        {
+            _hasUi = false;
+        }
+        
+    }
+
 }

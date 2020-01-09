@@ -79,10 +79,14 @@ public class GameConditionManager : MonoBehaviour
 
     private void EndGame()
     {
-        //for(int i = 0; i < _activeGhosts.Length; ++i)
-        //{
-        //    Destroy(_activeGhosts[i].GetComponent<DontDestroyOnLoad>());
-        //}
+        if(_activeGhosts.Length != 0)
+        {
+            foreach (var item in _activeGhosts)
+            {
+                Destroy(item);
+            }
+        }
+        
         SceneManager.LoadScene("CharacterSelection");
     }
 }

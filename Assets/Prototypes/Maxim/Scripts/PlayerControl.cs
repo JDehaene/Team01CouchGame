@@ -17,6 +17,8 @@ public class PlayerControl : MonoBehaviour
 
     //ui stuff
     [SerializeField] private UiPlayer _playerUi;
+    [SerializeField] private PlayerUiController _uiController;
+    [SerializeField] private int _playerId;
     private Color _playerColor;
 
     private void Start()
@@ -39,13 +41,14 @@ public class PlayerControl : MonoBehaviour
         controllerID = ctrl;
         _joinButton.GetComponent<Renderer>().material = _buttonMaterial[1];
         this.gameObject.AddComponent<DontDestroyOnLoad>();
-
+        _uiController.SetPlayerActive(_playerId);
         _txtInfo.text = "'B' to back out";
 
     }
 
     public void DeActive()
     {
+        _uiController.SetPlayerInactive(_playerId);
         Destroy(this.gameObject.GetComponent<DontDestroyOnLoad>());
         this.enabled = false;
         _lockedIn = false;

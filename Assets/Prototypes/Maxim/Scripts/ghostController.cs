@@ -54,6 +54,10 @@ public class ghostController : MonoBehaviour
     //ghost spawn stuff
     private GameObject _ghostSpawnerFinalRoom;
 
+    //ghost ui stuff
+    private UiPlayer _playerUi;
+    private bool _hasUi = false;
+
     private SoundManager _soundManager;
     private Animator _animator;
 
@@ -74,22 +78,18 @@ public class ghostController : MonoBehaviour
 
         if (_ghostIsAlive && _ghostId != 0)
         {
-            _timer -= Time.deltaTime;
+            _timer += Time.deltaTime;
             FuelCheck();
 
             WeaponCheck();
             GhostCheck();
             
             GetInput();
-            //if (Mathf.Abs(_input.x) < 0.2 && Mathf.Abs(_input.y) < 0.2)
-            //{
-            //    _rb.rotation = Quaternion.Euler(0, _angle, 0);
-            //    return;
-            //}
             CalculateDirection();
             Rotate();
             Move();
             ApplyAnimation();
+            UiUpdate();
         }
 
         if(_ghostSpawnerFinalRoom == null)
@@ -170,6 +170,12 @@ public class ghostController : MonoBehaviour
         {
             _ghostHealth = _ghostMaxHealth;
         }
+
+        if (_hasUi)
+        {
+            _playerUi.ChangedStats(_ghostHealth, _ghostSpeed, _ghostPower, _ghostMaxHealth);
+        }
+
     }
 
     private void GhostMinStatsCheck()
@@ -179,9 +185,9 @@ public class ghostController : MonoBehaviour
             _ghostMaxHealth = 15;
         }
 
-        if (_ghostSpeed <= 0.5)
+        if (_ghostSpeed <= 1.5)
         {
-            _ghostSpeed = 0.5f;
+            _ghostSpeed = 1.5f;
         }
 
         if (_ghostPower <= 0.5)
@@ -216,6 +222,12 @@ public class ghostController : MonoBehaviour
     {
         _animator.SetBool("DamageTaken", true);
         _ghostHealth -= damage;
+
+        if (_hasUi)
+        {
+            _playerUi.TakesDamage(damage);
+        }
+
     }
 
     //ghost weapon
@@ -271,13 +283,13 @@ public class ghostController : MonoBehaviour
     //spell that resets timer to be shot again
     private void CastSpell()
     {
-        if (_timer <= 0)
+        if (_timer >= _firerateTimer)
         {
             _animator.SetBool("Shooting", true);
             _soundManager.ShootingSound();
             _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
             _firedBullet.GetComponent<BulletStats>().BulletPower(_ghostPower, true);
-            _timer = _firerateTimer;
+            _timer = 0;
         }
     }
 
@@ -286,13 +298,13 @@ public class ghostController : MonoBehaviour
     {
         if (_fuel >= 0)
         {
-            if (_timer <= 0)
+            if (_timer >= _firerateTimer)
             {
                 _animator.SetBool("Shooting", true);
                 _soundManager.ShootingSound();
                 _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
                 _firedBullet.GetComponent<BulletStats>().BulletPower(_ghostPower, true);
-                _timer = _firerateTimer;
+                _timer = 0;
                 _fuel -= 0.5f;
             }
         }
@@ -329,7 +341,6 @@ public class ghostController : MonoBehaviour
         }
 
     }
-
     
     //ghost spawn / next room
     public void GhostTeleport()
@@ -361,9 +372,30 @@ public class ghostController : MonoBehaviour
         _ghostSpawnerFinalRoom.GetComponent<GhostSpawner>().SetGhost(this.GetComponent<ghostController>());
     }
 
-    public void SetGhostID(int ghostid)
+    public void SetGhost(int ghostid)
     {
         _ghostId = ghostid;
+    }
+    
+    public void SetUi(UiPlayer playerui)
+    {
+        _playerUi = playerui;
+    }
+
+    //ui stuff
+    private void UiUpdate()
+    {
+        if (_playerUi != null)
+        {
+            _playerUi.StartStats(_ghostHealth, _ghostMaxHealth, _timer, _firerateTimer);
+            _playerUi.ChangedStats(_ghostHealth, _ghostSpeed, _ghostPower, _ghostMaxHealth);
+            _hasUi = true;
+        }
+        else if (_playerUi == null)
+        {
+            _hasUi = false;
+        }
+
     }
 
 }
