@@ -78,8 +78,8 @@ public class PlayerBehaviour : MonoBehaviour
         _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
         _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
         _animator = GetComponent<Animator>();
-        _playerUi.StartStats(_playerHealth, _playerMaxHealth, _timer, _firerateTimer);
-        _playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
+        //_playerUi.StartStats(_playerHealth, _playerMaxHealth, _timer, _firerateTimer);
+        //_playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
     }
     
     private void Update()
@@ -191,7 +191,7 @@ public class PlayerBehaviour : MonoBehaviour
             _playerHealth = _playerMaxHealth;
         }
 
-        _playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
+        //_playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
         
 
     }
@@ -239,11 +239,11 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if(_fire)
         {
-            _playerUi.StaminaMeter(_fuel, _maxfuel);
+            //_playerUi.StaminaMeter(_fuel, _maxfuel);
         }
         else
         {
-            _playerUi.StaminaMeter(_timer, _firerateTimer);
+            //_playerUi.StaminaMeter(_timer, _firerateTimer);
         }
 
         if(_playerHealth <= 0)
@@ -257,7 +257,7 @@ public class PlayerBehaviour : MonoBehaviour
         _animator.SetBool("DamageTaken", true);
         _playerHealth -= damage;
 
-        _playerUi.TakesDamage(damage);
+        //_playerUi.TakesDamage(damage);
     }
 
     // player weapon

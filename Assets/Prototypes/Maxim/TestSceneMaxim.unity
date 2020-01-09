@@ -430,6 +430,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3202632712509085969, guid: 213057d568f4b5441ad7797adcce047d,
+        type: 3}
+      propertyPath: _roomsPerPlayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202632712509085969, guid: 213057d568f4b5441ad7797adcce047d,
+        type: 3}
+      propertyPath: _finalRoom
+      value: 
+      objectReference: {fileID: 8772487321109450464, guid: 25037e2c9d9dd074a9ca95a02385d94e,
+        type: 3}
     - target: {fileID: 3202632712509085974, guid: 213057d568f4b5441ad7797adcce047d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -485,17 +496,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3202632712509085969, guid: 213057d568f4b5441ad7797adcce047d,
-        type: 3}
-      propertyPath: _roomsPerPlayer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3202632712509085969, guid: 213057d568f4b5441ad7797adcce047d,
-        type: 3}
-      propertyPath: _finalRoom
-      value: 
-      objectReference: {fileID: 8772487321109450464, guid: 25037e2c9d9dd074a9ca95a02385d94e,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 213057d568f4b5441ad7797adcce047d, type: 3}
 --- !u!1 &262479566
@@ -801,7 +801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &542476804
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1411,7 +1411,7 @@ PrefabInstance:
     - target: {fileID: 1416130818918632767, guid: f26ca6da786de764e807ade16e02d120,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1416130818918632763, guid: f26ca6da786de764e807ade16e02d120,
         type: 3}
@@ -1738,7 +1738,7 @@ PrefabInstance:
     - target: {fileID: 8885073973741595368, guid: 06e8bb636130b354d97e60320f91e046,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8885073973741595372, guid: 06e8bb636130b354d97e60320f91e046,
         type: 3}
@@ -2939,6 +2939,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3944291788712688998, guid: 56da83e887691a54abf1b9910f18a558,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3944291788712688997, guid: 56da83e887691a54abf1b9910f18a558,
         type: 3}
