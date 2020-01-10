@@ -820,7 +820,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4883818438055732270
 Transform:
@@ -1220,6 +1220,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock Formation 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3106204376142087819, guid: 099868c4b800e8b4b8ed88016dd60aac,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1899975482235102372, guid: 099868c4b800e8b4b8ed88016dd60aac,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1305,6 +1310,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2014937321186034204}
     m_Modifications:
+    - target: {fileID: 6713073646850632345, guid: af7a69771139b6f4da4c8f3fc865c0f1,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy Shooter
+      objectReference: {fileID: 0}
     - target: {fileID: 6713073646850632341, guid: af7a69771139b6f4da4c8f3fc865c0f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1359,11 +1369,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6713073646850632345, guid: af7a69771139b6f4da4c8f3fc865c0f1,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy Shooter
       objectReference: {fileID: 0}
     - target: {fileID: 6713073646850632344, guid: af7a69771139b6f4da4c8f3fc865c0f1,
         type: 3}
@@ -1760,6 +1765,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2014937321186034204}
     m_Modifications:
+    - target: {fileID: 4913066647004577148, guid: 31720d58ff1408e4087635bc8e6ba2de,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy Charger (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4913066647004577136, guid: 31720d58ff1408e4087635bc8e6ba2de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1814,11 +1824,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4913066647004577148, guid: 31720d58ff1408e4087635bc8e6ba2de,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy Charger (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4913066647004577149, guid: 31720d58ff1408e4087635bc8e6ba2de,
         type: 3}
@@ -1915,6 +1920,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2309323877754085239}
     m_Modifications:
+    - target: {fileID: 5756271368926611059, guid: 8dfd938303714a14bbffffe1cd85331d,
+        type: 3}
+      propertyPath: m_Name
+      value: LWay_Walls
+      objectReference: {fileID: 0}
+    - target: {fileID: 5756271368926611059, guid: 8dfd938303714a14bbffffe1cd85331d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5756271368926611070, guid: 8dfd938303714a14bbffffe1cd85331d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1970,26 +1985,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5756271368926611059, guid: 8dfd938303714a14bbffffe1cd85331d,
-        type: 3}
-      propertyPath: m_Name
-      value: LWay_Walls
-      objectReference: {fileID: 0}
-    - target: {fileID: 5756271368926611059, guid: 8dfd938303714a14bbffffe1cd85331d,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 5756271368926611071, guid: 8dfd938303714a14bbffffe1cd85331d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5756271368926611056, guid: 8dfd938303714a14bbffffe1cd85331d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c6cc82cecf9ff4c4d885a183eedb9436, type: 2}
+    - target: {fileID: 5756271368926611071, guid: 8dfd938303714a14bbffffe1cd85331d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dfd938303714a14bbffffe1cd85331d, type: 3}
 --- !u!4 &540556943750192212 stripped
@@ -2150,12 +2155,12 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8f283e913f41fbd4fb110bd73f7180b8, type: 2}
-    - target: {fileID: 6925519742486167634, guid: 33c1674ea31a3db4c9c712709fcd88e5,
+    - target: {fileID: 2628319083415866253, guid: 33c1674ea31a3db4c9c712709fcd88e5,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 2628319083415866253, guid: 33c1674ea31a3db4c9c712709fcd88e5,
+    - target: {fileID: 6925519742486167634, guid: 33c1674ea31a3db4c9c712709fcd88e5,
         type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2325,6 +2330,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2014937321186034204}
     m_Modifications:
+    - target: {fileID: 4913066647004577148, guid: 31720d58ff1408e4087635bc8e6ba2de,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy Charger
+      objectReference: {fileID: 0}
     - target: {fileID: 4913066647004577136, guid: 31720d58ff1408e4087635bc8e6ba2de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2380,11 +2390,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4913066647004577148, guid: 31720d58ff1408e4087635bc8e6ba2de,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy Charger
-      objectReference: {fileID: 0}
     - target: {fileID: 4913066647004577149, guid: 31720d58ff1408e4087635bc8e6ba2de,
         type: 3}
       propertyPath: _radius
@@ -2409,6 +2414,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock Formation 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106204376142087819, guid: 099868c4b800e8b4b8ed88016dd60aac,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1899975482235102372, guid: 099868c4b800e8b4b8ed88016dd60aac,
         type: 3}
@@ -2575,16 +2585,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180.00002
       objectReference: {fileID: 0}
-    - target: {fileID: 2649886361189519610, guid: d8187f4fbe101d34095c1f29579692db,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 549350946859553421, guid: d8187f4fbe101d34095c1f29579692db,
         type: 3}
       propertyPath: _enemies
       value: 
       objectReference: {fileID: 149150110635455249}
+    - target: {fileID: 2649886361189519610, guid: d8187f4fbe101d34095c1f29579692db,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6827507446712890055, guid: d8187f4fbe101d34095c1f29579692db,
         type: 3}
       propertyPath: m_IsActive

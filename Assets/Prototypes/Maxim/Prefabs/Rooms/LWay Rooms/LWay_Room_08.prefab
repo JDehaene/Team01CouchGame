@@ -245,7 +245,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1274361482545905734
 Transform:
@@ -461,7 +461,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1274361482934420883
 Transform:
@@ -1593,11 +1593,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7612033245251951361, guid: 33c1674ea31a3db4c9c712709fcd88e5,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8f283e913f41fbd4fb110bd73f7180b8, type: 2}
     - target: {fileID: 7563341349487063570, guid: 33c1674ea31a3db4c9c712709fcd88e5,
         type: 3}
       propertyPath: m_SelectedFaces.Array.size
@@ -91078,12 +91073,17 @@ PrefabInstance:
       propertyPath: m_Tangents.Array.data[1559].w
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 6925519742486167634, guid: 33c1674ea31a3db4c9c712709fcd88e5,
+    - target: {fileID: 7612033245251951361, guid: 33c1674ea31a3db4c9c712709fcd88e5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f283e913f41fbd4fb110bd73f7180b8, type: 2}
+    - target: {fileID: 2628319083415866253, guid: 33c1674ea31a3db4c9c712709fcd88e5,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 2628319083415866253, guid: 33c1674ea31a3db4c9c712709fcd88e5,
+    - target: {fileID: 6925519742486167634, guid: 33c1674ea31a3db4c9c712709fcd88e5,
         type: 3}
       propertyPath: m_Mesh
       value: 
@@ -91107,6 +91107,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rockformation 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543276004974808118, guid: 436c5bacbe9d23844bdb8908e63bf532,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 736224744966090096, guid: 436c5bacbe9d23844bdb8908e63bf532,
         type: 3}
@@ -91333,16 +91338,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5756271368926611071, guid: 8dfd938303714a14bbffffe1cd85331d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5756271368926611056, guid: 8dfd938303714a14bbffffe1cd85331d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c6cc82cecf9ff4c4d885a183eedb9436, type: 2}
+    - target: {fileID: 5756271368926611071, guid: 8dfd938303714a14bbffffe1cd85331d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dfd938303714a14bbffffe1cd85331d, type: 3}
 --- !u!4 &6795108629623335140 stripped
@@ -92053,6 +92058,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180.00002
       objectReference: {fileID: 0}
+    - target: {fileID: 549350946859553421, guid: d8187f4fbe101d34095c1f29579692db,
+        type: 3}
+      propertyPath: _enemies
+      value: 
+      objectReference: {fileID: 7931769842936662903, guid: fd1947536ad3dc44ea6990476980a207,
+        type: 3}
     - target: {fileID: 2649886361189519610, guid: d8187f4fbe101d34095c1f29579692db,
         type: 3}
       propertyPath: m_IsActive
@@ -92063,12 +92074,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
-    - target: {fileID: 549350946859553421, guid: d8187f4fbe101d34095c1f29579692db,
-        type: 3}
-      propertyPath: _enemies
-      value: 
-      objectReference: {fileID: 7931769842936662903, guid: fd1947536ad3dc44ea6990476980a207,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8187f4fbe101d34095c1f29579692db, type: 3}
 --- !u!4 &3985603374998093970 stripped
