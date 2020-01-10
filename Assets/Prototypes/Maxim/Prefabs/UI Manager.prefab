@@ -953,7 +953,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The Wizard can pick up poitons and stafs, but watch out for poisons!
+  m_Text: The Wizard can pick up potions and staves, but watch out for poisons!
 --- !u!1 &877050524835916535
 GameObject:
   m_ObjectHideFlags: 0
@@ -4020,7 +4020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3009826414154562391
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7278,7 +7278,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The goblin is a dead player, it can only pick up poitions and poisons.
+  m_Text: The goblin is a dead player, it can only pick up potions and poisons.
 --- !u!1 &3916070357877168761
 GameObject:
   m_ObjectHideFlags: 0
@@ -8043,7 +8043,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The goblin is a dead player, it can only pick up poitions and poisons.
+  m_Text: The goblin is a dead player, it can only pick up potions and poisons.
 --- !u!1 &4533613767942306545
 GameObject:
   m_ObjectHideFlags: 0
@@ -9406,7 +9406,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The Wizard can pick up poitons and stafs, but watch out for poisons!
+  m_Text: The Wizard can pick up potions and staves, but watch out for poisons!
 --- !u!1 &5659142788812580394
 GameObject:
   m_ObjectHideFlags: 0
@@ -9561,9 +9561,10 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Gameplay: Players need to work together to reach the end of the dungeon,
-    in the endroom you need to sacrifice a friend to go te next stage. You dead friends
-    respawn as angry goblings and can try to kill you back. If you are the last one
-    standing and kill all your goblin friends in the last room you win the game.'
+    in the endroom you need to sacrifice a friend to go the next stage. Your dead
+    friends respawn as angry goblins and can try to kill you back. If you are the
+    last one standing and kill all your goblin friends in the last room you win the
+    game.'
 --- !u!1 &5697008972510248532
 GameObject:
   m_ObjectHideFlags: 0
@@ -9717,9 +9718,10 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Gameplay: Players need to work together to reach the end of the dungeon,
-    in the endroom you need to sacrifice a friend to go te next stage. You dead friends
-    respawn as angry goblings and can try to kill you back. If you are the last one
-    standing and kill all your goblin friends in the last room you win the game.'
+    in the endroom you need to sacrifice a friend to go the next stage. Your dead
+    friends respawn as angry goblins and can try to kill you back. If you are the
+    last one standing and kill all your goblin friends in the last room you win the
+    game.'
 --- !u!1 &5822222239556851645
 GameObject:
   m_ObjectHideFlags: 0
