@@ -11,6 +11,7 @@ public class GameConditionManager : MonoBehaviour
     private Sacrifice _sacrificeBehaviour;
     [SerializeField]private Generator _generator;
     [SerializeField] private Text _winnerText;
+    [SerializeField] private GameObject _winnerUI,_loserUI;
     private float _timer;
     [SerializeField] private float _restartGameTimer;
     private GameObject _uiController;
@@ -47,9 +48,13 @@ public class GameConditionManager : MonoBehaviour
     private void CheckEndFight()
     {
         if (_activePlayers.Length > _activeGhosts.Length)
-            _winnerText.text = "Player wins!";
+        {
+            _winnerUI.SetActive(true);
+            _winnerText.text = "Player " + _activePlayers[0].GetComponent<PlayerControl>().controllerID + " wins!";
+        }
         else
         {
+            _loserUI.SetActive(true);
             _winnerText.text = "Game Over";
 
         }
