@@ -56,10 +56,7 @@ public class PlayerControl : MonoBehaviour
         _txtInfo.text = "'A' to join";
 
     }
-    public void StartGame()
-    {
-        SceneManager.LoadScene("TestSceneMaxim");
-    }
+
     public void RandomizeColor()
     {
         if (_notPressed && Mathf.Abs(Input.GetAxis("DPadHorizontalP" + controllerID)) > 0.1f)

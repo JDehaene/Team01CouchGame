@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerSelection : MonoBehaviour
@@ -41,11 +42,8 @@ public class PlayerSelection : MonoBehaviour
             {
                 this.enabled = false;
                 txtCounter.text = "Start";
-                for (int i = 0; i < _players.Length; ++i)
-                {
-                    RemoveNonPlayedChars();
-                    _players[i].StartGame();
-                }
+                RemoveNonPlayedChars();
+                StartGame();
             }
         }
         else if (_activePlayers.Count > 1)
@@ -109,5 +107,9 @@ public class PlayerSelection : MonoBehaviour
                 Destroy(_player.gameObject);
         }
     }
-    
+    void StartGame()
+    {
+        SceneManager.LoadScene("TestSceneMaxim");
+    }
+
 }
