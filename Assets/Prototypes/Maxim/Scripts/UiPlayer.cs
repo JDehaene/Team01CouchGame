@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UiPlayer : MonoBehaviour
 {
-    [SerializeField] private Image _healthBar,_staminaBar, _wizard, _maxHpImage, _powerImage,_speedImage;
+    [SerializeField] private Image _healthBar,_staminaBar, _wizard;
     [SerializeField] private Text _speedStat, _powerStat, _maxHpStat;
 
     private float _currentHealth, _maxHealth, _currentStamina, _maxStamina;
@@ -52,9 +52,6 @@ public class UiPlayer : MonoBehaviour
     public void NewPlayerColor(Color playercolor)
     {
         _wizard.color = playercolor;
-        //_maxHpImage. color = playercolor;
-        //_powerImage.color = playercolor;
-        //_speedImage.color = playercolor;
     }
 
 }
