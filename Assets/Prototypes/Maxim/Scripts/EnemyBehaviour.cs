@@ -53,7 +53,6 @@ public class EnemyBehaviour : MonoBehaviour
         //scalable stats
         _enemyHp = _enemyHp * _multiplier.StartPlayerCount;
         _enemyPower = _enemyPower * _multiplier.StartPlayerCount;
-        _speed = _speed * _multiplier.StartPlayerCount;
     }
 
     void Update()
@@ -75,7 +74,6 @@ public class EnemyBehaviour : MonoBehaviour
         _particleManager.StatsParticleEffect(this.transform.position);
         _enemyHp = _enemyHp * multiplier;
         _enemyPower = _enemyPower * multiplier;
-        _speed = _speed * multiplier;
     }
 
     private void ApplyAnimation()
