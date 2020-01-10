@@ -40,19 +40,20 @@ public class EnemyBehaviour : MonoBehaviour
     private ParticleManager _particleManager;
     private SoundManager _soundManager;
     private Animator _animator;
-    private GameConditionManager _gameConditionManager;
+    private Multiplier _multiplier;
 
     private void Start()
     {
         //assign random enemy type
-        _gameConditionManager = (GameConditionManager)FindObjectOfType(typeof(GameConditionManager));
+        _multiplier = (Multiplier)FindObjectOfType(typeof(Multiplier));
         _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
         _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
         _animator = GetComponent<Animator>();
 
         //scalable stats
-        _enemyHp = _enemyHp * _gameConditionManager.Multiplier;
-        _enemyPower = _enemyPower * _gameConditionManager.Multiplier;
+        _enemyHp = _enemyHp * _multiplier.StartPlayerCount;
+        _enemyPower = _enemyPower * _multiplier.StartPlayerCount;
+        _speed = _speed * _multiplier.StartPlayerCount;
     }
 
     void Update()
@@ -61,6 +62,20 @@ public class EnemyBehaviour : MonoBehaviour
         _colliders = Physics.OverlapSphere(this.transform.position, _radius);      
         EnemyPicker();
         ApplyAnimation();
+
+        if (_multiplier.MutliplierChanged)
+        {
+            ChangeStats(_multiplier.MultiplyNumber);
+            _multiplier.MutliplierChanged = false;
+        }
+    }
+
+    public void ChangeStats(float multiplier)
+    {
+        _particleManager.StatsParticleEffect(this.transform.position);
+        _enemyHp = _enemyHp * multiplier;
+        _enemyPower = _enemyPower * multiplier;
+        _speed = _speed * multiplier;
     }
 
     private void ApplyAnimation()

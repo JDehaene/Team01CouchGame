@@ -10,6 +10,8 @@ public class PlayerSelection : MonoBehaviour
     public PlayerControl[] _players;
     private List<int> _activePlayers = new List<int>();
 
+    [SerializeField] Multiplier _multiplierScript;
+
     public GameObject bannerTimer;
     private bool isCounting = false;
     public Text txtCounter;
@@ -27,7 +29,7 @@ public class PlayerSelection : MonoBehaviour
     {
         if (isCounting)
         {
-            if (_activePlayers.Count < 2)
+            if (_playersNeededToStart < 2)
             {
                 counter = 0;
                 isCounting = false;
@@ -43,6 +45,8 @@ public class PlayerSelection : MonoBehaviour
                 this.enabled = false;
                 txtCounter.text = "Start";
                 RemoveNonPlayedChars();
+                _multiplierScript.StartPlayerCount = _activePlayers.Count;
+                _multiplierScript.GameStarted = true;
                 StartGame();
             }
         }
@@ -62,7 +66,7 @@ public class PlayerSelection : MonoBehaviour
             if (!_activePlayers.Contains(i) && Input.GetButtonDown("AButtonP" + i))
             {
                 _activePlayers.Add(i);
-                _players[GetDevil()].Active(i);
+                _players[GetCharacter()].Active(i);
             }
         }
 
@@ -72,11 +76,11 @@ public class PlayerSelection : MonoBehaviour
             if (_activePlayers.Contains(i) && Input.GetButtonDown("BButtonP" + i))
             {
                 _activePlayers.Remove(i);
-                DeactiveDevil(i);
+                DeactiveCharacter(i);
             }
         }
     }
-    int GetDevil()
+    int GetCharacter()
     {
         for (int i = 0; i < _players.Length; ++i)
         {
@@ -88,7 +92,7 @@ public class PlayerSelection : MonoBehaviour
         return 0;
     }
 
-    void DeactiveDevil(int ctrl)
+    void DeactiveCharacter(int ctrl)
     {
         for (int i = 0; i < _players.Length; ++i)
         {

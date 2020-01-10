@@ -15,34 +15,10 @@ public class GameConditionManager : MonoBehaviour
     [SerializeField] private float _restartGameTimer;
     private GameObject _uiController;
 
-    private float _multiplier = 1;
-
-    public float Multiplier { get => _multiplier; }
-
     private void Start()
     {
         _activePlayers = GameObject.FindGameObjectsWithTag("Player");
         _uiController = GameObject.FindGameObjectWithTag("PlayerUiController");
-
-        switch (_activePlayers.Length)
-        {
-            case 1:
-                _multiplier = 2.5f;
-                break;
-            case 2:
-                _multiplier = 2;
-                break;
-            case 3:
-                _multiplier = 1.5f;
-                break;
-            case 4:
-                _multiplier = 1;
-                break;
-            default:
-                break;
-        }
-
-        Debug.Log("Check amount of players, chose case: " + _activePlayers.Length);
     }
 
     private void Update()
