@@ -7,7 +7,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioClip[] _deathSounds;
     [SerializeField]
-    private AudioClip _shootingSound;
+    private AudioClip[] _shootingSounds;
     [SerializeField]
     private AudioClip _teleportSound;
     [SerializeField]
@@ -23,7 +23,7 @@ public class SoundManager : MonoBehaviour
     }
     public void ShootingSound()
     {
-        _audioSource.PlayOneShot(_shootingSound);
+        _audioSource.PlayOneShot(_shootingSounds[0]);
     }
     public void TeleportSound()
     {
@@ -33,5 +33,21 @@ public class SoundManager : MonoBehaviour
     {
         int randomIndex = Random.Range(0, _pickupSounds.Length);
         _audioSource.PlayOneShot(_pickupSounds[randomIndex]);
+    }
+    public void DarkSound()
+    {
+        _audioSource.PlayOneShot(_shootingSounds[1]);
+    }
+    public void EarthSound()
+    {
+        _audioSource.PlayOneShot(_shootingSounds[2]);
+    }
+    public void FlamesSound()
+    {
+        _audioSource.PlayOneShot(_shootingSounds[3]);
+    }
+    public void SnowSound()
+    {
+        _audioSource.PlayOneShot(_shootingSounds[4]);
     }
 }

@@ -233,6 +233,8 @@ public class ghostController : MonoBehaviour
     //ghost weapon
     public void WeaponPickUp(GameObject weapon, bool snowstorm, bool earth, bool fire, bool darkorb)
     {
+        _soundManager.PickupSound();
+        _particleManager.StatsParticleEffect(this.transform.position);
         _bullet = weapon;
         _snowstorm = snowstorm;
         _earth = earth;
@@ -257,13 +259,13 @@ public class ghostController : MonoBehaviour
         if (_darkorb)
         {
             _firerateTimer = 0.4f;
-            CastSpell();
+            CastSpell(1);
         }
 
         if (_snowstorm)
         {
             _firerateTimer = 0.8f;
-            CastSpell();
+            CastSpell(2);
         }
 
         if (_fire)
@@ -276,20 +278,39 @@ public class ghostController : MonoBehaviour
         if (_earth)
         {
             _firerateTimer = 0.8f;
-            CastSpell();
+            CastSpell(3);
         }
     }
 
     //spell that resets timer to be shot again
-    private void CastSpell()
+    private void CastSpell(int soundIndex)
     {
         if (_timer >= _firerateTimer)
         {
             _animator.SetBool("Shooting", true);
-            _soundManager.ShootingSound();
+            PlaySpellSound(soundIndex);
             _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
             _firedBullet.GetComponent<BulletStats>().BulletPower(_ghostPower, true);
             _timer = 0;
+        }
+    }
+
+    private void PlaySpellSound(int soundNumber)
+    {
+        switch (soundNumber)
+        {
+            case 1:
+                _soundManager.DarkSound();
+                break;
+            case 2:
+                _soundManager.SnowSound();
+                break;
+            case 3:
+                _soundManager.EarthSound();
+                break;
+            default:
+                _soundManager.ShootingSound();
+                break;
         }
     }
 
@@ -301,7 +322,7 @@ public class ghostController : MonoBehaviour
             if (_timer >= _firerateTimer)
             {
                 _animator.SetBool("Shooting", true);
-                _soundManager.ShootingSound();
+                _soundManager.FlamesSound();
                 _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
                 _firedBullet.GetComponent<BulletStats>().BulletPower(_ghostPower, true);
                 _timer = 0;
