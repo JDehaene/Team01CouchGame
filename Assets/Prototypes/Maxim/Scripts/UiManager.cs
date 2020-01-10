@@ -11,6 +11,9 @@ public class UiManager : MonoBehaviour
 
     [SerializeField] private GameObject _mainMenuScreen ,_pauseScreen, _optionScreen, _helpScreen;
 
+    private int _amountOfDdols;
+    private DontDestroyOnLoad[] _ddols;
+
     private void Start()
     {
         _pauseScreen.active = false;
@@ -54,6 +57,7 @@ public class UiManager : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 1.0f;
         _mainMenuScreen.active = true;
+        RemoveDDOLS();
         SceneManager.LoadScene(0);
     }
 
@@ -64,6 +68,7 @@ public class UiManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1.0f;
+
         SceneManager.LoadScene(1);
     }
 
@@ -138,6 +143,18 @@ public class UiManager : MonoBehaviour
             PauseGame();
         }
 
+    }
+    private void RemoveDDOLS()
+    {
+        _amountOfDdols = GameObject.FindObjectsOfType(typeof(DontDestroyOnLoad)).Length;
+        _ddols = FindObjectsOfType<DontDestroyOnLoad>();
+
+        GameObject sacrifice = Instantiate(new GameObject("sacrifice"), Vector3.zero, Quaternion.identity);
+        foreach (var item in _ddols)
+        {
+            item.gameObject.transform.SetParent(sacrifice.transform);
+            Destroy(sacrifice);
+        }
     }
 
 }

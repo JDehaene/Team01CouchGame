@@ -52,7 +52,6 @@ public class GameConditionManager : MonoBehaviour
 
         if (_generator.CameraIndex == _generator.NumberOfRooms || _activePlayers.Length < 1 && _generator.CameraIndex < _generator.NumberOfRooms)        
             CheckPlayersAlive();
-
     }
 
     private void CheckPlayersAlive()
@@ -92,4 +91,6 @@ public class GameConditionManager : MonoBehaviour
         _uiController.GetComponent<PlayerUiController>().GameHasBeenRestarted();
         SceneManager.LoadScene("CharacterSelection");
     }
+
+  
 }

@@ -356,6 +356,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 3009826414313595429, guid: 5164278f04c9fa548be3058ad10ec927,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3009826414313595434, guid: 5164278f04c9fa548be3058ad10ec927,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2757,6 +2762,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2015727775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015727768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4ccd742b79d90d4ba6bcd111e2b2f86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2070077669
 GameObject:
   m_ObjectHideFlags: 0

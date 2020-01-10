@@ -15,7 +15,7 @@ public class StartGameBehaviour : MonoBehaviour
         if (_playersJoined > 1)
             _players.CheckCounter();
 
-        Debug.Log(_playersJoined);
+
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -27,7 +27,6 @@ public class PushBehaviour : MonoBehaviour
     {
         _controllerID = GetComponentInParent<PlayerControl>().controllerID;
         _bButton = _inputController.BButton(_controllerID);
-        Debug.Log("playerid: " + _controllerID);
         _timer += Time.deltaTime;
     }
     private void OnTriggerStay(Collider other)
