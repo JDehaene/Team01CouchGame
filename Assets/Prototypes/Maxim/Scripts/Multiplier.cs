@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Multiplier : MonoBehaviour
 {
+    [SerializeField] private int _statsTimer2Players = 15;
+    [SerializeField] private int _statsTimer3Players = 30;
+    [SerializeField] private int _statsTimer4Players = 45;
+
     private float _multiplyNumber = 1;
 
     public float MultiplyNumber { get => _multiplyNumber; set => _multiplyNumber = value; }
@@ -37,19 +41,19 @@ public class Multiplier : MonoBehaviour
         switch (StartPlayerCount)
         {
             case 2:
-                _changeStatsTimer = 15;
+                _changeStatsTimer = _statsTimer2Players;
                 _multiplyNumber = 1;
                 break;
             case 3:
-                _changeStatsTimer = 30;
+                _changeStatsTimer = _statsTimer3Players;
                 _multiplyNumber = 1.2f;
                 break;
             case 4:
-                _changeStatsTimer = 45;
+                _changeStatsTimer = _statsTimer4Players;
                 _multiplyNumber = 1.4f;
                 break;
             default:
-                _changeStatsTimer = 15;
+                _changeStatsTimer = _statsTimer2Players;
                 _multiplyNumber = 1;
                 break;
         }
