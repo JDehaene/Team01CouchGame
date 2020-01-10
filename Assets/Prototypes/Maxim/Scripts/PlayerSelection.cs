@@ -46,6 +46,7 @@ public class PlayerSelection : MonoBehaviour
                 txtCounter.text = "Start";
                 RemoveNonPlayedChars();
                 _multiplierScript.StartPlayerCount = _activePlayers.Count;
+                _multiplierScript.SetBeginMultiplier();
                 _multiplierScript.GameStarted = true;
                 StartGame();
             }
