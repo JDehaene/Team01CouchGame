@@ -3124,6 +3124,18 @@ PrefabInstance:
       propertyPath: _winnerText
       value: 
       objectReference: {fileID: 642129320}
+    - target: {fileID: 4095008935738794318, guid: c99db8a3a1e61fd4ea55aa588e2e2d69,
+        type: 3}
+      propertyPath: _loserUI
+      value: 
+      objectReference: {fileID: 567726189092878537, guid: 41bb8c0581cef1a4bb2f4d156bec42d5,
+        type: 3}
+    - target: {fileID: 4095008935738794318, guid: c99db8a3a1e61fd4ea55aa588e2e2d69,
+        type: 3}
+      propertyPath: _winnerUI
+      value: 
+      objectReference: {fileID: 8243263712274166973, guid: a965c72369a6dbf45aa097a074c48cce,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c99db8a3a1e61fd4ea55aa588e2e2d69, type: 3}
 --- !u!1001 &5143225308381066573
