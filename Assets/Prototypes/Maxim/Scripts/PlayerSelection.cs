@@ -44,10 +44,10 @@ public class PlayerSelection : MonoBehaviour
             {
                 this.enabled = false;
                 txtCounter.text = "Start";
-                RemoveNonPlayedChars();
                 _multiplierScript.StartPlayerCount = _activePlayers.Count;
                 _multiplierScript.SetBeginMultiplier();
                 _multiplierScript.GameStarted = true;
+                RemoveNonPlayedChars();
                 StartGame();
             }
         }
