@@ -20,7 +20,6 @@ public class GameConditionManager : MonoBehaviour
     [SerializeField]private GameObject _lastRoomBlockade;
     private bool _blockadeDestroyed = false;
     private UiManager _UI;
-
     private void Start()
     {
         _uiController = GameObject.FindGameObjectWithTag("PlayerUiController");
@@ -33,6 +32,10 @@ public class GameConditionManager : MonoBehaviour
         _activePlayers = GameObject.FindGameObjectsWithTag("Player");
         _activeGhosts = GameObject.FindGameObjectsWithTag("Ghost");
         FindBlockade();
+        if(_generatorData.CameraIndex == _generatorData.NumberOfRooms)
+        {
+            CheckLastRoomGhosts();
+        }
         CheckSacrifice();
         CheckEndFight();
         CheckPlayersAlive();
@@ -75,7 +78,13 @@ public class GameConditionManager : MonoBehaviour
             }
         }
     }
-    
+    private void CheckLastRoomGhosts()
+    {
+        for(int i = 0; i < _activeGhosts.Length; i++)
+        {
+            _activeGhosts[i].GetComponent<ghostController>().GhostIsInEndRoom();
+        }
+    }
     private void CheckEndFight()
     {
         if (_generatorData.CameraIndex == _generatorData.NumberOfRooms && _activePlayers.Length == 1 && _activeGhosts.Length == 0)
