@@ -355,15 +355,15 @@ public class PlayerBehaviour : MonoBehaviour
                 _soundManager.FlamesSound();
                 _firedBullet = Instantiate(_bullet, new Vector3(WeaponPos.position.x, WeaponPos.position.y, WeaponPos.position.z), this.transform.rotation);
                 _firedBullet.GetComponent<BulletStats>().BulletPower(_playerPower, false);
-                _timer = 0;
                 _fuel -= 0.6f;
+                _timer = 0;
             }
         }
     }
 
     private void FuelCheck()
     {
-        if (_fuel >= +_maxfuel)
+        if (_fuel >= _maxfuel)
         {
             _fuel = _maxfuel;
         }
@@ -400,7 +400,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if(_playerUi != null)
         {
-            _playerUi.StartStats(_playerHealth, _playerMaxHealth, _timer, _firerateTimer);
+            _playerUi.StartStats(_playerHealth, _playerMaxHealth);
             _playerUi.ChangedStats(_playerHealth, _playerSpeed, _playerPower, _playerMaxHealth);
             _hasUi = true;
         }

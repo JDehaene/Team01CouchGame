@@ -20,12 +20,10 @@ public class UiPlayer : MonoBehaviour
         }
     }
 
-    public void StartStats(float currenthp, float maxhp, float currentstamina, float maxstamina)
+    public void StartStats(float currenthp, float maxhp)
     {
         _currentHealth = currenthp;
         _maxHealth = maxhp;
-        _currentStamina = currentstamina;
-        _maxStamina = maxstamina;
         _isReady = true;
     }
 

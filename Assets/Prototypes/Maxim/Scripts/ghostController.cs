@@ -420,7 +420,7 @@ public class ghostController : MonoBehaviour
     {
         if (_playerUi != null)
         {
-            _playerUi.StartStats(_ghostHealth, _ghostMaxHealth, _timer, _firerateTimer);
+            _playerUi.StartStats(_ghostHealth, _ghostMaxHealth);
             _playerUi.ChangedStats(_ghostHealth, _ghostSpeed, _ghostPower, _ghostMaxHealth);
             _hasUi = true;
         }
