@@ -79,7 +79,7 @@ public class GameConditionManager : MonoBehaviour
         else
         {
             _loserUI.SetActive(true);
-            _winnerText.text = "Game Over";
+            _winnerText.text = "All the wizards died! try again ? ";
 
         }
     }
