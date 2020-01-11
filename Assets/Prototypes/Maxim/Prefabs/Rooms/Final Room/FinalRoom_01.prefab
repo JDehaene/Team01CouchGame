@@ -1209,7 +1209,7 @@ GameObject:
   - component: {fileID: 1275626204975181587}
   m_Layer: 0
   m_Name: ladder
-  m_TagString: Wall
+  m_TagString: LastBlockade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
