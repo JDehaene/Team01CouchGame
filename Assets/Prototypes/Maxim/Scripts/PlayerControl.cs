@@ -14,7 +14,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private Material[] _buttonMaterial;
     [SerializeField] private Material _playerMaterial;
     private bool _notPressed;
-
+    [SerializeField] private float _buttonOffset;
     //ui stuff
     [SerializeField] private UiPlayer _playerUi;
     [SerializeField] private PlayerUiController _uiController;
@@ -32,6 +32,7 @@ public class PlayerControl : MonoBehaviour
         if(this._lockedIn == true && SceneManager.GetActiveScene().name == "CharacterSelection")
         {
             RandomizeColor();
+            _joinButton.transform.position = new Vector3(transform.position.x, _joinButton.transform.position.y, transform.position.z + _buttonOffset);
         }
     }
     public void Active(int ctrl)
@@ -42,7 +43,6 @@ public class PlayerControl : MonoBehaviour
         _joinButton.GetComponent<Renderer>().material = _buttonMaterial[1];
         this.gameObject.AddComponent<DontDestroyOnLoad>();
         _uiController.SetPlayerActive(_playerId);
-        _txtInfo.text = "'B' to back out";
 
     }
 
@@ -53,7 +53,6 @@ public class PlayerControl : MonoBehaviour
         this.enabled = false;
         _lockedIn = false;
         _joinButton.GetComponent<Renderer>().material = _buttonMaterial[0];
-        _txtInfo.text = "'A' to join";
 
     }
 

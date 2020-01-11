@@ -6,31 +6,52 @@ using UnityEngine.SceneManagement;
 
 public class GameConditionManager : MonoBehaviour
 {
+    [SerializeField] private Text _winnerText;
+    [SerializeField] private GameObject _winnerUI,_loserUI;
+    [SerializeField] private float _restartGameTimer;
+    [SerializeField] private Text _sacrificeText;
+
     private GameObject[] _activePlayers;
     private GameObject[] _activeGhosts;
     private Sacrifice _sacrificeBehaviour;
-    [SerializeField]private Generator _generator;
-    [SerializeField] private Text _winnerText;
-    [SerializeField] private GameObject _winnerUI,_loserUI;
     private float _timer;
-    [SerializeField] private float _restartGameTimer;
     private GameObject _uiController;
+    private Generator _generatorData;
+    [SerializeField]private GameObject _lastRoomBlockade;
+    private bool _blockadeFound = false;
 
     private void Start()
     {
-        _activePlayers = GameObject.FindGameObjectsWithTag("Player");
         _uiController = GameObject.FindGameObjectWithTag("PlayerUiController");
+        _generatorData = (Generator)FindObjectOfType(typeof(Generator));  
     }
 
     private void Update()
     {
         _activePlayers = GameObject.FindGameObjectsWithTag("Player");
         _activeGhosts = GameObject.FindGameObjectsWithTag("Ghost");
-
-        if (_generator.CameraIndex == _generator.NumberOfRooms || _activePlayers.Length < 1 && _generator.CameraIndex < _generator.NumberOfRooms)        
+        FindBlockade();
+        
+        if (_generatorData.CameraIndex == _generatorData.NumberOfRooms || _activePlayers.Length < 1 && _generatorData.CameraIndex < _generatorData.NumberOfRooms)
+        {
             CheckPlayersAlive();
+        }
+        CheckSacrifice();
     }
-
+    private void CheckSacrifice()
+    {
+        if (_generatorData.CameraIndex == _generatorData.NumberOfRooms)
+        {
+            _sacrificeText.gameObject.SetActive(true);
+            _sacrificeText.text = "Sacrifice one of yourselves to advance";
+        }
+        else
+            _sacrificeText.gameObject.SetActive(false);
+    }
+    private void FindBlockade()
+    {
+            _lastRoomBlockade = GameObject.FindGameObjectWithTag("LastBlockade");
+    }
     private void CheckPlayersAlive()
     {
         if (_activePlayers.Length < 1)
@@ -50,6 +71,7 @@ public class GameConditionManager : MonoBehaviour
         if (_activePlayers.Length > _activeGhosts.Length)
         {
             _winnerUI.SetActive(true);
+            _lastRoomBlockade.SetActive(false);
             _winnerText.text = "Player " + _activePlayers[0].GetComponent<PlayerControl>().controllerID + " wins!";
         }
         else

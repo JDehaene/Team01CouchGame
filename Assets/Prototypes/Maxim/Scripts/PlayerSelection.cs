@@ -11,11 +11,14 @@ public class PlayerSelection : MonoBehaviour
     private List<int> _activePlayers = new List<int>();
 
     [SerializeField] Multiplier _multiplierScript;
+    [SerializeField] private GameObject _bannerPlayersJoined;
+    [SerializeField] private float maxTime;
+    [SerializeField] private Text _txtCounter;
+    [SerializeField] private Text _playersJoined;
+    [SerializeField] private StartGameBehaviour _playersEntered;
+    [SerializeField] private GameObject _bannerTimer;
 
-    public GameObject bannerTimer;
     private bool isCounting = false;
-    public Text txtCounter;
-    public float maxTime = 30;
     private float counter = 0;
     private int _playersNeededToStart;
 
@@ -23,6 +26,7 @@ public class PlayerSelection : MonoBehaviour
     {
         CheckInput();
         _playersNeededToStart = _activePlayers.Count;
+        UpdateUI();
     }
 
     public void CheckCounter()
@@ -33,17 +37,18 @@ public class PlayerSelection : MonoBehaviour
             {
                 counter = 0;
                 isCounting = false;
-                bannerTimer.SetActive(false);
+                _bannerTimer.SetActive(false);
+                
                 return;
             }
 
             counter += Time.deltaTime;
-            txtCounter.text = "Time Left: " + (int)(maxTime - counter);
+            _txtCounter.text = "Time left until transportation: " + (int)(maxTime - counter);
 
             if (counter >= maxTime)
             {
                 this.enabled = false;
-                txtCounter.text = "Start";
+                _txtCounter.text = "Start";
                 _multiplierScript.StartPlayerCount = _activePlayers.Count;
                 _multiplierScript.SetBeginMultiplier();
                 _multiplierScript.GameStarted = true;
@@ -55,8 +60,24 @@ public class PlayerSelection : MonoBehaviour
         {
             counter = 0;
             isCounting = true;
-            bannerTimer.SetActive(true);
+            _bannerTimer.SetActive(true);
         }
+    }
+    private void UpdateUI()
+    {
+        if(_playersEntered._playersJoined == 0)
+        {
+            _playersJoined.text = "Nobody has entered the portal";
+        }
+        if(_playersEntered._playersJoined == 1)
+        {
+            _playersJoined.text = _playersEntered._playersJoined + " player has entered the portal";
+        }
+        if (_playersEntered._playersJoined > 1)
+        {
+            _playersJoined.text = _playersEntered._playersJoined + " players have entered the portal";
+        }
+
     }
 
     void CheckInput()

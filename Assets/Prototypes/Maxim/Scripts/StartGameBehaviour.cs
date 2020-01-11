@@ -5,7 +5,7 @@ using UnityEngine;
 public class StartGameBehaviour : MonoBehaviour
 {
     [SerializeField]private PlayerSelection _players;
-    private int _playersJoined = 0;
+    public int _playersJoined = 0;
     private void Start()
     {
         _players = FindObjectOfType<PlayerSelection>();
