@@ -52,7 +52,7 @@ public class GameConditionManager : MonoBehaviour
     {
         _lastRoomBlockade = GameObject.FindGameObjectWithTag("LastBlockade");
 
-        if (_lastRoomBlockade != null && _blockadeDestroyed == false && _generatorData.CameraIndex == _generatorData.NumberOfRooms && _activeGhosts.Length < _activePlayers.Length)
+        if (_lastRoomBlockade != null && _blockadeDestroyed == false && _generatorData.CameraIndex == _generatorData.NumberOfRooms && _activeGhosts.Length == 0)
         {
             _lastRoomBlockade.SetActive(false);
             _blockadeDestroyed = true;
