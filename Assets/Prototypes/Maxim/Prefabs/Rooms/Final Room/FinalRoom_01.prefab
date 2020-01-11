@@ -1457,7 +1457,7 @@ GameObject:
   m_TagString: LastBlockade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &9080751325447906030
 Transform:
@@ -2889,11 +2889,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2628319083415866253, guid: 33c1674ea31a3db4c9c712709fcd88e5,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7612033245251951361, guid: 33c1674ea31a3db4c9c712709fcd88e5,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2913,6 +2908,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628319083415866253, guid: 33c1674ea31a3db4c9c712709fcd88e5,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33c1674ea31a3db4c9c712709fcd88e5, type: 3}
@@ -3004,6 +3004,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8955759027505807342}
     m_Modifications:
+    - target: {fileID: 7419825765830823830, guid: 540bb359cf3d6ef4ebd998bc6966d9a3,
+        type: 3}
+      propertyPath: m_Name
+      value: Torches_1_Entrance
+      objectReference: {fileID: 0}
     - target: {fileID: 6722618827827080051, guid: 540bb359cf3d6ef4ebd998bc6966d9a3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3058,11 +3063,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7419825765830823830, guid: 540bb359cf3d6ef4ebd998bc6966d9a3,
-        type: 3}
-      propertyPath: m_Name
-      value: Torches_1_Entrance
       objectReference: {fileID: 0}
     - target: {fileID: 7773871706146248444, guid: 540bb359cf3d6ef4ebd998bc6966d9a3,
         type: 3}

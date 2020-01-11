@@ -144,7 +144,7 @@ public class UiManager : MonoBehaviour
         }
 
     }
-    private void RemoveDDOLS()
+    public void RemoveDDOLS()
     {
         _amountOfDdols = GameObject.FindObjectsOfType(typeof(DontDestroyOnLoad)).Length;
         _ddols = FindObjectsOfType<DontDestroyOnLoad>();
