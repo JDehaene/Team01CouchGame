@@ -62,11 +62,11 @@ public class EnemyBehaviour : MonoBehaviour
         ApplyAnimation();
     }
 
-    public void ChangeStats(float multiplier)
+    public void ChangeStats(float multiplierHp, float multiplierPower)
     {
         _particleManager.StatsParticleEffect(this.transform.position);
-        _enemyHp += multiplier;
-        _enemyPower += multiplier;
+        _enemyHp += multiplierHp;
+        _enemyPower += multiplierPower;
     }
 
     private void ApplyAnimation()

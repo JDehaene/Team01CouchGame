@@ -8,14 +8,13 @@ public class Multiplier : MonoBehaviour
     [SerializeField] private int _statsTimer3Players = 30;
     [SerializeField] private int _statsTimer4Players = 45;
 
-    private float _multiplyNumber = 1;
+    private float _multiplyHp = 1;
+    private float _multiplyPower = 1;
 
-    public float MultiplyNumber { get => _multiplyNumber; set => _multiplyNumber = value; }
     public float StartPlayerCount { get; set; }
 
     private float _timer;
     private bool _gameStarted = false;
-
     private int _changeStatsTimer;
 
     public bool GameStarted { set => _gameStarted = value; }
@@ -35,10 +34,10 @@ public class Multiplier : MonoBehaviour
 
                 foreach (EnemyBehaviour enemy in _enemyArray)
                 {
-                    enemy.ChangeStats(_multiplyNumber);
+                    enemy.ChangeStats(_multiplyHp, _multiplyPower);
                 }
 
-                Debug.Log("Stats enemies increased with a multiplier of: " + _multiplyNumber);
+                Debug.Log("Stats enemies increased with a multiplier of: " + _multiplyHp);
             }
         }
     }
@@ -49,21 +48,25 @@ public class Multiplier : MonoBehaviour
         {
             case 2:
                 _changeStatsTimer = _statsTimer2Players;
-                _multiplyNumber = 5;
+                _multiplyHp = 5;
+                _multiplyPower = 0.05f;
                 break;
             case 3:
                 _changeStatsTimer = _statsTimer3Players;
-                _multiplyNumber = 7.5f;
+                _multiplyHp = 7.5f;
+                _multiplyPower = 0.075f;
                 break;
             case 4:
                 _changeStatsTimer = _statsTimer4Players;
-                _multiplyNumber = 10;
+                _multiplyHp = 10;
+                _multiplyPower = 0.2f;
                 break;
             default:
                 _changeStatsTimer = _statsTimer2Players;
-                _multiplyNumber = 1;
+                _multiplyHp = 1;
+                _multiplyPower = 0.1f;
                 break;
         }
-        Debug.Log(StartPlayerCount + " players started the game, the multiplier is set to " + _multiplyNumber);
+        Debug.Log(StartPlayerCount + " players started the game, the multiplier is set to " + _multiplyHp);
     }
 }
