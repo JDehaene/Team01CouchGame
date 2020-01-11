@@ -359,7 +359,7 @@ PrefabInstance:
     - target: {fileID: 3202632712509085969, guid: 213057d568f4b5441ad7797adcce047d,
         type: 3}
       propertyPath: _roomsPerPlayer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3202632712509085969, guid: 213057d568f4b5441ad7797adcce047d,
         type: 3}
