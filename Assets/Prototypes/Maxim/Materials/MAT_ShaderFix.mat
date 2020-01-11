@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MAT_ShaderFix
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 8db631202024e044281a3f0426d8890b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -55,11 +55,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SurfaceDistortion:
+        m_Texture: {fileID: 2800000, guid: c636dc61245ea494cb34e76d75ae354d, type: 3}
+        m_Scale: {x: 0.31, y: 0.6}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceNoise:
+        m_Texture: {fileID: 2800000, guid: afc89d790d3934a47a209f034b5127d7, type: 3}
+        m_Scale: {x: 0.27, y: 0.71}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
+    - _DepthMaxDistance: 2.58
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _FoamMaxDistance: 0.56
+    - _FoamMinDistance: 0.04
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -70,8 +81,14 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _SurfaceDistortionAmount: 0
+    - _SurfaceNoiseCutoff: 0.847
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DepthGradientDeep: {r: 0.49056602, g: 0.0995016, b: 0.12856731, a: 0.749}
+    - _DepthGradientShallow: {r: 0.67058825, g: 0.09019608, b: 0.13333334, a: 0.725}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FoamColor: {r: 0.8301887, g: 0.26237094, b: 0.26237094, a: 1}
+    - _SurfaceNoiseScroll: {r: 0.03, g: 0.03, b: 0, a: 0}
