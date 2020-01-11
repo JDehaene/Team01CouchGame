@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Prototypes/Maxim/MainMenu.unity
+    path: Assets/Game/Scenes/MainMenu.unity
     guid: 3f2de8a4df6f31941a540244633c3439
   - enabled: 1
-    path: Assets/Prototypes/Maxim/CharacterSelection.unity
+    path: Assets/Game/Scenes/CharacterSelection.unity
     guid: 445625962cfafe045b3755c7f897ae7b
   - enabled: 1
-    path: Assets/Prototypes/Maxim/TestSceneMaxim.unity
+    path: Assets/Game/Scenes/TestSceneMaxim.unity
     guid: 0f23117282069ab40a8b097fa6132115
   m_configObjects: {}
