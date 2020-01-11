@@ -78,7 +78,7 @@ public class GameConditionManager : MonoBehaviour
     
     private void CheckEndFight()
     {
-        if (_generatorData.CameraIndex == _generatorData.NumberOfRooms && _activePlayers.Length > _activeGhosts.Length)
+        if (_generatorData.CameraIndex == _generatorData.NumberOfRooms && _activePlayers.Length == 1 && _activeGhosts.Length == 0)
         {
             _winnerUI.SetActive(true);
             
