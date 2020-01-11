@@ -34,12 +34,9 @@ public class GameConditionManager : MonoBehaviour
         _activeGhosts = GameObject.FindGameObjectsWithTag("Ghost");
         FindBlockade();
         CheckSacrifice();
-
-
-        if (_generatorData.CameraIndex == _generatorData.NumberOfRooms || _generatorData.CameraIndex < _generatorData.NumberOfRooms)
-        {
-            CheckPlayersAlive();
-        }
+        CheckEndFight();
+        CheckPlayersAlive();
+        
     }
     private void CheckSacrifice()
     {
@@ -63,20 +60,18 @@ public class GameConditionManager : MonoBehaviour
     }
     private void CheckPlayersAlive()
     {
-        _timer += Time.deltaTime;
-        if (_timer < _restartGameTimer)
-        {
-           CheckEndFight();           
-        }
-        if(_timer > _restartGameTimer)
         {
             if (_activePlayers.Length == 0)
             {
-                _loserUI.SetActive(true);
-            }
-            if (Input.anyKey)
-            {
-                EndGame();
+                _timer += Time.deltaTime;
+                if(_timer > _restartGameTimer)
+                {
+                    _loserUI.SetActive(true);
+                    if (Input.anyKey)
+                    {
+                        EndGame();
+                    }
+                }
             }
         }
     }
@@ -93,15 +88,14 @@ public class GameConditionManager : MonoBehaviour
 
     private void EndGame()
     {
-        if(_activeGhosts.Length != 0)
-        {
-            foreach (var item in _activeGhosts)
-            {
-                Destroy(item);
-            }
-        }
-        if (_activePlayers.Length <= 1)
-            _UI.RemoveDDOLS();
+        //if(_activeGhosts.Length != 0)
+        //{
+        //    foreach (var item in _activeGhosts)
+        //    {
+        //        Destroy(item);
+        //    }
+        //}
+        _UI.RemoveDDOLS();
         _uiController.GetComponent<PlayerUiController>().GameHasBeenRestarted();
         SceneManager.LoadScene("CharacterSelection");
     }
