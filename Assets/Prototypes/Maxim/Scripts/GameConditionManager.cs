@@ -15,15 +15,17 @@ public class GameConditionManager : MonoBehaviour
     private GameObject[] _activeGhosts;
     private Sacrifice _sacrificeBehaviour;
     private float _timer;
-    private GameObject _uiController;
+    [SerializeField]private GameObject _uiController;
     private Generator _generatorData;
     [SerializeField]private GameObject _lastRoomBlockade;
-    private bool _blockadeFound = false;
+    private bool _blockadeDestroyed = false;
+    private UiManager _UI;
 
     private void Start()
     {
         _uiController = GameObject.FindGameObjectWithTag("PlayerUiController");
         _generatorData = (Generator)FindObjectOfType(typeof(Generator));  
+        _UI = (UiManager)FindObjectOfType(typeof(UiManager));
     }
 
     private void Update()
@@ -31,16 +33,17 @@ public class GameConditionManager : MonoBehaviour
         _activePlayers = GameObject.FindGameObjectsWithTag("Player");
         _activeGhosts = GameObject.FindGameObjectsWithTag("Ghost");
         FindBlockade();
-        
-        if (_generatorData.CameraIndex == _generatorData.NumberOfRooms || _activePlayers.Length < 1 && _generatorData.CameraIndex < _generatorData.NumberOfRooms)
+        CheckSacrifice();
+
+
+        if (_generatorData.CameraIndex == _generatorData.NumberOfRooms || _generatorData.CameraIndex < _generatorData.NumberOfRooms)
         {
             CheckPlayersAlive();
         }
-        CheckSacrifice();
     }
     private void CheckSacrifice()
     {
-        if (_generatorData.CameraIndex == _generatorData.NumberOfRooms)
+        if(_generatorData.CameraIndex == _generatorData.NumberOfRooms && _activePlayers.Length > 1)
         {
             _sacrificeText.gameObject.SetActive(true);
             _sacrificeText.text = "Sacrifice one of yourselves to advance";
@@ -50,38 +53,42 @@ public class GameConditionManager : MonoBehaviour
     }
     private void FindBlockade()
     {
-            _lastRoomBlockade = GameObject.FindGameObjectWithTag("LastBlockade");
+        _lastRoomBlockade = GameObject.FindGameObjectWithTag("LastBlockade");
+
+        if (_lastRoomBlockade != null && _blockadeDestroyed == false && _generatorData.CameraIndex == _generatorData.NumberOfRooms && _activeGhosts.Length < _activePlayers.Length)
+        {
+            _lastRoomBlockade.SetActive(false);
+            _blockadeDestroyed = true;
+        }
     }
     private void CheckPlayersAlive()
     {
-        if (_activePlayers.Length < 1)
+        _timer += Time.deltaTime;
+        if (_timer < _restartGameTimer)
         {
-            _timer += Time.deltaTime;
-            if(_timer < _restartGameTimer)
-                CheckEndFight();
-            if(_timer > _restartGameTimer)
-                if(Input.anyKey)
-                {
-                    EndGame();
-                }
-
+           CheckEndFight();           
+        }
+        if(_timer > _restartGameTimer)
+        {
+            if (_activePlayers.Length == 0)
+            {
+                _loserUI.SetActive(true);
+            }
+            if (Input.anyKey)
+            {
+                EndGame();
+            }
         }
     }
     
     private void CheckEndFight()
     {
-        if (_activePlayers.Length > _activeGhosts.Length)
+        if (_generatorData.CameraIndex == _generatorData.NumberOfRooms && _activePlayers.Length > _activeGhosts.Length)
         {
             _winnerUI.SetActive(true);
-            _lastRoomBlockade.SetActive(false);
+            
             _winnerText.text = "The strongest of the universe is wizard " + _activePlayers[0].GetComponent<PlayerControl>().controllerID;
-        }
-        else
-        {
-            _loserUI.SetActive(true);
-            _winnerText.text = "All the wizards died! try again ? ";
-
-        }
+        }       
     }
 
     private void EndGame()
@@ -93,6 +100,8 @@ public class GameConditionManager : MonoBehaviour
                 Destroy(item);
             }
         }
+        if (_activePlayers.Length <= 1)
+            _UI.RemoveDDOLS();
         _uiController.GetComponent<PlayerUiController>().GameHasBeenRestarted();
         SceneManager.LoadScene("CharacterSelection");
     }
