@@ -235,7 +235,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             _playerUi.StaminaMeter(_fuel, _maxfuel);
         }
-        else if(_hasUi)
+        else if(!_fire && _hasUi)
         {
             _playerUi.StaminaMeter(_timer, _firerateTimer);
         }
