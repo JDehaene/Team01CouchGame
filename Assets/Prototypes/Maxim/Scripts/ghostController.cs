@@ -51,6 +51,7 @@ public class ghostController : MonoBehaviour
     //ghost live status
     private bool _ghostIsAlive = true;
     private Rigidbody _rb;
+    private bool _ghostIsInEndRoom = false;
     //ghost spawn stuff
     private GameObject _ghostSpawnerFinalRoom;
 
@@ -195,17 +196,16 @@ public class ghostController : MonoBehaviour
             _ghostPower = 0.5f;
         }
     }
-
-    private void GhostDies()
-    {
-        GhostIsDead();
-    }
-
+    
     private void GhostCheck()
     {
-        if (_ghostHealth <= 0)
+        if (_ghostHealth <= 0 && !_ghostIsInEndRoom)
         {
-            GhostDies();
+            GhostIsDead();  //if ghost dies normally and still has a respawn
+        }
+        else if(_ghostHealth <= 0 && _ghostIsInEndRoom)
+        {
+            GhostDiesForGood(); //if ghost dies in the end room
         }
     }
 
@@ -216,6 +216,12 @@ public class ghostController : MonoBehaviour
         _ghostIsAlive = false;
         GhostMovesToFinalRoom();
         _ghostSpawnerFinalRoom.GetComponent<GhostSpawner>().GhostNeedsRespawn(_ghostId);
+    }
+
+    //if ghost dies in the end room
+    private void GhostDiesForGood()
+    {
+        this.gameObject.active = false;
     }
 
     public void GhostTakesDamage(float damage)
@@ -393,6 +399,12 @@ public class ghostController : MonoBehaviour
         _ghostSpawnerFinalRoom.GetComponent<GhostSpawner>().SetGhost(this.GetComponent<ghostController>());
     }
 
+    public void GhostIsInEndRoom()
+    {
+        _ghostIsInEndRoom = true;
+    }
+
+    //set ghost stuff
     public void SetGhost(int ghostid)
     {
         _ghostId = ghostid;
