@@ -19,7 +19,9 @@ public class Multiplier : MonoBehaviour
     private int _changeStatsTimer;
 
     public bool GameStarted { set => _gameStarted = value; }
-    public bool MutliplierChanged { get; set; }
+
+    private EnemyBehaviour[] _enemyArray;
+
     void Update()
     {
         if (_gameStarted)
@@ -29,8 +31,13 @@ public class Multiplier : MonoBehaviour
             if (_timer >= _changeStatsTimer)
             {
                 _timer = 0;
-                _multiplyNumber += 0.1f;
-                MutliplierChanged = true;
+                _enemyArray = FindObjectsOfType<EnemyBehaviour>();
+
+                foreach (EnemyBehaviour enemy in _enemyArray)
+                {
+                    enemy.ChangeStats(_multiplyNumber);
+                }
+
                 Debug.Log("Stats enemies increased with a multiplier of: " + _multiplyNumber);
             }
         }
@@ -42,15 +49,15 @@ public class Multiplier : MonoBehaviour
         {
             case 2:
                 _changeStatsTimer = _statsTimer2Players;
-                _multiplyNumber = 1;
+                _multiplyNumber = 5;
                 break;
             case 3:
                 _changeStatsTimer = _statsTimer3Players;
-                _multiplyNumber = 1.2f;
+                _multiplyNumber = 7.5f;
                 break;
             case 4:
                 _changeStatsTimer = _statsTimer4Players;
-                _multiplyNumber = 1.4f;
+                _multiplyNumber = 10;
                 break;
             default:
                 _changeStatsTimer = _statsTimer2Players;

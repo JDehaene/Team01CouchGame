@@ -42,6 +42,9 @@ public class EnemyBehaviour : MonoBehaviour
     private Animator _animator;
     private Multiplier _multiplier;
 
+    private float _multiplyTimer;
+    private bool _multiplyBool = false;
+
     private void Start()
     {
         //assign random enemy type
@@ -49,10 +52,6 @@ public class EnemyBehaviour : MonoBehaviour
         _particleManager = (ParticleManager)FindObjectOfType(typeof(ParticleManager));
         _soundManager = (SoundManager)FindObjectOfType(typeof(SoundManager));
         _animator = GetComponent<Animator>();
-
-        //scalable stats
-        _enemyHp = _enemyHp * _multiplier.StartPlayerCount;
-        _enemyPower = _enemyPower * _multiplier.StartPlayerCount;
     }
 
     void Update()
@@ -61,19 +60,13 @@ public class EnemyBehaviour : MonoBehaviour
         _colliders = Physics.OverlapSphere(this.transform.position, _radius);      
         EnemyPicker();
         ApplyAnimation();
-
-        if (_multiplier.MutliplierChanged)
-        {
-            ChangeStats(_multiplier.MultiplyNumber);
-            _multiplier.MutliplierChanged = false;
-        }
     }
 
     public void ChangeStats(float multiplier)
     {
         _particleManager.StatsParticleEffect(this.transform.position);
-        _enemyHp = _enemyHp * multiplier;
-        _enemyPower = _enemyPower * multiplier;
+        _enemyHp += multiplier;
+        _enemyPower += multiplier;
     }
 
     private void ApplyAnimation()
