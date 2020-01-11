@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 6920530847587481599}
   - component: {fileID: 2566456246209320355}
   - component: {fileID: 473472187208139718}
-  - component: {fileID: 8181487497096294105}
+  - component: {fileID: 4766358641396688992}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -187,7 +187,7 @@ MonoBehaviour:
   BulletPrefab: {fileID: 1919450267003293197}
   _hasMaxRange: 0
   _noDestroyOnHit: 0
---- !u!96 &8181487497096294105
+--- !u!96 &4766358641396688992
 TrailRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -226,7 +226,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.4
+  m_Time: 0.5
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -235,20 +235,29 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.53846085
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.35686275, g: 0.24313727, b: 0.5372549, a: 1}
-      key1: {r: 0.7286935, g: 0.65281236, b: 0.8490566, a: 1}
+      key0: {r: 0.33086926, g: 0.088287644, b: 0.6037736, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -256,7 +265,7 @@ TrailRenderer:
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 57632
+      ctime1: 65535
       ctime2: 0
       ctime3: 0
       ctime4: 0
@@ -264,7 +273,7 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 59753
+      atime1: 65535
       atime2: 0
       atime3: 0
       atime4: 0
@@ -281,5 +290,5 @@ TrailRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1
-  m_Autodestruct: 1
+  m_Autodestruct: 0
   m_Emitting: 1
