@@ -57,11 +57,13 @@ public class GameConditionManager : MonoBehaviour
         if (_activePlayers.Length < 1)
         {
             _timer += Time.deltaTime;
-            Debug.Log(_timer);
             if(_timer < _restartGameTimer)
                 CheckEndFight();
             if(_timer > _restartGameTimer)
-                EndGame();
+                if(Input.anyKey)
+                {
+                    EndGame();
+                }
 
         }
     }
@@ -72,7 +74,7 @@ public class GameConditionManager : MonoBehaviour
         {
             _winnerUI.SetActive(true);
             _lastRoomBlockade.SetActive(false);
-            _winnerText.text = "Player " + _activePlayers[0].GetComponent<PlayerControl>().controllerID + " wins!";
+            _winnerText.text = "The strongest of the universe is wizard " + _activePlayers[0].GetComponent<PlayerControl>().controllerID;
         }
         else
         {
