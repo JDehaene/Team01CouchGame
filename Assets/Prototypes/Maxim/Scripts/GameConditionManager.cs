@@ -92,6 +92,10 @@ public class GameConditionManager : MonoBehaviour
             _winnerUI.SetActive(true);
             
             _winnerText.text = "The strongest of the universe is wizard " + _activePlayers[0].GetComponent<PlayerControl>().controllerID;
+            if (Input.anyKey)
+            {
+                EndGame();
+            }
         }       
     }
 
