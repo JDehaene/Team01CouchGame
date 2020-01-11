@@ -16,7 +16,7 @@ public class Sacrifice : MonoBehaviour
             Destroy(other.GetComponent<DontDestroyOnLoad>());
             other.GetComponent<PlayerBehaviour>().PlayerDies();
             Destroy(other.gameObject);
-            SceneManager.LoadScene(1);           
+            SceneManager.LoadScene(2);           
         }
         else
         {          
