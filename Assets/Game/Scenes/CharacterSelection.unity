@@ -3341,6 +3341,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3009826414727808586, guid: 5164278f04c9fa548be3058ad10ec927,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3009826413281582008, guid: 5164278f04c9fa548be3058ad10ec927,
+        type: 3}
+      propertyPath: m_Text
+      value: Power before Broz
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435743758316821233, guid: 5164278f04c9fa548be3058ad10ec927,
+        type: 3}
+      propertyPath: m_Text
+      value: Power before Broz
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5164278f04c9fa548be3058ad10ec927, type: 3}
 --- !u!1 &2120553422

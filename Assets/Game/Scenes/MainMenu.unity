@@ -164,6 +164,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 6262884877703502257, guid: 45025dbcb8af9fb47946df60a2e2b433,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6262884877703502270, guid: 45025dbcb8af9fb47946df60a2e2b433,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -223,6 +228,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6031769700056284541, guid: 45025dbcb8af9fb47946df60a2e2b433,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1737861953304158565, guid: 45025dbcb8af9fb47946df60a2e2b433,
+        type: 3}
+      propertyPath: m_Text
+      value: Power before Broz
+      objectReference: {fileID: 0}
+    - target: {fileID: 6262884878819106860, guid: 45025dbcb8af9fb47946df60a2e2b433,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Power before Broz
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45025dbcb8af9fb47946df60a2e2b433, type: 3}
@@ -662,6 +684,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3009826414154562390, guid: 5164278f04c9fa548be3058ad10ec927,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3009826414727808586, guid: 5164278f04c9fa548be3058ad10ec927,
         type: 3}
       propertyPath: m_IsActive
@@ -671,6 +698,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3009826413281582008, guid: 5164278f04c9fa548be3058ad10ec927,
+        type: 3}
+      propertyPath: m_Text
+      value: Power before Broz
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435743758316821233, guid: 5164278f04c9fa548be3058ad10ec927,
+        type: 3}
+      propertyPath: m_Text
+      value: Power before Broz
       objectReference: {fileID: 0}
     - target: {fileID: 3009826413515906230, guid: 5164278f04c9fa548be3058ad10ec927,
         type: 3}
